@@ -36,12 +36,12 @@
             this.buttonRegPagoSoc = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.buttonMostrarActividad = new System.Windows.Forms.Button();
+            this.listBoxAct = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.listBoxSocios = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.listBoxAct = new System.Windows.Forms.ListBox();
-            this.listBoxSocios = new System.Windows.Forms.ListBox();
-            this.buttonMostrarActividad = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -131,6 +131,24 @@
             this.tabPage1.Text = "Actividades";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // buttonMostrarActividad
+            // 
+            this.buttonMostrarActividad.Location = new System.Drawing.Point(15, 102);
+            this.buttonMostrarActividad.Name = "buttonMostrarActividad";
+            this.buttonMostrarActividad.Size = new System.Drawing.Size(140, 23);
+            this.buttonMostrarActividad.TabIndex = 4;
+            this.buttonMostrarActividad.Text = "Mostrar Actividad";
+            this.buttonMostrarActividad.UseVisualStyleBackColor = true;
+            this.buttonMostrarActividad.Click += new System.EventHandler(this.buttonMostrarActividad_Click);
+            // 
+            // listBoxAct
+            // 
+            this.listBoxAct.FormattingEnabled = true;
+            this.listBoxAct.Location = new System.Drawing.Point(554, 3);
+            this.listBoxAct.Name = "listBoxAct";
+            this.listBoxAct.Size = new System.Drawing.Size(238, 420);
+            this.listBoxAct.TabIndex = 3;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.listBoxSocios);
@@ -145,12 +163,20 @@
             this.tabPage2.Text = "Socios";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // listBoxSocios
+            // 
+            this.listBoxSocios.FormattingEnabled = true;
+            this.listBoxSocios.Location = new System.Drawing.Point(557, 3);
+            this.listBoxSocios.Name = "listBoxSocios";
+            this.listBoxSocios.Size = new System.Drawing.Size(235, 420);
+            this.listBoxSocios.TabIndex = 6;
+            // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(449, 326);
+            this.tabPage3.Size = new System.Drawing.Size(795, 427);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -160,36 +186,10 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(449, 326);
+            this.tabPage4.Size = new System.Drawing.Size(795, 427);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // listBoxAct
-            // 
-            this.listBoxAct.FormattingEnabled = true;
-            this.listBoxAct.Location = new System.Drawing.Point(554, 3);
-            this.listBoxAct.Name = "listBoxAct";
-            this.listBoxAct.Size = new System.Drawing.Size(238, 420);
-            this.listBoxAct.TabIndex = 3;
-            // 
-            // listBoxSocios
-            // 
-            this.listBoxSocios.FormattingEnabled = true;
-            this.listBoxSocios.Location = new System.Drawing.Point(557, 3);
-            this.listBoxSocios.Name = "listBoxSocios";
-            this.listBoxSocios.Size = new System.Drawing.Size(235, 420);
-            this.listBoxSocios.TabIndex = 6;
-            // 
-            // buttonMostrarActividad
-            // 
-            this.buttonMostrarActividad.Location = new System.Drawing.Point(15, 102);
-            this.buttonMostrarActividad.Name = "buttonMostrarActividad";
-            this.buttonMostrarActividad.Size = new System.Drawing.Size(140, 23);
-            this.buttonMostrarActividad.TabIndex = 4;
-            this.buttonMostrarActividad.Text = "Mostrar Actividad";
-            this.buttonMostrarActividad.UseVisualStyleBackColor = true;
-            this.buttonMostrarActividad.Click += new System.EventHandler(this.buttonMostrarActividad_Click);
             // 
             // FormPrincipal
             // 
@@ -198,7 +198,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl);
             this.Name = "FormPrincipal";
-            this.Text = "Principal";
+            this.Text = "Club";
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

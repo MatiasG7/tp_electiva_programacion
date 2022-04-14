@@ -60,8 +60,7 @@ namespace UI
 
         private void buttonMostrarActividad_Click(object sender, EventArgs e)
         {
-            Actividad a;
-            a = (Actividad)listBoxAct.SelectedItem;
+            Actividad a = (Actividad)listBoxAct.SelectedItem;
             if (a == null)
                 MessageBox.Show("No hay actividad seleccionada para mostrar.");
             else
@@ -74,13 +73,19 @@ namespace UI
 
         private void buttonEliminarActividad_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la actividad seleccionada?", "Eliminar Actividad", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
+            Actividad a = (Actividad)listBoxAct.SelectedItem;
+            if (a == null)
+                MessageBox.Show("No hay actividad seleccionada para mostrar.");
+            else
             {
-                club.removerActividad((Actividad)listBoxAct.SelectedItem);
-                listBoxAct.DataSource = null;
-                listBoxAct.DataSource = club.Actividades;
-                listBoxAct.ClearSelected();
+                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la actividad seleccionada?", "Eliminar Actividad", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    club.removerActividad(a);
+                    listBoxAct.DataSource = null;
+                    listBoxAct.DataSource = club.Actividades;
+                    listBoxAct.ClearSelected();
+                }
             }
         }
     }
