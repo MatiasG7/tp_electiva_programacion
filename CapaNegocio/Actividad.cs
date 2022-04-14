@@ -25,5 +25,10 @@ namespace CapaNegocio
             this.costo = costo;
             this.comisiones = new List<Comision>();
         }
+
+        public override string ToString()
+        {
+            return id + "- " + descripcion + ", " + costo;
+        }
     }
 }
