@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public class Actividad
     {
         private int id;
@@ -29,6 +30,15 @@ namespace CapaNegocio
         public override string ToString()
         {
             return id + "- " + descripcion + ", " + costo;
+        }
+
+        public bool verificarComision(Comision newCom)
+        {
+            bool exists = comisiones.Any(c => c.Id == newCom.Id);
+            if (!exists)
+                comisiones.Add(newCom);
+
+            return exists;
         }
     }
 }

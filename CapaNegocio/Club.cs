@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CapaDatos;
+
 namespace CapaNegocio
 {
+    [Serializable]
     public class Club
     {
         List<Actividad> actividades;
@@ -39,6 +42,19 @@ namespace CapaNegocio
         public void removerActividad(Actividad act)
         {
             actividades.Remove(act);
+        }
+
+        public bool guardar()
+        {
+            return Datos.Guardar(this);
+        }
+
+        public static Club Recuperar()
+        {
+            Club c = (Club)Datos.Recuperar();
+            if (c == null)
+                c = new Club();
+            return c;
         }
     }
 }

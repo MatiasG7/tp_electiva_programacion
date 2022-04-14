@@ -34,7 +34,7 @@ namespace UI
 
         private void FormCrearActividad_Load(object sender, EventArgs e)
         {
-
+            this.ActiveControl = labelActID;
         }
 
         private void buttonActCrear_Click(object sender, EventArgs e)

@@ -53,7 +53,7 @@
             this.buttonCrearActividad.Name = "buttonCrearActividad";
             this.buttonCrearActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonCrearActividad.TabIndex = 0;
-            this.buttonCrearActividad.Text = "Crear Actividad";
+            this.buttonCrearActividad.Text = "Crear";
             this.buttonCrearActividad.UseVisualStyleBackColor = true;
             this.buttonCrearActividad.Click += new System.EventHandler(this.buttonCrearActividad_Click);
             // 
@@ -63,7 +63,7 @@
             this.buttonModificarActividad.Name = "buttonModificarActividad";
             this.buttonModificarActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonModificarActividad.TabIndex = 1;
-            this.buttonModificarActividad.Text = "Modificar Actividad";
+            this.buttonModificarActividad.Text = "Modificar";
             this.buttonModificarActividad.UseVisualStyleBackColor = true;
             this.buttonModificarActividad.Click += new System.EventHandler(this.buttonModificarActividad_Click);
             // 
@@ -73,7 +73,7 @@
             this.buttonEliminarActividad.Name = "buttonEliminarActividad";
             this.buttonEliminarActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonEliminarActividad.TabIndex = 2;
-            this.buttonEliminarActividad.Text = "Eliminar Actividad";
+            this.buttonEliminarActividad.Text = "Eliminar";
             this.buttonEliminarActividad.UseVisualStyleBackColor = true;
             this.buttonEliminarActividad.Click += new System.EventHandler(this.buttonEliminarActividad_Click);
             // 
@@ -137,7 +137,7 @@
             this.buttonMostrarActividad.Name = "buttonMostrarActividad";
             this.buttonMostrarActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonMostrarActividad.TabIndex = 4;
-            this.buttonMostrarActividad.Text = "Mostrar Actividad";
+            this.buttonMostrarActividad.Text = "Mostrar";
             this.buttonMostrarActividad.UseVisualStyleBackColor = true;
             this.buttonMostrarActividad.Click += new System.EventHandler(this.buttonMostrarActividad_Click);
             // 
@@ -199,6 +199,7 @@
             this.Controls.Add(this.tabControl);
             this.Name = "FormPrincipal";
             this.Text = "Club";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

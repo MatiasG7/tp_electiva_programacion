@@ -38,6 +38,9 @@
             this.buttonActCancelar = new System.Windows.Forms.Button();
             this.buttonActModif = new System.Windows.Forms.Button();
             this.buttonActAceptar = new System.Windows.Forms.Button();
+            this.maskedTextBoxActID = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxActDesc = new System.Windows.Forms.MaskedTextBox();
+            this.maskedTextBoxActCosto = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // labelActID
@@ -110,7 +113,7 @@
             // 
             // buttonActModif
             // 
-            this.buttonActModif.Location = new System.Drawing.Point(383, 363);
+            this.buttonActModif.Location = new System.Drawing.Point(383, 334);
             this.buttonActModif.Name = "buttonActModif";
             this.buttonActModif.Size = new System.Drawing.Size(75, 23);
             this.buttonActModif.TabIndex = 8;
@@ -120,7 +123,7 @@
             // 
             // buttonActAceptar
             // 
-            this.buttonActAceptar.Location = new System.Drawing.Point(383, 392);
+            this.buttonActAceptar.Location = new System.Drawing.Point(383, 334);
             this.buttonActAceptar.Name = "buttonActAceptar";
             this.buttonActAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonActAceptar.TabIndex = 9;
@@ -128,11 +131,38 @@
             this.buttonActAceptar.UseVisualStyleBackColor = true;
             this.buttonActAceptar.Click += new System.EventHandler(this.buttonActAceptar_Click);
             // 
+            // maskedTextBoxActID
+            // 
+            this.maskedTextBoxActID.Location = new System.Drawing.Point(213, 76);
+            this.maskedTextBoxActID.Mask = "9999999999";
+            this.maskedTextBoxActID.Name = "maskedTextBoxActID";
+            this.maskedTextBoxActID.Size = new System.Drawing.Size(66, 20);
+            this.maskedTextBoxActID.TabIndex = 10;
+            // 
+            // maskedTextBoxActDesc
+            // 
+            this.maskedTextBoxActDesc.Location = new System.Drawing.Point(213, 143);
+            this.maskedTextBoxActDesc.Mask = "aaaaaaaaaaaaaaaaaaaaaaaaa";
+            this.maskedTextBoxActDesc.Name = "maskedTextBoxActDesc";
+            this.maskedTextBoxActDesc.Size = new System.Drawing.Size(157, 20);
+            this.maskedTextBoxActDesc.TabIndex = 11;
+            // 
+            // maskedTextBoxActCosto
+            // 
+            this.maskedTextBoxActCosto.Location = new System.Drawing.Point(213, 200);
+            this.maskedTextBoxActCosto.Mask = "9999999.99";
+            this.maskedTextBoxActCosto.Name = "maskedTextBoxActCosto";
+            this.maskedTextBoxActCosto.Size = new System.Drawing.Size(66, 20);
+            this.maskedTextBoxActCosto.TabIndex = 12;
+            // 
             // FormActividad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.maskedTextBoxActCosto);
+            this.Controls.Add(this.maskedTextBoxActDesc);
+            this.Controls.Add(this.maskedTextBoxActID);
             this.Controls.Add(this.buttonActAceptar);
             this.Controls.Add(this.buttonActModif);
             this.Controls.Add(this.buttonActCancelar);
@@ -163,5 +193,8 @@
         private System.Windows.Forms.Button buttonActCancelar;
         private System.Windows.Forms.Button buttonActModif;
         private System.Windows.Forms.Button buttonActAceptar;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxActID;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxActDesc;
+        private System.Windows.Forms.MaskedTextBox maskedTextBoxActCosto;
     }
 }

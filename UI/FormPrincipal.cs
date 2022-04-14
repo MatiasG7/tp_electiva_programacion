@@ -18,7 +18,9 @@ namespace UI
         public FormPrincipal()
         {
             InitializeComponent();
-            club = new Club();
+            club = Club.Recuperar();
+            listBoxAct.DataSource = club.Actividades;
+            listBoxAct.ClearSelected();
         }
 
         private void buttonCrearActividad_Click(object sender, EventArgs e)
@@ -50,12 +52,18 @@ namespace UI
 
         private void buttonModificarActividad_Click(object sender, EventArgs e)
         {
-            FormActividad fca = new FormActividad((Actividad)listBoxAct.SelectedItem);
-            fca.prepararFormModificar();
-            fca.ShowDialog();
-            listBoxAct.DataSource = null;
-            listBoxAct.DataSource = club.Actividades;
-            listBoxAct.ClearSelected();
+            Actividad a = (Actividad)listBoxAct.SelectedItem;
+            if (a == null)
+                MessageBox.Show("No hay actividad seleccionada para modificar.");
+            else
+            {
+                FormActividad fca = new FormActividad(a);
+                fca.prepararFormModificar();
+                fca.ShowDialog();
+                listBoxAct.DataSource = null;
+                listBoxAct.DataSource = club.Actividades;
+                listBoxAct.ClearSelected();
+            }
         }
 
         private void buttonMostrarActividad_Click(object sender, EventArgs e)
@@ -68,6 +76,7 @@ namespace UI
                 FormActividad fca = new FormActividad((Actividad)listBoxAct.SelectedItem);
                 fca.prepararFormMostrar();
                 fca.ShowDialog();
+                listBoxAct.ClearSelected();
             }
         }
 
@@ -75,7 +84,7 @@ namespace UI
         {
             Actividad a = (Actividad)listBoxAct.SelectedItem;
             if (a == null)
-                MessageBox.Show("No hay actividad seleccionada para mostrar.");
+                MessageBox.Show("No hay actividad seleccionada para eliminar.");
             else
             {
                 DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la actividad seleccionada?", "Eliminar Actividad", MessageBoxButtons.YesNo);
@@ -84,9 +93,18 @@ namespace UI
                     club.removerActividad(a);
                     listBoxAct.DataSource = null;
                     listBoxAct.DataSource = club.Actividades;
-                    listBoxAct.ClearSelected();
                 }
+
+                listBoxAct.ClearSelected();
             }
+        }
+
+        private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (club.guardar())
+                MessageBox.Show("GUARDADO OK");
+            else
+                MessageBox.Show("ERROR AL GUARDAR");
         }
     }
 }
