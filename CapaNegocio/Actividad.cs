@@ -40,5 +40,10 @@ namespace CapaNegocio
 
             return exists;
         }
+
+        public void removerComision(Comision c)
+        {
+            comisiones.Remove(c);
+        }
     }
 }

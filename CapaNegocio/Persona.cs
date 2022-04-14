@@ -23,5 +23,10 @@ namespace CapaNegocio
             this.nombre = nombre;
             this.fNac = fNac;
         }
+
+        public override string ToString()
+        {
+            return dni + " - " + nombre + " - " + fNac.ToString();
+        }
     }
 }

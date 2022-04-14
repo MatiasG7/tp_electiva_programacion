@@ -25,11 +25,11 @@ namespace UI
 
         private void buttonCrearActividad_Click(object sender, EventArgs e)
         {
-            FormActividad fca = new FormActividad();
-            fca.prepararFormCrear();
-            fca.ShowDialog();
+            FormActividad fa = new FormActividad();
+            fa.prepararFormCrear();
+            fa.ShowDialog();
 
-            Actividad act = fca.Act;
+            Actividad act = fa.Act;
 
             bool exists = club.verificarActividad(act);
             if (exists)
@@ -57,9 +57,9 @@ namespace UI
                 MessageBox.Show("No hay actividad seleccionada para modificar.");
             else
             {
-                FormActividad fca = new FormActividad(a);
-                fca.prepararFormModificar();
-                fca.ShowDialog();
+                FormActividad fa = new FormActividad(a);
+                fa.prepararFormModificar();
+                fa.ShowDialog();
                 listBoxAct.DataSource = null;
                 listBoxAct.DataSource = club.Actividades;
                 listBoxAct.ClearSelected();
@@ -73,9 +73,9 @@ namespace UI
                 MessageBox.Show("No hay actividad seleccionada para mostrar.");
             else
             {
-                FormActividad fca = new FormActividad((Actividad)listBoxAct.SelectedItem);
-                fca.prepararFormMostrar();
-                fca.ShowDialog();
+                FormActividad fa = new FormActividad((Actividad)listBoxAct.SelectedItem);
+                fa.prepararFormMostrar();
+                fa.ShowDialog();
                 listBoxAct.ClearSelected();
             }
         }
@@ -87,6 +87,7 @@ namespace UI
                 MessageBox.Show("No hay actividad seleccionada para eliminar.");
             else
             {
+                // Cuando se elimina la actividad se debería borrar las comisiones de ellas en las que esten socios inscriptos. Y profesores.
                 DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la actividad seleccionada?", "Eliminar Actividad", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {

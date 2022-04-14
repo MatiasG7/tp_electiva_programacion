@@ -48,13 +48,6 @@ namespace UI
             this.Close();
         }
 
-        private void buttonActCancelar_Click(object sender, EventArgs e)
-        {
-            act = null;
-
-            this.Close();
-        }
-
         private void buttonActModif_Click(object sender, EventArgs e)
         {
             act.Descripcion = this.textBoxActDesc.Text;
@@ -65,6 +58,13 @@ namespace UI
 
         private void buttonActAceptar_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void buttonActCancelar_Click(object sender, EventArgs e)
+        {
+            act = null;
+
             this.Close();
         }
 
@@ -95,6 +95,78 @@ namespace UI
             this.buttonActAceptar.Visible = true;
             this.buttonActCrear.Visible = false;
             this.buttonActModif.Visible = false;
+        }
+
+        private void buttonComCrear_Click(object sender, EventArgs e)
+        {
+            FormComision fc = new FormComision(act);
+            fc.prepararFormCrear();
+            fc.ShowDialog();
+
+            Comision com = fc.Com;
+
+            bool exists = act.verificarComision(com);
+            if (exists)
+            {
+                MessageBox.Show("Ya existe una comisión con el ID ingresado.");
+            }
+            else
+            {
+                MessageBox.Show("Comisión creada satisfactoriamente.");
+                listBoxActComisiones.DataSource = null;
+                listBoxActComisiones.DataSource = act.Comisiones;
+                listBoxActComisiones.ClearSelected();
+            }
+        }
+
+        private void buttonComModif_Click(object sender, EventArgs e)
+        {
+            Comision c = (Comision)listBoxActComisiones.SelectedItem;
+            if (c == null)
+                MessageBox.Show("No hay comisión seleccionada para modificar.");
+            else
+            {
+                FormComision fc = new FormComision(act, c);
+                fc.prepararFormModificar();
+                fc.ShowDialog();
+                listBoxActComisiones.DataSource = null;
+                listBoxActComisiones.DataSource = act.Comisiones;
+                listBoxActComisiones.ClearSelected();
+            }
+        }
+
+        private void buttonComElim_Click(object sender, EventArgs e)
+        {
+            Comision c = (Comision)listBoxActComisiones.SelectedItem;
+            if (c == null)
+                MessageBox.Show("No hay comisión seleccionada para eliminar.");
+            else
+            {
+                // Cuando se borra una comision se deberia borrar las inscripciones de socios a ellas?
+                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la comisión seleccionada?", "Eliminar Comisión", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    act.removerComision(c);
+                    listBoxActComisiones.DataSource = null;
+                    listBoxActComisiones.DataSource = act.Comisiones;
+                }
+
+                listBoxActComisiones.ClearSelected();
+            }
+        }
+
+        private void buttonComMostrar_Click(object sender, EventArgs e)
+        {
+            Comision c = (Comision)listBoxActComisiones.SelectedItem;
+            if (c == null)
+                MessageBox.Show("No hay comisión seleccionada para mostrar.");
+            else
+            {
+                FormComision fc = new FormComision(this.act, (Comision)listBoxActComisiones.SelectedItem);
+                fc.prepararFormMostrar();
+                fc.ShowDialog();
+                listBoxActComisiones.ClearSelected();
+            }
         }
     }
 }

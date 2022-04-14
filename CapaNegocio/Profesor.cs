@@ -17,5 +17,10 @@ namespace CapaNegocio
         {
             this.fIng = fIng;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " - " + fIng.ToString();
+        }
     }
 }
