@@ -46,14 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="FormActividad.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormActividad.Designer.cs">
+      <DependentUpon>FormActividad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrincipal.Designer.cs">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormActividad.resx">
+      <DependentUpon>FormActividad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +87,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CapaNegocio\CapaNegocio.csproj">
+      <Project>{ad47a0fc-54d1-4df6-8a6f-1672b7a2cd93}</Project>
+      <Name>CapaNegocio</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

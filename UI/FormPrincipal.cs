@@ -59,7 +59,7 @@ namespace UI
             Actividad a;
             a = (Actividad)listBoxAct.SelectedItem;
             if (a == null)
-                MessageBox.Show("No hay actividad seleccionada para mostrar."):
+                MessageBox.Show("No hay actividad seleccionada para mostrar.");
             else
             {
                 FormActividad fca = new FormActividad((Actividad)listBoxAct.SelectedItem);
