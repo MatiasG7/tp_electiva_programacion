@@ -14,6 +14,13 @@ namespace CapaNegocio
 
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
 
+        public Club()
+        {
+            actividades = new List<Actividad>();
+            socios = new List<Socio>();
+            profesores = new List<Profesor>();
+        }
+
         public void agregarSocio(Socio s)
         {
             socios.Add(s);
@@ -24,10 +31,7 @@ namespace CapaNegocio
         {
             bool exists = actividades.Any(act => act.Id == newAct.Id);
             if (!exists)
-            {
                 actividades.Add(newAct);
-                return false;
-            }
 
             return exists;
         }

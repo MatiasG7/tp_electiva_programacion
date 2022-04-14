@@ -126,6 +126,7 @@
             this.buttonActAceptar.TabIndex = 9;
             this.buttonActAceptar.Text = "Aceptar";
             this.buttonActAceptar.UseVisualStyleBackColor = true;
+            this.buttonActAceptar.Click += new System.EventHandler(this.buttonActAceptar_Click);
             // 
             // FormActividad
             // 

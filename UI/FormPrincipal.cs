@@ -18,6 +18,7 @@ namespace UI
         public FormPrincipal()
         {
             InitializeComponent();
+            club = new Club();
         }
 
         private void buttonCrearActividad_Click(object sender, EventArgs e)
@@ -31,7 +32,7 @@ namespace UI
             bool exists = club.verificarActividad(act);
             if (exists)
             {
-                MessageBox.Show("Esta actividad ya existe.");
+                MessageBox.Show("Ya existe una actividad con el ID ingresado.");
             }
             else
             {
@@ -52,6 +53,9 @@ namespace UI
             FormActividad fca = new FormActividad((Actividad)listBoxAct.SelectedItem);
             fca.prepararFormModificar();
             fca.ShowDialog();
+            listBoxAct.DataSource = null;
+            listBoxAct.DataSource = club.Actividades;
+            listBoxAct.ClearSelected();
         }
 
         private void buttonMostrarActividad_Click(object sender, EventArgs e)
@@ -74,6 +78,9 @@ namespace UI
             if (dialogResult == DialogResult.Yes)
             {
                 club.removerActividad((Actividad)listBoxAct.SelectedItem);
+                listBoxAct.DataSource = null;
+                listBoxAct.DataSource = club.Actividades;
+                listBoxAct.ClearSelected();
             }
         }
     }

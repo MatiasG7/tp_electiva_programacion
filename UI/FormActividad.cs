@@ -27,6 +27,9 @@ namespace UI
         {
             InitializeComponent();
             this.act = act;
+            this.textBoxActID.Text = act.Id.ToString();
+            this.textBoxActDesc.Text = act.Descripcion;
+            this.textBoxActCosto.Text = act.Costo.ToString();
         }
 
         private void FormCrearActividad_Load(object sender, EventArgs e)
@@ -52,11 +55,25 @@ namespace UI
             this.Close();
         }
 
+        private void buttonActModif_Click(object sender, EventArgs e)
+        {
+            act.Descripcion = this.textBoxActDesc.Text;
+            act.Costo = double.Parse(this.textBoxActCosto.Text);
+
+            this.Close();
+        }
+
+        private void buttonActAceptar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
         public void prepararFormCrear()
         {
             this.Text = "Crear Actividad";
             this.textBoxActID.ReadOnly = false;
             this.buttonActModif.Visible = false;
+            this.buttonActAceptar.Visible = false;
             this.buttonActCrear.Visible = true;
         }
 
@@ -65,6 +82,7 @@ namespace UI
             this.Text = "Modificar Actividad";
             this.textBoxActID.ReadOnly = true;
             this.buttonActModif.Visible = true;
+            this.buttonActAceptar.Visible = false;
             this.buttonActCrear.Visible = false;
         }
 
@@ -77,14 +95,6 @@ namespace UI
             this.buttonActAceptar.Visible = true;
             this.buttonActCrear.Visible = false;
             this.buttonActModif.Visible = false;
-        }
-
-        private void buttonActModif_Click(object sender, EventArgs e)
-        {
-            act.Descripcion = this.textBoxActDesc.Text;
-            act.Costo = double.Parse(this.textBoxActCosto.Text);
-
-            this.Close();
         }
     }
 }
