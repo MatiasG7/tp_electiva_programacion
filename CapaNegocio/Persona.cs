@@ -26,7 +26,7 @@ namespace CapaNegocio
 
         public override string ToString()
         {
-            return dni + " - " + nombre + " - " + fNac.ToString();
+            return dni + " - " + nombre + " - " + fNac.Date.ToString("dd/MM/yyyy");
         }
     }
 }

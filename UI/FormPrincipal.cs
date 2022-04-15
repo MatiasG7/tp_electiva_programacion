@@ -65,20 +65,6 @@ namespace UI
             }
         }
 
-        private void buttonMostrarActividad_Click(object sender, EventArgs e)
-        {
-            Actividad a = (Actividad)listBoxAct.SelectedItem;
-            if (a == null)
-                MessageBox.Show("No hay actividad seleccionada para mostrar.");
-            else
-            {
-                FormActividad fa = new FormActividad((Actividad)listBoxAct.SelectedItem, club.Profesores);
-                fa.prepararFormMostrar();
-                fa.ShowDialog();
-                listBoxAct.ClearSelected();
-            }
-        }
-
         private void buttonEliminarActividad_Click(object sender, EventArgs e)
         {
             Actividad a = (Actividad)listBoxAct.SelectedItem;
@@ -99,6 +85,20 @@ namespace UI
             }
         }
 
+        private void buttonMostrarActividad_Click(object sender, EventArgs e)
+        {
+            Actividad a = (Actividad)listBoxAct.SelectedItem;
+            if (a == null)
+                MessageBox.Show("No hay actividad seleccionada para mostrar.");
+            else
+            {
+                FormActividad fa = new FormActividad((Actividad)listBoxAct.SelectedItem, club.Profesores);
+                fa.prepararFormMostrar();
+                fa.ShowDialog();
+                listBoxAct.ClearSelected();
+            }
+        }
+
         private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (club.guardar())
@@ -109,7 +109,76 @@ namespace UI
 
         private void buttonCrearProf_Click(object sender, EventArgs e)
         {
+            FormProfesor fp = new FormProfesor();
+            fp.prepararFormCrear();
+            fp.ShowDialog();
 
+            Profesor prof = fp.Prof;
+            if (prof != null)
+            {
+                bool exists = club.verificarProfesor(prof);
+                if (exists)
+                {
+                    MessageBox.Show("Ya existe un profesor con el DNI ingresado.");
+                }
+                else
+                {
+                    MessageBox.Show("Profesor creado satisfactoriamente.");
+                    listBoxProf.DataSource = null;
+                    listBoxProf.DataSource = club.Profesores;
+                    listBoxProf.ClearSelected();
+                }
+            }
+        }
+
+        private void buttonModifProf_Click(object sender, EventArgs e)
+        {
+            Profesor p = (Profesor)listBoxProf.SelectedItem;
+            if (p == null)
+                MessageBox.Show("No hay profesor seleccionado para modificar.");
+            else
+            {
+                FormProfesor fp = new FormProfesor(p);
+                fp.prepararFormModificar();
+                fp.ShowDialog();
+                listBoxProf.DataSource = null;
+                listBoxProf.DataSource = club.Profesores;
+                listBoxProf.ClearSelected();
+            }
+        }
+
+        private void buttonElimProf_Click(object sender, EventArgs e)
+        {
+            Profesor p = (Profesor)listBoxProf.SelectedItem;
+            if (p == null)
+                MessageBox.Show("No hay profesor seleccionado para eliminar.");
+            else
+            {
+                // Cuando se elimina el profesor se deberia borrar de las comisiones en las que estaba.
+                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar el profesor seleccionado?", "Eliminar Profesor", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    club.removerProfesor(p);
+                    listBoxProf.DataSource = null;
+                    listBoxProf.DataSource = club.Profesores;
+                }
+
+                listBoxProf.ClearSelected();
+            }
+        }
+
+        private void buttonMostrarProf_Click(object sender, EventArgs e)
+        {
+            Profesor p = (Profesor)listBoxProf.SelectedItem;
+            if (p == null)
+                MessageBox.Show("No hay profesor seleccionado para mostrar.");
+            else
+            {
+                FormProfesor fp = new FormProfesor(p);
+                fp.prepararFormMostrar();
+                fp.ShowDialog();
+                listBoxProf.ClearSelected();
+            }
         }
     }
 }

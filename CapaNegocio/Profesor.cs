@@ -22,7 +22,7 @@ namespace CapaNegocio
 
         public override string ToString()
         {
-            return base.ToString() + " - " + fIng.ToString();
+            return base.ToString() + " - " + fIng.Date.ToString("dd/MM/yyyy");
         }
     }
 }

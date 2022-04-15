@@ -85,7 +85,7 @@
             // 
             // buttonProfAceptar
             // 
-            this.buttonProfAceptar.Location = new System.Drawing.Point(291, 305);
+            this.buttonProfAceptar.Location = new System.Drawing.Point(292, 355);
             this.buttonProfAceptar.Name = "buttonProfAceptar";
             this.buttonProfAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonProfAceptar.TabIndex = 15;
@@ -95,7 +95,7 @@
             // 
             // buttonProfModif
             // 
-            this.buttonProfModif.Location = new System.Drawing.Point(291, 363);
+            this.buttonProfModif.Location = new System.Drawing.Point(292, 355);
             this.buttonProfModif.Name = "buttonProfModif";
             this.buttonProfModif.Size = new System.Drawing.Size(75, 23);
             this.buttonProfModif.TabIndex = 14;
@@ -105,7 +105,7 @@
             // 
             // buttonProfCancelar
             // 
-            this.buttonProfCancelar.Location = new System.Drawing.Point(403, 334);
+            this.buttonProfCancelar.Location = new System.Drawing.Point(404, 355);
             this.buttonProfCancelar.Name = "buttonProfCancelar";
             this.buttonProfCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonProfCancelar.TabIndex = 13;
@@ -115,7 +115,7 @@
             // 
             // buttonProfCrear
             // 
-            this.buttonProfCrear.Location = new System.Drawing.Point(291, 334);
+            this.buttonProfCrear.Location = new System.Drawing.Point(292, 355);
             this.buttonProfCrear.Name = "buttonProfCrear";
             this.buttonProfCrear.Size = new System.Drawing.Size(75, 23);
             this.buttonProfCrear.TabIndex = 12;

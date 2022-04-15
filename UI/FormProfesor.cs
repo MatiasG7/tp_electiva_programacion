@@ -14,9 +14,22 @@ namespace UI
     public partial class FormProfesor : Form
     {
         private Profesor prof;
+
+        public Profesor Prof { get => prof; set => prof = value; }
+
         public FormProfesor()
         {
             InitializeComponent();
+        }
+
+        public FormProfesor(Profesor p)
+        {
+            InitializeComponent();
+            this.prof = p;
+            this.textBoxProfDNI.Text = p.Dni.ToString();
+            this.textBoxProfNombre.Text = p.Nombre;
+            this.dateTimePickerProfFNac.Text = p.FNac.ToString();
+            this.dateTimePickerProfFIng.Text = p.FIng.ToString();
         }
 
         private void buttonProfCrear_Click(object sender, EventArgs e)

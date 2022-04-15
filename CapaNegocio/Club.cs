@@ -40,9 +40,23 @@ namespace CapaNegocio
             return exists;
         }
 
+        public bool verificarProfesor(Profesor newProf)
+        {
+            bool exists = profesores.Any(act => act.Dni == newProf.Dni);
+            if (!exists)
+                profesores.Add(newProf);
+
+            return exists;
+        }
+
         public void removerActividad(Actividad act)
         {
             actividades.Remove(act);
+        }
+
+        public void removerProfesor(Profesor prof)
+        {
+            profesores.Remove(prof);
         }
 
         public bool guardar()

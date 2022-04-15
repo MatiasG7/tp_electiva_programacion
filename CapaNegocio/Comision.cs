@@ -35,5 +35,10 @@ namespace CapaNegocio
             this.cantidadMaximaParticipantes = cantidadMaximaParticipantes;
             this.socios = new List<Socio>();
         }
+
+        public override string ToString()
+        {
+            return dia + " - " + horario;
+        }
     }
 }
