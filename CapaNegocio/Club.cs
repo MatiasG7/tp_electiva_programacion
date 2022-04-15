@@ -33,20 +33,22 @@ namespace CapaNegocio
         // verificarActividad devuelve true en caso de que la actividad no se encuentre en el Club.
         public bool verificarActividad(Actividad newAct)
         {
-            bool exists = actividades.Any(act => act.Id == newAct.Id);
-            if (!exists)
-                actividades.Add(newAct);
+            return actividades.Any(act => act.Id == newAct.Id);
+        }
 
-            return exists;
+        public void agregarActividad(Actividad newAct)
+        {
+            actividades.Add(newAct);
         }
 
         public bool verificarProfesor(Profesor newProf)
         {
-            bool exists = profesores.Any(act => act.Dni == newProf.Dni);
-            if (!exists)
-                profesores.Add(newProf);
+            return profesores.Any(act => act.Dni == newProf.Dni); ;
+        }
 
-            return exists;
+        public void agregarProfesor(Profesor newProf)
+        {
+            profesores.Add(newProf);
         }
 
         public void removerActividad(Actividad act)

@@ -41,6 +41,7 @@ namespace UI
                 }
                 else
                 {
+                    club.agregarActividad(act);
                     MessageBox.Show("Actividad creada satisfactoriamente.");
                     listBoxAct.DataSource = null;
                     listBoxAct.DataSource = club.Actividades;
@@ -123,6 +124,7 @@ namespace UI
                 }
                 else
                 {
+                    club.agregarProfesor(prof);
                     MessageBox.Show("Profesor creado satisfactoriamente.");
                     listBoxProf.DataSource = null;
                     listBoxProf.DataSource = club.Profesores;

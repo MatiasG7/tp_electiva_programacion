@@ -118,6 +118,7 @@ namespace UI
                 }
                 else
                 {
+                    act.agregarComision(com);
                     MessageBox.Show("Comisión creada satisfactoriamente.");
                     listBoxActComisiones.DataSource = null;
                     listBoxActComisiones.DataSource = act.Comisiones;

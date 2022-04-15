@@ -34,11 +34,12 @@ namespace CapaNegocio
 
         public bool verificarComision(Comision newCom)
         {
-            bool exists = comisiones.Any(c => c.Id == newCom.Id);
-            if (!exists)
-                comisiones.Add(newCom);
+            return comisiones.Any(c => c.Id == newCom.Id);
+        }
 
-            return exists;
+        public void agregarComision(Comision newCom)
+        {
+            comisiones.Add(newCom);
         }
 
         public void removerComision(Comision c)
