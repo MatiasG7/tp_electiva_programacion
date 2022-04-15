@@ -21,27 +21,31 @@ namespace UI
             club = Club.Recuperar();
             listBoxAct.DataSource = club.Actividades;
             listBoxAct.ClearSelected();
+            listBoxProf.DataSource = club.Profesores;
+            listBoxProf.ClearSelected();
         }
 
         private void buttonCrearActividad_Click(object sender, EventArgs e)
         {
-            FormActividad fa = new FormActividad();
+            FormActividad fa = new FormActividad(club.Profesores);
             fa.prepararFormCrear();
             fa.ShowDialog();
 
             Actividad act = fa.Act;
-
-            bool exists = club.verificarActividad(act);
-            if (exists)
+            if (act != null)
             {
-                MessageBox.Show("Ya existe una actividad con el ID ingresado.");
-            }
-            else
-            {
-                MessageBox.Show("Actividad creada satisfactoriamente.");
-                listBoxAct.DataSource = null;
-                listBoxAct.DataSource = club.Actividades;
-                listBoxAct.ClearSelected();
+                bool exists = club.verificarActividad(act);
+                if (exists)
+                {
+                    MessageBox.Show("Ya existe una actividad con el ID ingresado.");
+                }
+                else
+                {
+                    MessageBox.Show("Actividad creada satisfactoriamente.");
+                    listBoxAct.DataSource = null;
+                    listBoxAct.DataSource = club.Actividades;
+                    listBoxAct.ClearSelected();
+                }
             }
         }
 
@@ -57,7 +61,7 @@ namespace UI
                 MessageBox.Show("No hay actividad seleccionada para modificar.");
             else
             {
-                FormActividad fa = new FormActividad(a);
+                FormActividad fa = new FormActividad(a, club.Profesores);
                 fa.prepararFormModificar();
                 fa.ShowDialog();
                 listBoxAct.DataSource = null;
@@ -73,7 +77,7 @@ namespace UI
                 MessageBox.Show("No hay actividad seleccionada para mostrar.");
             else
             {
-                FormActividad fa = new FormActividad((Actividad)listBoxAct.SelectedItem);
+                FormActividad fa = new FormActividad((Actividad)listBoxAct.SelectedItem, club.Profesores);
                 fa.prepararFormMostrar();
                 fa.ShowDialog();
                 listBoxAct.ClearSelected();
@@ -106,6 +110,11 @@ namespace UI
                 MessageBox.Show("GUARDADO OK");
             else
                 MessageBox.Show("ERROR AL GUARDAR");
+        }
+
+        private void buttonCrearProf_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

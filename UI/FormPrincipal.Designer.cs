@@ -42,9 +42,15 @@
             this.listBoxSocios = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonMostrarProf = new System.Windows.Forms.Button();
+            this.buttonCrearProf = new System.Windows.Forms.Button();
+            this.buttonModifProf = new System.Windows.Forms.Button();
+            this.buttonElimProf = new System.Windows.Forms.Button();
+            this.listBoxProf = new System.Windows.Forms.ListBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCrearActividad
@@ -173,12 +179,17 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.listBoxProf);
+            this.tabPage3.Controls.Add(this.buttonMostrarProf);
+            this.tabPage3.Controls.Add(this.buttonCrearProf);
+            this.tabPage3.Controls.Add(this.buttonModifProf);
+            this.tabPage3.Controls.Add(this.buttonElimProf);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(795, 427);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "Profesores";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // tabPage4
@@ -190,6 +201,51 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // buttonMostrarProf
+            // 
+            this.buttonMostrarProf.Location = new System.Drawing.Point(20, 103);
+            this.buttonMostrarProf.Name = "buttonMostrarProf";
+            this.buttonMostrarProf.Size = new System.Drawing.Size(140, 23);
+            this.buttonMostrarProf.TabIndex = 8;
+            this.buttonMostrarProf.Text = "Mostrar";
+            this.buttonMostrarProf.UseVisualStyleBackColor = true;
+            // 
+            // buttonCrearProf
+            // 
+            this.buttonCrearProf.Location = new System.Drawing.Point(20, 16);
+            this.buttonCrearProf.Name = "buttonCrearProf";
+            this.buttonCrearProf.Size = new System.Drawing.Size(140, 23);
+            this.buttonCrearProf.TabIndex = 5;
+            this.buttonCrearProf.Text = "Crear";
+            this.buttonCrearProf.UseVisualStyleBackColor = true;
+            this.buttonCrearProf.Click += new System.EventHandler(this.buttonCrearProf_Click);
+            // 
+            // buttonModifProf
+            // 
+            this.buttonModifProf.Location = new System.Drawing.Point(20, 45);
+            this.buttonModifProf.Name = "buttonModifProf";
+            this.buttonModifProf.Size = new System.Drawing.Size(140, 23);
+            this.buttonModifProf.TabIndex = 6;
+            this.buttonModifProf.Text = "Modificar";
+            this.buttonModifProf.UseVisualStyleBackColor = true;
+            // 
+            // buttonElimProf
+            // 
+            this.buttonElimProf.Location = new System.Drawing.Point(20, 74);
+            this.buttonElimProf.Name = "buttonElimProf";
+            this.buttonElimProf.Size = new System.Drawing.Size(140, 23);
+            this.buttonElimProf.TabIndex = 7;
+            this.buttonElimProf.Text = "Eliminar";
+            this.buttonElimProf.UseVisualStyleBackColor = true;
+            // 
+            // listBoxProf
+            // 
+            this.listBoxProf.FormattingEnabled = true;
+            this.listBoxProf.Location = new System.Drawing.Point(559, 3);
+            this.listBoxProf.Name = "listBoxProf";
+            this.listBoxProf.Size = new System.Drawing.Size(233, 420);
+            this.listBoxProf.TabIndex = 9;
             // 
             // FormPrincipal
             // 
@@ -204,6 +260,7 @@
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -224,6 +281,11 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button buttonMostrarActividad;
+        private System.Windows.Forms.Button buttonMostrarProf;
+        private System.Windows.Forms.Button buttonCrearProf;
+        private System.Windows.Forms.Button buttonModifProf;
+        private System.Windows.Forms.Button buttonElimProf;
+        private System.Windows.Forms.ListBox listBoxProf;
     }
 }
 

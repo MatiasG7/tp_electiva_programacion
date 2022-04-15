@@ -16,19 +16,19 @@ namespace UI
     {
         private Actividad act;
         private Comision com;
+        private List<Profesor> profesores;
 
         public Comision Com { get => com; set => com = value; }
 
-        public FormComision(Actividad act)
+        public FormComision(Actividad act, List<Profesor> profesores)
         {
             InitializeComponent();
             this.act = act;
             this.labelComActividad2.Text = act.Descripcion;
-            listBoxComSocios.DataSource = com.Socios;
-            listBoxComSocios.ClearSelected();
+            this.comboBoxComProfesores.DataSource = profesores;
         }
 
-        public FormComision(Actividad act, Comision com)
+        public FormComision(Actividad act, Comision com, List<Profesor> profesores)
         {
             InitializeComponent();
             this.act = act;
@@ -38,6 +38,7 @@ namespace UI
             this.textBoxComHorario.Text = com.Horario.ToString();
             this.textBoxComProfesor.Text = com.Profesor.ToString();
             this.textBoxComMaxPar.Text = com.CantidadMaximaParticipantes.ToString();
+            this.comboBoxComProfesores.DataSource = profesores;
             listBoxComSocios.DataSource = com.Socios;
             listBoxComSocios.ClearSelected();
         }
@@ -62,9 +63,11 @@ namespace UI
         {
             com.Dia = this.textBoxComID.Text;
             com.Horario = int.Parse(this.textBoxComHorario.Text);
+
             string profesor = this.textBoxComProfesor.Text;
             Profesor prof = new Profesor(DateTime.Now, 20222111, profesor, DateTime.Now.AddDays(-30));
             com.Profesor = prof;
+
             com.CantidadMaximaParticipantes = int.Parse(this.textBoxComMaxPar.Text);
 
             this.Close();
@@ -98,6 +101,7 @@ namespace UI
             this.buttonComModif.Visible = true;
             this.buttonComAceptar.Visible = false;
             this.buttonComCrear.Visible = false;
+            this.comboBoxComProfesores.SelectedItem = com.Profesor;
         }
 
         public void prepararFormMostrar()
@@ -111,6 +115,7 @@ namespace UI
             this.buttonComAceptar.Visible = true;
             this.buttonComModif.Visible = false;
             this.buttonComCrear.Visible = false;
+            this.comboBoxComProfesores.SelectedItem = com.Profesor;
         }
     }
 }

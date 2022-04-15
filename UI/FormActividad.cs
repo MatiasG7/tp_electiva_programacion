@@ -15,17 +15,20 @@ namespace UI
     public partial class FormActividad : Form
     {
         private Actividad act;
+        private List<Profesor> profesores;
 
         public Actividad Act { get => act; set => act = value; }
 
-        public FormActividad()
+        public FormActividad(List<Profesor> profesores)
         {
             InitializeComponent();
+            this.profesores = profesores;
         }
 
-        public FormActividad(Actividad act)
+        public FormActividad(Actividad act, List<Profesor> profesores)
         {
             InitializeComponent();
+            this.profesores = profesores;
             this.act = act;
             this.textBoxActID.Text = act.Id.ToString();
             this.textBoxActDesc.Text = act.Descripcion;
@@ -99,7 +102,7 @@ namespace UI
 
         private void buttonComCrear_Click(object sender, EventArgs e)
         {
-            FormComision fc = new FormComision(act);
+            FormComision fc = new FormComision(act, this.profesores);
             fc.prepararFormCrear();
             fc.ShowDialog();
 
@@ -126,7 +129,7 @@ namespace UI
                 MessageBox.Show("No hay comisión seleccionada para modificar.");
             else
             {
-                FormComision fc = new FormComision(act, c);
+                FormComision fc = new FormComision(act, c, this.profesores);
                 fc.prepararFormModificar();
                 fc.ShowDialog();
                 listBoxActComisiones.DataSource = null;
@@ -162,11 +165,16 @@ namespace UI
                 MessageBox.Show("No hay comisión seleccionada para mostrar.");
             else
             {
-                FormComision fc = new FormComision(this.act, (Comision)listBoxActComisiones.SelectedItem);
+                FormComision fc = new FormComision(this.act, (Comision)listBoxActComisiones.SelectedItem, null);
                 fc.prepararFormMostrar();
                 fc.ShowDialog();
                 listBoxActComisiones.ClearSelected();
             }
+        }
+
+        private void listBoxActComisiones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

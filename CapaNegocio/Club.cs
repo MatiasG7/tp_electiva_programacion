@@ -16,6 +16,7 @@ namespace CapaNegocio
         List<Profesor> profesores;
 
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
+        public List<Profesor> Profesores { get => profesores; set => profesores = value; }
 
         public Club()
         {

@@ -46,6 +46,7 @@
             this.buttonComAceptar = new System.Windows.Forms.Button();
             this.textBoxComMaxPar = new System.Windows.Forms.TextBox();
             this.labelComMaxPar = new System.Windows.Forms.Label();
+            this.comboBoxComProfesores = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBoxComHorario
@@ -202,11 +203,20 @@
             this.labelComMaxPar.TabIndex = 33;
             this.labelComMaxPar.Text = "Cantidad máxima participantes";
             // 
+            // comboBoxComProfesores
+            // 
+            this.comboBoxComProfesores.FormattingEnabled = true;
+            this.comboBoxComProfesores.Location = new System.Drawing.Point(149, 234);
+            this.comboBoxComProfesores.Name = "comboBoxComProfesores";
+            this.comboBoxComProfesores.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxComProfesores.TabIndex = 35;
+            // 
             // FormComision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxComProfesores);
             this.Controls.Add(this.textBoxComMaxPar);
             this.Controls.Add(this.labelComMaxPar);
             this.Controls.Add(this.buttonComAceptar);
@@ -251,5 +261,6 @@
         private System.Windows.Forms.Button buttonComAceptar;
         private System.Windows.Forms.TextBox textBoxComMaxPar;
         private System.Windows.Forms.Label labelComMaxPar;
+        private System.Windows.Forms.ComboBox comboBoxComProfesores;
     }
 }

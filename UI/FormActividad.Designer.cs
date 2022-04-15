@@ -168,6 +168,7 @@
             this.listBoxActComisiones.Name = "listBoxActComisiones";
             this.listBoxActComisiones.Size = new System.Drawing.Size(237, 160);
             this.listBoxActComisiones.TabIndex = 13;
+            this.listBoxActComisiones.SelectedIndexChanged += new System.EventHandler(this.listBoxActComisiones_SelectedIndexChanged);
             // 
             // label1
             // 
