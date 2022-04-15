@@ -34,7 +34,7 @@ namespace UI
             this.act = act;
             this.labelComActividad2.Text = act.Descripcion;
             this.textBoxComID.Text = com.Id.ToString();
-            this.textBoxComHorario.Text = com.Horario.ToString();
+            this.numericUpDownComHorario.Text = com.Horario.ToString();
             this.textBoxComProfesor.Text = com.Profesor.ToString();
             this.textBoxComMaxPar.Text = com.CantidadMaximaParticipantes.ToString();
             this.comboBoxComProfesores.DataSource = profesores;
@@ -61,7 +61,7 @@ namespace UI
         private void buttonComModif_Click(object sender, EventArgs e)
         {
             com.Dia = this.textBoxComID.Text;
-            com.Horario = int.Parse(this.textBoxComHorario.Text);
+            com.Horario = int.Parse(this.numericUpDownComHorario.Text);
 
             string profesor = this.textBoxComProfesor.Text;
             Profesor prof = new Profesor(DateTime.Now, 20222111, profesor, DateTime.Now.AddDays(-30));
@@ -108,7 +108,7 @@ namespace UI
             this.Text = "Comisión";
             this.textBoxComID.ReadOnly = true;
             this.comboBoxComDia.Enabled = false;
-            this.textBoxComHorario.ReadOnly = true;
+            this.numericUpDownComHorario.ReadOnly = true;
             this.textBoxComProfesor.ReadOnly = true;
             this.textBoxComMaxPar.ReadOnly = true;
             this.buttonComAceptar.Visible = true;

@@ -47,11 +47,13 @@
             this.labelComMaxPar = new System.Windows.Forms.Label();
             this.comboBoxComProfesores = new System.Windows.Forms.ComboBox();
             this.comboBoxComDia = new System.Windows.Forms.ComboBox();
+            this.numericUpDownComHorario = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownComHorario)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxComHorario
             // 
-            this.textBoxComHorario.Location = new System.Drawing.Point(34, 180);
+            this.textBoxComHorario.Location = new System.Drawing.Point(201, 177);
             this.textBoxComHorario.Name = "textBoxComHorario";
             this.textBoxComHorario.Size = new System.Drawing.Size(100, 20);
             this.textBoxComHorario.TabIndex = 18;
@@ -220,11 +222,24 @@
             this.comboBoxComDia.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComDia.TabIndex = 36;
             // 
+            // numericUpDownComHorario
+            // 
+            this.numericUpDownComHorario.Location = new System.Drawing.Point(34, 181);
+            this.numericUpDownComHorario.Maximum = new decimal(new int[] {
+            24,
+            0,
+            0,
+            0});
+            this.numericUpDownComHorario.Name = "numericUpDownComHorario";
+            this.numericUpDownComHorario.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownComHorario.TabIndex = 37;
+            // 
             // FormComision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.numericUpDownComHorario);
             this.Controls.Add(this.comboBoxComDia);
             this.Controls.Add(this.comboBoxComProfesores);
             this.Controls.Add(this.textBoxComMaxPar);
@@ -246,6 +261,7 @@
             this.Controls.Add(this.labelComID);
             this.Name = "FormComision";
             this.Text = "Comision";
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownComHorario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,5 +287,6 @@
         private System.Windows.Forms.Label labelComMaxPar;
         private System.Windows.Forms.ComboBox comboBoxComProfesores;
         private System.Windows.Forms.ComboBox comboBoxComDia;
+        private System.Windows.Forms.NumericUpDown numericUpDownComHorario;
     }
 }
