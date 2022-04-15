@@ -34,7 +34,6 @@ namespace UI
             this.act = act;
             this.labelComActividad2.Text = act.Descripcion;
             this.textBoxComID.Text = com.Id.ToString();
-            this.textBoxComDia.Text = com.Dia;
             this.textBoxComHorario.Text = com.Horario.ToString();
             this.textBoxComProfesor.Text = com.Profesor.ToString();
             this.textBoxComMaxPar.Text = com.CantidadMaximaParticipantes.ToString();
@@ -46,7 +45,7 @@ namespace UI
         private void buttonComCrear_Click(object sender, EventArgs e)
         {
             int id = int.Parse(this.textBoxComID.Text);
-            string dia = this.textBoxComDia.Text;
+            string dia = this.comboBoxComDia.SelectedItem.ToString();
             int horario = int.Parse(this.textBoxComHorario.Text);
             string profesor = this.textBoxComProfesor.Text;             // Como acceder al nombre de la super clase persona?
             int maxPar = int.Parse(this.textBoxComMaxPar.Text);
@@ -108,7 +107,7 @@ namespace UI
         {
             this.Text = "Comisión";
             this.textBoxComID.ReadOnly = true;
-            this.textBoxComDia.ReadOnly = true;
+            this.comboBoxComDia.Enabled = false;
             this.textBoxComHorario.ReadOnly = true;
             this.textBoxComProfesor.ReadOnly = true;
             this.textBoxComMaxPar.ReadOnly = true;

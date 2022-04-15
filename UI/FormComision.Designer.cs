@@ -47,6 +47,7 @@
             this.textBoxComMaxPar = new System.Windows.Forms.TextBox();
             this.labelComMaxPar = new System.Windows.Forms.Label();
             this.comboBoxComProfesores = new System.Windows.Forms.ComboBox();
+            this.comboBoxComDia = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBoxComHorario
@@ -58,7 +59,7 @@
             // 
             // textBoxComDia
             // 
-            this.textBoxComDia.Location = new System.Drawing.Point(34, 125);
+            this.textBoxComDia.Location = new System.Drawing.Point(209, 180);
             this.textBoxComDia.Name = "textBoxComDia";
             this.textBoxComDia.Size = new System.Drawing.Size(100, 20);
             this.textBoxComDia.TabIndex = 17;
@@ -211,11 +212,28 @@
             this.comboBoxComProfesores.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComProfesores.TabIndex = 35;
             // 
+            // comboBoxComDia
+            // 
+            this.comboBoxComDia.FormattingEnabled = true;
+            this.comboBoxComDia.Items.AddRange(new object[] {
+            "Lunes",
+            "Martes",
+            "Miercoles",
+            "Jueves",
+            "Viernes",
+            "Sabado",
+            "Domingo"});
+            this.comboBoxComDia.Location = new System.Drawing.Point(34, 125);
+            this.comboBoxComDia.Name = "comboBoxComDia";
+            this.comboBoxComDia.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxComDia.TabIndex = 36;
+            // 
             // FormComision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.comboBoxComDia);
             this.Controls.Add(this.comboBoxComProfesores);
             this.Controls.Add(this.textBoxComMaxPar);
             this.Controls.Add(this.labelComMaxPar);
@@ -262,5 +280,6 @@
         private System.Windows.Forms.TextBox textBoxComMaxPar;
         private System.Windows.Forms.Label labelComMaxPar;
         private System.Windows.Forms.ComboBox comboBoxComProfesores;
+        private System.Windows.Forms.ComboBox comboBoxComDia;
     }
 }

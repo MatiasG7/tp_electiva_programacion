@@ -171,10 +171,5 @@ namespace UI
                 listBoxActComisiones.ClearSelected();
             }
         }
-
-        private void listBoxActComisiones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }
