@@ -49,11 +49,6 @@ namespace UI
             }
         }
 
-        private void FormPrincipal_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonModificarActividad_Click(object sender, EventArgs e)
         {
             Actividad a = (Actividad)listBoxAct.SelectedItem;

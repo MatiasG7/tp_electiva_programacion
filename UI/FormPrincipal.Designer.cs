@@ -256,7 +256,6 @@
             this.Name = "FormPrincipal";
             this.Text = "Club";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
-            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
