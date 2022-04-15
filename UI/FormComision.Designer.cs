@@ -28,14 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBoxComHorario = new System.Windows.Forms.TextBox();
             this.textBoxComID = new System.Windows.Forms.TextBox();
             this.labelComHorario = new System.Windows.Forms.Label();
             this.labelComDescripcion = new System.Windows.Forms.Label();
             this.labelComID = new System.Windows.Forms.Label();
             this.labelComActividad = new System.Windows.Forms.Label();
             this.labelComActividad2 = new System.Windows.Forms.Label();
-            this.textBoxComProfesor = new System.Windows.Forms.TextBox();
             this.labelComProfesor = new System.Windows.Forms.Label();
             this.listBoxComSocios = new System.Windows.Forms.ListBox();
             this.labelComSocios = new System.Windows.Forms.Label();
@@ -47,16 +45,8 @@
             this.labelComMaxPar = new System.Windows.Forms.Label();
             this.comboBoxComProfesores = new System.Windows.Forms.ComboBox();
             this.comboBoxComDia = new System.Windows.Forms.ComboBox();
-            this.numericUpDownComHorario = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownComHorario)).BeginInit();
+            this.comboBoxComHorario = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // textBoxComHorario
-            // 
-            this.textBoxComHorario.Location = new System.Drawing.Point(201, 177);
-            this.textBoxComHorario.Name = "textBoxComHorario";
-            this.textBoxComHorario.Size = new System.Drawing.Size(100, 20);
-            this.textBoxComHorario.TabIndex = 18;
             // 
             // textBoxComID
             // 
@@ -108,13 +98,6 @@
             this.labelComActividad2.Name = "labelComActividad2";
             this.labelComActividad2.Size = new System.Drawing.Size(0, 13);
             this.labelComActividad2.TabIndex = 24;
-            // 
-            // textBoxComProfesor
-            // 
-            this.textBoxComProfesor.Location = new System.Drawing.Point(34, 234);
-            this.textBoxComProfesor.Name = "textBoxComProfesor";
-            this.textBoxComProfesor.Size = new System.Drawing.Size(100, 20);
-            this.textBoxComProfesor.TabIndex = 26;
             // 
             // labelComProfesor
             // 
@@ -201,7 +184,7 @@
             // comboBoxComProfesores
             // 
             this.comboBoxComProfesores.FormattingEnabled = true;
-            this.comboBoxComProfesores.Location = new System.Drawing.Point(149, 234);
+            this.comboBoxComProfesores.Location = new System.Drawing.Point(34, 234);
             this.comboBoxComProfesores.Name = "comboBoxComProfesores";
             this.comboBoxComProfesores.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComProfesores.TabIndex = 35;
@@ -222,24 +205,25 @@
             this.comboBoxComDia.Size = new System.Drawing.Size(121, 21);
             this.comboBoxComDia.TabIndex = 36;
             // 
-            // numericUpDownComHorario
+            // comboBoxComHorario
             // 
-            this.numericUpDownComHorario.Location = new System.Drawing.Point(34, 181);
-            this.numericUpDownComHorario.Maximum = new decimal(new int[] {
-            24,
-            0,
-            0,
-            0});
-            this.numericUpDownComHorario.Name = "numericUpDownComHorario";
-            this.numericUpDownComHorario.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownComHorario.TabIndex = 37;
+            this.comboBoxComHorario.FormattingEnabled = true;
+            this.comboBoxComHorario.Items.AddRange(new object[] {
+            "12",
+            "14",
+            "16",
+            "18"});
+            this.comboBoxComHorario.Location = new System.Drawing.Point(34, 180);
+            this.comboBoxComHorario.Name = "comboBoxComHorario";
+            this.comboBoxComHorario.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxComHorario.TabIndex = 38;
             // 
             // FormComision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.numericUpDownComHorario);
+            this.Controls.Add(this.comboBoxComHorario);
             this.Controls.Add(this.comboBoxComDia);
             this.Controls.Add(this.comboBoxComProfesores);
             this.Controls.Add(this.textBoxComMaxPar);
@@ -250,32 +234,27 @@
             this.Controls.Add(this.buttonComCrear);
             this.Controls.Add(this.labelComSocios);
             this.Controls.Add(this.listBoxComSocios);
-            this.Controls.Add(this.textBoxComProfesor);
             this.Controls.Add(this.labelComProfesor);
             this.Controls.Add(this.labelComActividad2);
             this.Controls.Add(this.labelComActividad);
-            this.Controls.Add(this.textBoxComHorario);
             this.Controls.Add(this.textBoxComID);
             this.Controls.Add(this.labelComHorario);
             this.Controls.Add(this.labelComDescripcion);
             this.Controls.Add(this.labelComID);
             this.Name = "FormComision";
             this.Text = "Comision";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownComHorario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBoxComHorario;
         private System.Windows.Forms.TextBox textBoxComID;
         private System.Windows.Forms.Label labelComHorario;
         private System.Windows.Forms.Label labelComDescripcion;
         private System.Windows.Forms.Label labelComID;
         private System.Windows.Forms.Label labelComActividad;
         private System.Windows.Forms.Label labelComActividad2;
-        private System.Windows.Forms.TextBox textBoxComProfesor;
         private System.Windows.Forms.Label labelComProfesor;
         private System.Windows.Forms.ListBox listBoxComSocios;
         private System.Windows.Forms.Label labelComSocios;
@@ -287,6 +266,6 @@
         private System.Windows.Forms.Label labelComMaxPar;
         private System.Windows.Forms.ComboBox comboBoxComProfesores;
         private System.Windows.Forms.ComboBox comboBoxComDia;
-        private System.Windows.Forms.NumericUpDown numericUpDownComHorario;
+        private System.Windows.Forms.ComboBox comboBoxComHorario;
     }
 }

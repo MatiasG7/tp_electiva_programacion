@@ -87,6 +87,7 @@ namespace UI
             this.buttonActModif.Visible = true;
             this.buttonActAceptar.Visible = false;
             this.buttonActCrear.Visible = false;
+            this.listBoxActComisiones.DataSource = act.Comisiones;
         }
 
         public void prepararFormMostrar()
@@ -98,6 +99,7 @@ namespace UI
             this.buttonActAceptar.Visible = true;
             this.buttonActCrear.Visible = false;
             this.buttonActModif.Visible = false;
+            this.listBoxActComisiones.DataSource = act.Comisiones;
         }
 
         private void buttonComCrear_Click(object sender, EventArgs e)
@@ -107,18 +109,20 @@ namespace UI
             fc.ShowDialog();
 
             Comision com = fc.Com;
-
-            bool exists = act.verificarComision(com);
-            if (exists)
+            if (com != null)
             {
-                MessageBox.Show("Ya existe una comisión con el ID ingresado.");
-            }
-            else
-            {
-                MessageBox.Show("Comisión creada satisfactoriamente.");
-                listBoxActComisiones.DataSource = null;
-                listBoxActComisiones.DataSource = act.Comisiones;
-                listBoxActComisiones.ClearSelected();
+                bool exists = act.verificarComision(com);
+                if (exists)
+                {
+                    MessageBox.Show("Ya existe una comisión con el ID ingresado.");
+                }
+                else
+                {
+                    MessageBox.Show("Comisión creada satisfactoriamente.");
+                    listBoxActComisiones.DataSource = null;
+                    listBoxActComisiones.DataSource = act.Comisiones;
+                    listBoxActComisiones.ClearSelected();
+                }
             }
         }
 
