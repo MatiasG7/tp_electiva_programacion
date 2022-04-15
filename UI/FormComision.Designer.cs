@@ -212,10 +212,10 @@
             this.comboBoxComHorario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxComHorario.FormattingEnabled = true;
             this.comboBoxComHorario.Items.AddRange(new object[] {
-            "12:00",
-            "14:00",
-            "16:00",
-            "18:00"});
+            "12",
+            "14",
+            "16",
+            "18"});
             this.comboBoxComHorario.Location = new System.Drawing.Point(34, 180);
             this.comboBoxComHorario.Name = "comboBoxComHorario";
             this.comboBoxComHorario.Size = new System.Drawing.Size(121, 21);

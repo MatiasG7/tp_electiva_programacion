@@ -38,7 +38,7 @@ namespace CapaNegocio
 
         public override string ToString()
         {
-            return "ID-" + id + " | " + dia + " | " + horario;
+            return "ID-" + id + " | " + dia + " | " + horario + ":00";
         }
     }
 }
