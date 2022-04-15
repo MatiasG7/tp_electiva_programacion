@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.textBoxComHorario = new System.Windows.Forms.TextBox();
-            this.textBoxComDia = new System.Windows.Forms.TextBox();
             this.textBoxComID = new System.Windows.Forms.TextBox();
             this.labelComHorario = new System.Windows.Forms.Label();
             this.labelComDescripcion = new System.Windows.Forms.Label();
@@ -56,13 +55,6 @@
             this.textBoxComHorario.Name = "textBoxComHorario";
             this.textBoxComHorario.Size = new System.Drawing.Size(100, 20);
             this.textBoxComHorario.TabIndex = 18;
-            // 
-            // textBoxComDia
-            // 
-            this.textBoxComDia.Location = new System.Drawing.Point(209, 180);
-            this.textBoxComDia.Name = "textBoxComDia";
-            this.textBoxComDia.Size = new System.Drawing.Size(100, 20);
-            this.textBoxComDia.TabIndex = 17;
             // 
             // textBoxComID
             // 
@@ -248,7 +240,6 @@
             this.Controls.Add(this.labelComActividad2);
             this.Controls.Add(this.labelComActividad);
             this.Controls.Add(this.textBoxComHorario);
-            this.Controls.Add(this.textBoxComDia);
             this.Controls.Add(this.textBoxComID);
             this.Controls.Add(this.labelComHorario);
             this.Controls.Add(this.labelComDescripcion);
@@ -262,7 +253,6 @@
 
         #endregion
         private System.Windows.Forms.TextBox textBoxComHorario;
-        private System.Windows.Forms.TextBox textBoxComDia;
         private System.Windows.Forms.TextBox textBoxComID;
         private System.Windows.Forms.Label labelComHorario;
         private System.Windows.Forms.Label labelComDescripcion;
