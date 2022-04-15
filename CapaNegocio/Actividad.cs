@@ -29,7 +29,7 @@ namespace CapaNegocio
 
         public override string ToString()
         {
-            return id + "- " + descripcion + ", " + costo;
+            return "ID-" + id + " | " + descripcion + " | $" + costo;
         }
 
         public bool verificarComision(Comision newCom)

@@ -169,7 +169,7 @@ namespace UI
                 MessageBox.Show("No hay comisión seleccionada para mostrar.");
             else
             {
-                FormComision fc = new FormComision(this.act, (Comision)listBoxActComisiones.SelectedItem, null);
+                FormComision fc = new FormComision(this.act, (Comision)listBoxActComisiones.SelectedItem, this.profesores);
                 fc.prepararFormMostrar();
                 fc.ShowDialog();
                 listBoxActComisiones.ClearSelected();

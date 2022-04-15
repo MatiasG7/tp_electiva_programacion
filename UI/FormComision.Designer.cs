@@ -183,6 +183,7 @@
             // 
             // comboBoxComProfesores
             // 
+            this.comboBoxComProfesores.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxComProfesores.FormattingEnabled = true;
             this.comboBoxComProfesores.Location = new System.Drawing.Point(34, 234);
             this.comboBoxComProfesores.Name = "comboBoxComProfesores";
@@ -191,6 +192,7 @@
             // 
             // comboBoxComDia
             // 
+            this.comboBoxComDia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxComDia.FormattingEnabled = true;
             this.comboBoxComDia.Items.AddRange(new object[] {
             "Lunes",
@@ -207,12 +209,13 @@
             // 
             // comboBoxComHorario
             // 
+            this.comboBoxComHorario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxComHorario.FormattingEnabled = true;
             this.comboBoxComHorario.Items.AddRange(new object[] {
-            "12",
-            "14",
-            "16",
-            "18"});
+            "12:00",
+            "14:00",
+            "16:00",
+            "18:00"});
             this.comboBoxComHorario.Location = new System.Drawing.Point(34, 180);
             this.comboBoxComHorario.Name = "comboBoxComHorario";
             this.comboBoxComHorario.Size = new System.Drawing.Size(121, 21);

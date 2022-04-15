@@ -34,6 +34,7 @@ namespace UI
         {
             InitializeComponent();
             this.act = act;
+            this.com = com;
             this.labelComActividad2.Text = act.Descripcion;
             this.textBoxComID.Text = com.Id.ToString();
             this.textBoxComMaxPar.Text = com.CantidadMaximaParticipantes.ToString();
@@ -46,7 +47,7 @@ namespace UI
         {
             int id = int.Parse(this.textBoxComID.Text);
             string dia = this.comboBoxComDia.SelectedItem.ToString();
-            int horario = int.Parse(this.comboBoxComHorario.Text);
+            int horario = int.Parse(this.comboBoxComHorario.SelectedItem.ToString());
             Profesor p = (Profesor)this.comboBoxComProfesores.SelectedItem;
             int maxPar = int.Parse(this.textBoxComMaxPar.Text);
 
@@ -57,8 +58,8 @@ namespace UI
 
         private void buttonComModif_Click(object sender, EventArgs e)
         {
-            com.Dia = this.textBoxComID.Text;
-            com.Horario = int.Parse(this.comboBoxComHorario.Text);
+            com.Dia = this.comboBoxComDia.SelectedItem.ToString();;
+            com.Horario = int.Parse(this.comboBoxComHorario.SelectedItem.ToString());
             com.Profesor = (Profesor)this.comboBoxComProfesores.SelectedItem;
             com.CantidadMaximaParticipantes = int.Parse(this.textBoxComMaxPar.Text);
 
@@ -95,9 +96,9 @@ namespace UI
             this.buttonComModif.Visible = true;
             this.buttonComAceptar.Visible = false;
             this.buttonComCrear.Visible = false;
-            this.comboBoxComDia.SelectedItem = com.Dia;
-            this.comboBoxComHorario.SelectedItem = com.Horario;
-            this.comboBoxComProfesores.SelectedItem = com.Profesor;
+            this.comboBoxComDia.SelectedIndex = comboBoxComDia.FindStringExact(com.Dia);
+            this.comboBoxComHorario.SelectedIndex = comboBoxComHorario.FindStringExact(com.Horario.ToString());
+            this.comboBoxComProfesores.SelectedIndex = comboBoxComProfesores.FindString(com.Profesor.Dni.ToString());
         }
 
         public void prepararFormMostrar()
@@ -109,9 +110,10 @@ namespace UI
             this.buttonComAceptar.Visible = true;
             this.buttonComModif.Visible = false;
             this.buttonComCrear.Visible = false;
-            this.comboBoxComDia.SelectedItem = com.Dia;
-            this.comboBoxComHorario.SelectedItem = com.Horario;
-            this.comboBoxComProfesores.SelectedItem = com.Profesor;
+            this.comboBoxComProfesores.Enabled = false;
+            this.comboBoxComDia.SelectedIndex = comboBoxComDia.FindStringExact(com.Dia); //Selecciona el index del combox que es igual al string dado
+            this.comboBoxComHorario.SelectedIndex = comboBoxComHorario.FindStringExact(com.Horario.ToString());
+            this.comboBoxComProfesores.SelectedIndex = comboBoxComProfesores.FindString(com.Profesor.Dni.ToString()); //Busca hasta encontrar un string que empieze con el string dado (dni en este caso)
             this.comboBoxComDia.Enabled = false;
             this.comboBoxComHorario.Enabled = false;
             this.comboBoxComProfesores.Enabled = false;
