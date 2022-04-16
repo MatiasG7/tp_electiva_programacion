@@ -27,6 +27,12 @@ namespace UI
         {
             InitializeComponent();
             this.soc = s;
+            this.textBoxSocDNI.Text = s.Dni.ToString();
+            this.textBoxSocNombre.Text = s.Nombre;
+            this.textBoxSocEmail.Text = s.Email;
+            this.textBoxSocDireccion.Text = s.Direccion;
+            this.dateTimePickerSocFIng.Value = s.FIng;
+            this.dateTimePickerSocFNac.Value = s.FNac;
         }
 
         private void buttonSocCrear_Click(object sender, EventArgs e)
