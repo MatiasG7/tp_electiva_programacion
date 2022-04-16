@@ -187,8 +187,12 @@ namespace UI
 
         private void buttonCrearSocio_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Desea crear un tipo de Socio de Actividades ?", "Crear Socio", MessageBoxButtons.YesNoCancel);
-            if (dialogResult == DialogResult.Yes)
+            //DialogResult dialogResult = MessageBox.Show("Desea crear un tipo de Socio de Actividades ?", "Crear Socio", MessageBoxButtons.YesNoCancel);
+            int i = 0;
+            FormConfirmacion fc = new FormConfirmacion("Seleccionar tipo de socio", "Elija tipo de socio a crear", "Club", "Actividad", "Cancelar", i);
+            fc.ShowDialog();
+
+            if (fc.Option == 2)
             {
                 FormSocioActividad fsa = new FormSocioActividad();
                 fsa.prepararFormCrear();
@@ -212,7 +216,7 @@ namespace UI
                     }
                 }
             }
-            else if (dialogResult == DialogResult.No)
+            else if (fc.Option == 1)
             {
                 FormSocioClub fsc = new FormSocioClub();
                 fsc.prepararFormCrear();

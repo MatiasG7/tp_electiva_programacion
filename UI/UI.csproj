@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormConfirmacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfirmacion.Designer.cs">
+      <DependentUpon>FormConfirmacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormActividad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormComision.resx">
       <DependentUpon>FormComision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfirmacion.resx">
+      <DependentUpon>FormConfirmacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
