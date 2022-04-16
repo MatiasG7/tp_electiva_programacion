@@ -46,7 +46,10 @@
             this.buttonCrearProf = new System.Windows.Forms.Button();
             this.buttonModifProf = new System.Windows.Forms.Button();
             this.buttonElimProf = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonMostrarSocio = new System.Windows.Forms.Button();
+            this.buttonCrearSocio = new System.Windows.Forms.Button();
+            this.buttonModifSocio = new System.Windows.Forms.Button();
+            this.buttonElimSocio = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -85,7 +88,7 @@
             // 
             // buttonInsSocAct
             // 
-            this.buttonInsSocAct.Location = new System.Drawing.Point(16, 20);
+            this.buttonInsSocAct.Location = new System.Drawing.Point(19, 231);
             this.buttonInsSocAct.Name = "buttonInsSocAct";
             this.buttonInsSocAct.Size = new System.Drawing.Size(248, 23);
             this.buttonInsSocAct.TabIndex = 3;
@@ -94,7 +97,7 @@
             // 
             // buttonElimSocAct
             // 
-            this.buttonElimSocAct.Location = new System.Drawing.Point(16, 63);
+            this.buttonElimSocAct.Location = new System.Drawing.Point(19, 274);
             this.buttonElimSocAct.Name = "buttonElimSocAct";
             this.buttonElimSocAct.Size = new System.Drawing.Size(248, 23);
             this.buttonElimSocAct.TabIndex = 4;
@@ -103,7 +106,7 @@
             // 
             // buttonRegPagoSoc
             // 
-            this.buttonRegPagoSoc.Location = new System.Drawing.Point(16, 208);
+            this.buttonRegPagoSoc.Location = new System.Drawing.Point(19, 317);
             this.buttonRegPagoSoc.Name = "buttonRegPagoSoc";
             this.buttonRegPagoSoc.Size = new System.Drawing.Size(189, 23);
             this.buttonRegPagoSoc.TabIndex = 5;
@@ -115,7 +118,6 @@
             this.tabControl.Controls.Add(this.tabPage1);
             this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Controls.Add(this.tabPage3);
-            this.tabControl.Controls.Add(this.tabPage4);
             this.tabControl.Location = new System.Drawing.Point(-2, -1);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -157,6 +159,10 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.buttonMostrarSocio);
+            this.tabPage2.Controls.Add(this.buttonCrearSocio);
+            this.tabPage2.Controls.Add(this.buttonModifSocio);
+            this.tabPage2.Controls.Add(this.buttonElimSocio);
             this.tabPage2.Controls.Add(this.listBoxSocios);
             this.tabPage2.Controls.Add(this.buttonInsSocAct);
             this.tabPage2.Controls.Add(this.buttonRegPagoSoc);
@@ -240,15 +246,45 @@
             this.buttonElimProf.UseVisualStyleBackColor = true;
             this.buttonElimProf.Click += new System.EventHandler(this.buttonElimProf_Click);
             // 
-            // tabPage4
+            // buttonMostrarSocio
             // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(795, 427);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "tabPage4";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.buttonMostrarSocio.Location = new System.Drawing.Point(19, 102);
+            this.buttonMostrarSocio.Name = "buttonMostrarSocio";
+            this.buttonMostrarSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonMostrarSocio.TabIndex = 10;
+            this.buttonMostrarSocio.Text = "Mostrar";
+            this.buttonMostrarSocio.UseVisualStyleBackColor = true;
+            this.buttonMostrarSocio.Click += new System.EventHandler(this.buttonMostrarSocio_Click);
+            // 
+            // buttonCrearSocio
+            // 
+            this.buttonCrearSocio.Location = new System.Drawing.Point(19, 15);
+            this.buttonCrearSocio.Name = "buttonCrearSocio";
+            this.buttonCrearSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonCrearSocio.TabIndex = 7;
+            this.buttonCrearSocio.Text = "Crear";
+            this.buttonCrearSocio.UseVisualStyleBackColor = true;
+            this.buttonCrearSocio.Click += new System.EventHandler(this.buttonCrearSocio_Click);
+            // 
+            // buttonModifSocio
+            // 
+            this.buttonModifSocio.Location = new System.Drawing.Point(19, 44);
+            this.buttonModifSocio.Name = "buttonModifSocio";
+            this.buttonModifSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonModifSocio.TabIndex = 8;
+            this.buttonModifSocio.Text = "Modificar";
+            this.buttonModifSocio.UseVisualStyleBackColor = true;
+            this.buttonModifSocio.Click += new System.EventHandler(this.buttonModifSocio_Click);
+            // 
+            // buttonElimSocio
+            // 
+            this.buttonElimSocio.Location = new System.Drawing.Point(19, 73);
+            this.buttonElimSocio.Name = "buttonElimSocio";
+            this.buttonElimSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonElimSocio.TabIndex = 9;
+            this.buttonElimSocio.Text = "Eliminar";
+            this.buttonElimSocio.UseVisualStyleBackColor = true;
+            this.buttonElimSocio.Click += new System.EventHandler(this.buttonElimSocio_Click);
             // 
             // FormPrincipal
             // 
@@ -281,13 +317,16 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox listBoxSocios;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button buttonMostrarActividad;
         private System.Windows.Forms.Button buttonMostrarProf;
         private System.Windows.Forms.Button buttonCrearProf;
         private System.Windows.Forms.Button buttonModifProf;
         private System.Windows.Forms.Button buttonElimProf;
         private System.Windows.Forms.ListBox listBoxProf;
+        private System.Windows.Forms.Button buttonMostrarSocio;
+        private System.Windows.Forms.Button buttonCrearSocio;
+        private System.Windows.Forms.Button buttonModifSocio;
+        private System.Windows.Forms.Button buttonElimSocio;
     }
 }
 

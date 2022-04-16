@@ -182,5 +182,127 @@ namespace UI
                 listBoxProf.ClearSelected();
             }
         }
+
+        private void buttonCrearSocio_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Desea crear un tipo de Socio de Actividades ?", "Crear Socio", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes)
+            {
+                FormSocioActividad fsa = new FormSocioActividad();
+                fsa.prepararFormCrear();
+                fsa.ShowDialog();
+
+                SocioActividad sa = fsa.Soc;
+                if (sa != null)
+                {
+                    bool exists = club.verificarSocio(sa);
+                    if (exists)
+                    {
+                        MessageBox.Show("Ya existe un socio con el DNI ingresado.");
+                    }
+                    else
+                    {
+                        club.agregarSocio(sa);
+                        MessageBox.Show("Socio Actividad creado satisfactoriamente.");
+                        listBoxSocios.DataSource = null;
+                        listBoxSocios.DataSource = club.Socios;
+                        listBoxSocios.ClearSelected();
+                    }
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                FormSocioClub fsc = new FormSocioClub();
+                fsc.prepararFormCrear();
+                fsc.ShowDialog();
+
+                SocioClub sc = fsc.Soc;
+                if (sc != null)
+                {
+                    bool exists = club.verificarSocio(sc);
+                    if (exists)
+                    {
+                        MessageBox.Show("Ya existe un socio con el DNI ingresado.");
+                    }
+                    else
+                    {
+                        club.agregarSocio(sc);
+                        MessageBox.Show("Socio Club creado satisfactoriamente.");
+                        listBoxSocios.DataSource = null;
+                        listBoxSocios.DataSource = club.Socios;
+                        listBoxSocios.ClearSelected();
+                    }
+                }
+            }
+        }
+
+        private void buttonModifSocio_Click(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+            if (s == null)
+                MessageBox.Show("No hay socio seleccionado para modificar.");
+            else
+            {
+                if (s.GetType().Name == "SocioActividad")
+                {
+                    FormSocioActividad fsa = new FormSocioActividad((SocioActividad)s);
+                    fsa.prepararFormModificar();
+                    fsa.ShowDialog();
+                }
+                else
+                {
+                    FormSocioClub fsc = new FormSocioClub((SocioClub)s);
+                    fsc.prepararFormModificar();
+                    fsc.ShowDialog();
+                }
+
+                listBoxSocios.DataSource = null;
+                listBoxSocios.DataSource = club.Socios;
+                listBoxSocios.ClearSelected();
+            }
+        }
+
+        private void buttonElimSocio_Click(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+            if (s == null)
+                MessageBox.Show("No hay socio seleccionado para eliminar.");
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar el socio seleccionado?", "Eliminar Socio", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    club.removerSocio(s);
+                    listBoxSocios.DataSource = null;
+                    listBoxSocios.DataSource = club.Socios;
+                }
+
+                listBoxSocios.ClearSelected();
+            }
+        }
+
+        private void buttonMostrarSocio_Click(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+            if (s == null)
+                MessageBox.Show("No hay socio seleccionado para mostrar.");
+            else
+            {
+                if (s.GetType().Name == "SocioActividad")
+                {
+                    FormSocioActividad fsa = new FormSocioActividad((SocioActividad)s);
+                    fsa.prepararFormMostrar();
+                    fsa.ShowDialog();
+                }
+                else
+                {
+                    FormSocioClub fsc = new FormSocioClub((SocioClub)s);
+                    fsc.prepararFormMostrar();
+                    fsc.ShowDialog();
+                }
+
+                listBoxSocios.ClearSelected();
+            }
+        }
     }
 }
