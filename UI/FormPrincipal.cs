@@ -23,6 +23,8 @@ namespace UI
             listBoxAct.ClearSelected();
             listBoxProf.DataSource = club.Profesores;
             listBoxProf.ClearSelected();
+            listBoxSocios.DataSource = club.Socios;
+            listBoxSocios.ClearSelected();
         }
 
         private void buttonCrearActividad_Click(object sender, EventArgs e)
