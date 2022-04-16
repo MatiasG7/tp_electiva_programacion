@@ -19,10 +19,9 @@ namespace UI
         }
         public int Option { get => option; set => option = value; }
 
-        public FormConfirmacion(string title, string message, string buttonText1, string buttonText2, string buttonText3, int option)
+        public FormConfirmacion(string title, string message, string buttonText1, string buttonText2, string buttonText3)
         {
             InitializeComponent();
-            this.option = option;
             Text = title;
             labelConfirmacion.Text = message;
             buttonConfirmacion1.Text = buttonText1;

@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormSocio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSocio.Designer.cs">
+      <DependentUpon>FormSocio.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormConfirmacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,20 +100,11 @@
     <Compile Include="FormProfesor.Designer.cs">
       <DependentUpon>FormProfesor.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSocioClub.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSocioClub.Designer.cs">
-      <DependentUpon>FormSocioClub.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormSocioActividad.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormSocioActividad.Designer.cs">
-      <DependentUpon>FormSocioActividad.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormSocio.resx">
+      <DependentUpon>FormSocio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormActividad.resx">
       <DependentUpon>FormActividad.cs</DependentUpon>
     </EmbeddedResource>
@@ -122,12 +119,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProfesor.resx">
       <DependentUpon>FormProfesor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSocioClub.resx">
-      <DependentUpon>FormSocioClub.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormSocioActividad.resx">
-      <DependentUpon>FormSocioActividad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
