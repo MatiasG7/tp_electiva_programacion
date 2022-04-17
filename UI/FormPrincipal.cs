@@ -25,6 +25,8 @@ namespace UI
             listBoxProf.ClearSelected();
             listBoxSocios.DataSource = club.Socios;
             listBoxSocios.ClearSelected();
+            listBoxCom.DataSource = club.Comisiones;
+            listBoxCom.ClearSelected();
         }
 
         private void buttonCrearActividad_Click(object sender, EventArgs e)
@@ -79,9 +81,12 @@ namespace UI
                 DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la actividad seleccionada?", "Eliminar Actividad", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    a.eliminar();
                     club.removerActividad(a);
                     listBoxAct.DataSource = null;
                     listBoxAct.DataSource = club.Actividades;
+                    listBoxCom.DataSource = null;
+                    listBoxCom.DataSource = club.Comisiones;
                 }
 
                 listBoxAct.ClearSelected();
@@ -305,5 +310,74 @@ namespace UI
                 listBoxSocios.ClearSelected();
             }
         }
+
+        private void buttonCrearComision_Click(object sender, EventArgs e)
+        {
+            FormComision fc = new FormComision(club.Actividades, club.Profesores);
+            fc.prepararFormCrear();
+            fc.ShowDialog();
+
+            Comision com = fc.Com;
+            if (com != null)
+            {
+                club.agregarComision(com);
+                MessageBox.Show("Comisión creada satisfactoriamente.");
+                listBoxCom.DataSource = null;
+                listBoxCom.DataSource = club.Comisiones;
+                listBoxCom.ClearSelected();
+            }
+        }
+
+        private void buttonModifComision_Click(object sender, EventArgs e)
+        {
+            Comision c = (Comision)listBoxCom.SelectedItem;
+            if (c == null)
+                MessageBox.Show("No hay comisión seleccionada para modificar.");
+            else
+            {
+                FormComision fc = new FormComision(c, club.Profesores);
+                fc.prepararFormModificar();
+                fc.ShowDialog();
+                listBoxCom.DataSource = null;
+                listBoxCom.DataSource = club.Comisiones;
+                listBoxCom.ClearSelected();
+            }
+        }
+
+        private void buttonElimCom_Click(object sender, EventArgs e)
+        {
+            Comision c = (Comision)listBoxCom.SelectedItem;
+            if (c == null)
+                MessageBox.Show("No hay comisión seleccionada para eliminar.");
+            else
+            {
+                // Cuando se borra una comision se deberia borrar las inscripciones de socios a ellas?
+                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la comisión seleccionada?", "Eliminar Comisión", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    c.eliminar();
+                    club.removerComision(c);
+                    listBoxCom.DataSource = null;
+                    listBoxCom.DataSource = club.Comisiones;
+                }
+
+                listBoxCom.ClearSelected();
+            }
+        }
+
+        private void buttonMostrarComision_Click(object sender, EventArgs e)
+        {
+            Comision c = (Comision)listBoxCom.SelectedItem;
+            if (c == null)
+                MessageBox.Show("No hay comisión seleccionada para mostrar.");
+            else
+            {
+                FormComision fc = new FormComision(c, club.Profesores);
+                fc.prepararFormMostrar();
+                fc.ShowDialog();
+                listBoxCom.ClearSelected();
+            }
+        }
     }
 }
+

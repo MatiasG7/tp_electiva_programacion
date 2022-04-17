@@ -38,22 +38,29 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.buttonMostrarActividad = new System.Windows.Forms.Button();
             this.listBoxAct = new System.Windows.Forms.ListBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBoxSocios = new System.Windows.Forms.ListBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.buttonMostrarComision = new System.Windows.Forms.Button();
+            this.buttonModifComision = new System.Windows.Forms.Button();
+            this.buttonElimCom = new System.Windows.Forms.Button();
+            this.buttonCrearComision = new System.Windows.Forms.Button();
+            this.listBoxCom = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listBoxProf = new System.Windows.Forms.ListBox();
             this.buttonMostrarProf = new System.Windows.Forms.Button();
             this.buttonCrearProf = new System.Windows.Forms.Button();
             this.buttonModifProf = new System.Windows.Forms.Button();
             this.buttonElimProf = new System.Windows.Forms.Button();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.buttonMostrarSocio = new System.Windows.Forms.Button();
             this.buttonCrearSocio = new System.Windows.Forms.Button();
             this.buttonModifSocio = new System.Windows.Forms.Button();
             this.buttonElimSocio = new System.Windows.Forms.Button();
+            this.listBoxSocios = new System.Windows.Forms.ListBox();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCrearActividad
@@ -116,8 +123,9 @@
             // tabControl
             // 
             this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage4);
             this.tabControl.Controls.Add(this.tabPage3);
+            this.tabControl.Controls.Add(this.tabPage2);
             this.tabControl.Location = new System.Drawing.Point(-2, -1);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -157,31 +165,68 @@
             this.listBoxAct.Size = new System.Drawing.Size(238, 420);
             this.listBoxAct.TabIndex = 3;
             // 
-            // tabPage2
+            // tabPage4
             // 
-            this.tabPage2.Controls.Add(this.buttonMostrarSocio);
-            this.tabPage2.Controls.Add(this.buttonCrearSocio);
-            this.tabPage2.Controls.Add(this.buttonModifSocio);
-            this.tabPage2.Controls.Add(this.buttonElimSocio);
-            this.tabPage2.Controls.Add(this.listBoxSocios);
-            this.tabPage2.Controls.Add(this.buttonInsSocAct);
-            this.tabPage2.Controls.Add(this.buttonRegPagoSoc);
-            this.tabPage2.Controls.Add(this.buttonElimSocAct);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(795, 427);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Socios";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabPage4.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
+            this.tabPage4.Controls.Add(this.buttonMostrarComision);
+            this.tabPage4.Controls.Add(this.buttonModifComision);
+            this.tabPage4.Controls.Add(this.buttonElimCom);
+            this.tabPage4.Controls.Add(this.buttonCrearComision);
+            this.tabPage4.Controls.Add(this.listBoxCom);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(795, 427);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Comisiones";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // listBoxSocios
+            // buttonMostrarComision
             // 
-            this.listBoxSocios.FormattingEnabled = true;
-            this.listBoxSocios.Location = new System.Drawing.Point(557, 3);
-            this.listBoxSocios.Name = "listBoxSocios";
-            this.listBoxSocios.Size = new System.Drawing.Size(235, 420);
-            this.listBoxSocios.TabIndex = 6;
+            this.buttonMostrarComision.Location = new System.Drawing.Point(20, 103);
+            this.buttonMostrarComision.Name = "buttonMostrarComision";
+            this.buttonMostrarComision.Size = new System.Drawing.Size(120, 23);
+            this.buttonMostrarComision.TabIndex = 24;
+            this.buttonMostrarComision.Text = "Mostrar";
+            this.buttonMostrarComision.UseVisualStyleBackColor = true;
+            this.buttonMostrarComision.Click += new System.EventHandler(this.buttonMostrarComision_Click);
+            // 
+            // buttonModifComision
+            // 
+            this.buttonModifComision.Location = new System.Drawing.Point(20, 45);
+            this.buttonModifComision.Name = "buttonModifComision";
+            this.buttonModifComision.Size = new System.Drawing.Size(120, 23);
+            this.buttonModifComision.TabIndex = 23;
+            this.buttonModifComision.Text = "Modificar";
+            this.buttonModifComision.UseVisualStyleBackColor = true;
+            this.buttonModifComision.Click += new System.EventHandler(this.buttonModifComision_Click);
+            // 
+            // buttonElimCom
+            // 
+            this.buttonElimCom.Location = new System.Drawing.Point(20, 74);
+            this.buttonElimCom.Name = "buttonElimCom";
+            this.buttonElimCom.Size = new System.Drawing.Size(120, 23);
+            this.buttonElimCom.TabIndex = 22;
+            this.buttonElimCom.Text = "Eliminar";
+            this.buttonElimCom.UseVisualStyleBackColor = true;
+            this.buttonElimCom.Click += new System.EventHandler(this.buttonElimCom_Click);
+            // 
+            // buttonCrearComision
+            // 
+            this.buttonCrearComision.Location = new System.Drawing.Point(20, 16);
+            this.buttonCrearComision.Name = "buttonCrearComision";
+            this.buttonCrearComision.Size = new System.Drawing.Size(120, 23);
+            this.buttonCrearComision.TabIndex = 21;
+            this.buttonCrearComision.Text = "Crear";
+            this.buttonCrearComision.UseVisualStyleBackColor = true;
+            this.buttonCrearComision.Click += new System.EventHandler(this.buttonCrearComision_Click);
+            // 
+            // listBoxCom
+            // 
+            this.listBoxCom.FormattingEnabled = true;
+            this.listBoxCom.Location = new System.Drawing.Point(534, 3);
+            this.listBoxCom.Name = "listBoxCom";
+            this.listBoxCom.Size = new System.Drawing.Size(258, 420);
+            this.listBoxCom.TabIndex = 19;
             // 
             // tabPage3
             // 
@@ -246,6 +291,24 @@
             this.buttonElimProf.UseVisualStyleBackColor = true;
             this.buttonElimProf.Click += new System.EventHandler(this.buttonElimProf_Click);
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.buttonMostrarSocio);
+            this.tabPage2.Controls.Add(this.buttonCrearSocio);
+            this.tabPage2.Controls.Add(this.buttonModifSocio);
+            this.tabPage2.Controls.Add(this.buttonElimSocio);
+            this.tabPage2.Controls.Add(this.listBoxSocios);
+            this.tabPage2.Controls.Add(this.buttonInsSocAct);
+            this.tabPage2.Controls.Add(this.buttonRegPagoSoc);
+            this.tabPage2.Controls.Add(this.buttonElimSocAct);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(795, 427);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Socios";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // buttonMostrarSocio
             // 
             this.buttonMostrarSocio.Location = new System.Drawing.Point(19, 102);
@@ -286,6 +349,14 @@
             this.buttonElimSocio.UseVisualStyleBackColor = true;
             this.buttonElimSocio.Click += new System.EventHandler(this.buttonElimSocio_Click);
             // 
+            // listBoxSocios
+            // 
+            this.listBoxSocios.FormattingEnabled = true;
+            this.listBoxSocios.Location = new System.Drawing.Point(557, 3);
+            this.listBoxSocios.Name = "listBoxSocios";
+            this.listBoxSocios.Size = new System.Drawing.Size(235, 420);
+            this.listBoxSocios.TabIndex = 6;
+            // 
             // FormPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -297,8 +368,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -327,6 +399,12 @@
         private System.Windows.Forms.Button buttonCrearSocio;
         private System.Windows.Forms.Button buttonModifSocio;
         private System.Windows.Forms.Button buttonElimSocio;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button buttonMostrarComision;
+        private System.Windows.Forms.Button buttonModifComision;
+        private System.Windows.Forms.Button buttonElimCom;
+        private System.Windows.Forms.Button buttonCrearComision;
+        private System.Windows.Forms.ListBox listBoxCom;
     }
 }
 

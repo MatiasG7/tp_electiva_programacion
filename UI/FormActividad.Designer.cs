@@ -42,11 +42,7 @@
             this.maskedTextBoxActDesc = new System.Windows.Forms.MaskedTextBox();
             this.maskedTextBoxActCosto = new System.Windows.Forms.MaskedTextBox();
             this.listBoxActComisiones = new System.Windows.Forms.ListBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonComCrear = new System.Windows.Forms.Button();
-            this.buttonComElim = new System.Windows.Forms.Button();
-            this.buttonComModif = new System.Windows.Forms.Button();
-            this.buttonComMostrar = new System.Windows.Forms.Button();
+            this.labelActCom = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // labelActID
@@ -169,65 +165,21 @@
             this.listBoxActComisiones.Size = new System.Drawing.Size(237, 160);
             this.listBoxActComisiones.TabIndex = 13;
             // 
-            // label1
+            // labelActCom
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(557, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Comisiones";
-            // 
-            // buttonComCrear
-            // 
-            this.buttonComCrear.Location = new System.Drawing.Point(557, 202);
-            this.buttonComCrear.Name = "buttonComCrear";
-            this.buttonComCrear.Size = new System.Drawing.Size(75, 23);
-            this.buttonComCrear.TabIndex = 15;
-            this.buttonComCrear.Text = "Agregar";
-            this.buttonComCrear.UseVisualStyleBackColor = true;
-            this.buttonComCrear.Click += new System.EventHandler(this.buttonComCrear_Click);
-            // 
-            // buttonComElim
-            // 
-            this.buttonComElim.Location = new System.Drawing.Point(719, 202);
-            this.buttonComElim.Name = "buttonComElim";
-            this.buttonComElim.Size = new System.Drawing.Size(75, 23);
-            this.buttonComElim.TabIndex = 16;
-            this.buttonComElim.Text = "Eliminar";
-            this.buttonComElim.UseVisualStyleBackColor = true;
-            this.buttonComElim.Click += new System.EventHandler(this.buttonComElim_Click);
-            // 
-            // buttonComModif
-            // 
-            this.buttonComModif.Location = new System.Drawing.Point(638, 202);
-            this.buttonComModif.Name = "buttonComModif";
-            this.buttonComModif.Size = new System.Drawing.Size(75, 23);
-            this.buttonComModif.TabIndex = 17;
-            this.buttonComModif.Text = "Modificar";
-            this.buttonComModif.UseVisualStyleBackColor = true;
-            this.buttonComModif.Click += new System.EventHandler(this.buttonComModif_Click);
-            // 
-            // buttonComMostrar
-            // 
-            this.buttonComMostrar.Location = new System.Drawing.Point(638, 231);
-            this.buttonComMostrar.Name = "buttonComMostrar";
-            this.buttonComMostrar.Size = new System.Drawing.Size(75, 23);
-            this.buttonComMostrar.TabIndex = 18;
-            this.buttonComMostrar.Text = "Mostrar";
-            this.buttonComMostrar.UseVisualStyleBackColor = true;
-            this.buttonComMostrar.Click += new System.EventHandler(this.buttonComMostrar_Click);
+            this.labelActCom.AutoSize = true;
+            this.labelActCom.Location = new System.Drawing.Point(557, 19);
+            this.labelActCom.Name = "labelActCom";
+            this.labelActCom.Size = new System.Drawing.Size(60, 13);
+            this.labelActCom.TabIndex = 14;
+            this.labelActCom.Text = "Comisiones";
             // 
             // FormActividad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.buttonComMostrar);
-            this.Controls.Add(this.buttonComModif);
-            this.Controls.Add(this.buttonComElim);
-            this.Controls.Add(this.buttonComCrear);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelActCom);
             this.Controls.Add(this.listBoxActComisiones);
             this.Controls.Add(this.maskedTextBoxActCosto);
             this.Controls.Add(this.maskedTextBoxActDesc);
@@ -266,10 +218,6 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxActDesc;
         private System.Windows.Forms.MaskedTextBox maskedTextBoxActCosto;
         private System.Windows.Forms.ListBox listBoxActComisiones;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button buttonComCrear;
-        private System.Windows.Forms.Button buttonComElim;
-        private System.Windows.Forms.Button buttonComModif;
-        private System.Windows.Forms.Button buttonComMostrar;
+        private System.Windows.Forms.Label labelActCom;
     }
 }

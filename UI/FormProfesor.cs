@@ -30,6 +30,8 @@ namespace UI
             this.textBoxProfNombre.Text = p.Nombre;
             this.dateTimePickerProfFNac.Text = p.FNac.ToString();
             this.dateTimePickerProfFIng.Text = p.FIng.ToString();
+            this.listBoxProfCom.DataSource = p.Comisiones;
+            this.listBoxProfCom.ClearSelected();
         }
 
         private void buttonProfCrear_Click(object sender, EventArgs e)
@@ -71,6 +73,8 @@ namespace UI
             this.textBoxProfDNI.ReadOnly = false;
             this.buttonProfModif.Visible = false;
             this.buttonProfAceptar.Visible = false;
+            this.labelProfCom.Visible = false;
+            this.listBoxProfCom.Visible = false;
             this.buttonProfCrear.Visible = true;
         }
 
@@ -81,6 +85,8 @@ namespace UI
             this.buttonProfModif.Visible = true;
             this.buttonProfAceptar.Visible = false;
             this.buttonProfCrear.Visible = false;
+            this.labelProfCom.Visible = false;
+            this.listBoxProfCom.Visible = false;
         }
 
         public void prepararFormMostrar()
@@ -89,6 +95,8 @@ namespace UI
             this.textBoxProfDNI.ReadOnly = true;
             this.textBoxProfNombre.ReadOnly = true;
             this.buttonProfAceptar.Visible = true;
+            this.labelProfCom.Visible = true;
+            this.listBoxProfCom.Enabled = false;
             this.dateTimePickerProfFNac.Enabled = false;
             this.dateTimePickerProfFIng.Enabled = false;
             this.buttonProfCrear.Visible = false;

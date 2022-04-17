@@ -13,11 +13,21 @@ namespace CapaNegocio
         private List<Comision> comisiones;
 
         public DateTime FIng { get => fIng; set => fIng = value; }
+        public List<Comision> Comisiones { get => comisiones; set => comisiones = value; }
 
         public Profesor(DateTime fIng, int dni, string nombre, DateTime fNac) : base(dni, nombre, fNac)
         {
             this.fIng = fIng;
             this.comisiones = new List<Comision>();
+        }
+
+        public void agregarComision(Comision newCom)
+        {
+            comisiones.Add(newCom);
+        }
+        public void removerComision(Comision newCom)
+        {
+            comisiones.Remove(newCom);
         }
 
         public override string ToString()

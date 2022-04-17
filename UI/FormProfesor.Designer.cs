@@ -40,6 +40,8 @@
             this.dateTimePickerProfFNac = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerProfFIng = new System.Windows.Forms.DateTimePicker();
             this.labelProfFIng = new System.Windows.Forms.Label();
+            this.labelProfCom = new System.Windows.Forms.Label();
+            this.listBoxProfCom = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // textBoxProfNombre
@@ -146,11 +148,30 @@
             this.labelProfFIng.TabIndex = 17;
             this.labelProfFIng.Text = "Fecha Ingreso";
             // 
+            // labelProfCom
+            // 
+            this.labelProfCom.AutoSize = true;
+            this.labelProfCom.Location = new System.Drawing.Point(594, 19);
+            this.labelProfCom.Name = "labelProfCom";
+            this.labelProfCom.Size = new System.Drawing.Size(60, 13);
+            this.labelProfCom.TabIndex = 19;
+            this.labelProfCom.Text = "Comisiones";
+            // 
+            // listBoxProfCom
+            // 
+            this.listBoxProfCom.FormattingEnabled = true;
+            this.listBoxProfCom.Location = new System.Drawing.Point(597, 35);
+            this.listBoxProfCom.Name = "listBoxProfCom";
+            this.listBoxProfCom.Size = new System.Drawing.Size(199, 251);
+            this.listBoxProfCom.TabIndex = 20;
+            // 
             // FormProfesor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listBoxProfCom);
+            this.Controls.Add(this.labelProfCom);
             this.Controls.Add(this.dateTimePickerProfFIng);
             this.Controls.Add(this.labelProfFIng);
             this.Controls.Add(this.dateTimePickerProfFNac);
@@ -183,5 +204,7 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerProfFNac;
         private System.Windows.Forms.DateTimePicker dateTimePickerProfFIng;
         private System.Windows.Forms.Label labelProfFIng;
+        private System.Windows.Forms.Label labelProfCom;
+        private System.Windows.Forms.ListBox listBoxProfCom;
     }
 }

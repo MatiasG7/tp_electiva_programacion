@@ -33,6 +33,8 @@ namespace UI
             this.textBoxActID.Text = act.Id.ToString();
             this.textBoxActDesc.Text = act.Descripcion;
             this.textBoxActCosto.Text = act.Costo.ToString();
+            this.listBoxActComisiones.DataSource = act.Comisiones;
+            this.listBoxActComisiones.ClearSelected();
         }
 
         private void FormCrearActividad_Load(object sender, EventArgs e)
@@ -77,6 +79,8 @@ namespace UI
             this.textBoxActID.ReadOnly = false;
             this.buttonActModif.Visible = false;
             this.buttonActAceptar.Visible = false;
+            this.labelActCom.Visible = false;
+            this.listBoxActComisiones.Visible = false;
             this.buttonActCrear.Visible = true;
         }
 
@@ -87,7 +91,8 @@ namespace UI
             this.buttonActModif.Visible = true;
             this.buttonActAceptar.Visible = false;
             this.buttonActCrear.Visible = false;
-            this.listBoxActComisiones.DataSource = act.Comisiones;
+            this.labelActCom.Visible = false;
+            this.listBoxActComisiones.Visible = false;
         }
 
         public void prepararFormMostrar()
@@ -99,82 +104,7 @@ namespace UI
             this.buttonActAceptar.Visible = true;
             this.buttonActCrear.Visible = false;
             this.buttonActModif.Visible = false;
-            this.listBoxActComisiones.DataSource = act.Comisiones;
-        }
-
-        private void buttonComCrear_Click(object sender, EventArgs e)
-        {
-            FormComision fc = new FormComision(act, this.profesores);
-            fc.prepararFormCrear();
-            fc.ShowDialog();
-
-            Comision com = fc.Com;
-            if (com != null)
-            {
-                bool exists = act.verificarComision(com);
-                if (exists)
-                {
-                    MessageBox.Show("Ya existe una comisión con el ID ingresado.");
-                }
-                else
-                {
-                    act.agregarComision(com);
-                    MessageBox.Show("Comisión creada satisfactoriamente.");
-                    listBoxActComisiones.DataSource = null;
-                    listBoxActComisiones.DataSource = act.Comisiones;
-                    listBoxActComisiones.ClearSelected();
-                }
-            }
-        }
-
-        private void buttonComModif_Click(object sender, EventArgs e)
-        {
-            Comision c = (Comision)listBoxActComisiones.SelectedItem;
-            if (c == null)
-                MessageBox.Show("No hay comisión seleccionada para modificar.");
-            else
-            {
-                FormComision fc = new FormComision(act, c, this.profesores);
-                fc.prepararFormModificar();
-                fc.ShowDialog();
-                listBoxActComisiones.DataSource = null;
-                listBoxActComisiones.DataSource = act.Comisiones;
-                listBoxActComisiones.ClearSelected();
-            }
-        }
-
-        private void buttonComElim_Click(object sender, EventArgs e)
-        {
-            Comision c = (Comision)listBoxActComisiones.SelectedItem;
-            if (c == null)
-                MessageBox.Show("No hay comisión seleccionada para eliminar.");
-            else
-            {
-                // Cuando se borra una comision se deberia borrar las inscripciones de socios a ellas?
-                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la comisión seleccionada?", "Eliminar Comisión", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    act.removerComision(c);
-                    listBoxActComisiones.DataSource = null;
-                    listBoxActComisiones.DataSource = act.Comisiones;
-                }
-
-                listBoxActComisiones.ClearSelected();
-            }
-        }
-
-        private void buttonComMostrar_Click(object sender, EventArgs e)
-        {
-            Comision c = (Comision)listBoxActComisiones.SelectedItem;
-            if (c == null)
-                MessageBox.Show("No hay comisión seleccionada para mostrar.");
-            else
-            {
-                FormComision fc = new FormComision(this.act, (Comision)listBoxActComisiones.SelectedItem, this.profesores);
-                fc.prepararFormMostrar();
-                fc.ShowDialog();
-                listBoxActComisiones.ClearSelected();
-            }
+            this.listBoxActComisiones.Enabled = false;
         }
     }
 }

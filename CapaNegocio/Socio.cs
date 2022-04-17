@@ -27,6 +27,9 @@ namespace CapaNegocio
             this.comisiones = new List<Comision>();
         }
 
-
+        public void removerComision(Comision com)
+        {
+            this.comisiones.Remove(com);
+        }
     }
 }
