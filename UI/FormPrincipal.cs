@@ -104,10 +104,15 @@ namespace UI
 
         private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (club.guardar())
-                MessageBox.Show("GUARDADO OK");
-            else
-                MessageBox.Show("ERROR AL GUARDAR");
+            DialogResult dialogResult = MessageBox.Show("Desea realizar un guardado ?", "Guardar", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (club.guardar())
+                    MessageBox.Show("GUARDADO OK");
+                else
+                    MessageBox.Show("ERROR AL GUARDAR");
+            }
+
         }
 
         private void buttonCrearProf_Click(object sender, EventArgs e)
@@ -188,7 +193,7 @@ namespace UI
         private void buttonCrearSocio_Click(object sender, EventArgs e)
         {
             //DialogResult dialogResult = MessageBox.Show("Desea crear un tipo de Socio de Actividades ?", "Crear Socio", MessageBoxButtons.YesNoCancel);
-            
+
             FormConfirmacion fc = new FormConfirmacion("Seleccionar tipo de socio", "Elija tipo de socio a crear", "Club", "Actividad", "Cancelar");
             fc.ShowDialog();
 
@@ -200,13 +205,14 @@ namespace UI
                     //Club
                     fs = new FormSocio(fc.Option);
                     fs.prepararFormCrearClub();
-                } else
+                }
+                else
                 {
                     //Actividad
                     fs = new FormSocio(fc.Option);
                     fs.prepararFormCrearActividad();
                 }
-                
+
                 fs.ShowDialog();
 
                 Socio sa = fs.Soc;
