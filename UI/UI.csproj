@@ -64,6 +64,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormSocio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSocio.Designer.cs">
+      <DependentUpon>FormSocio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormConfirmacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormConfirmacion.Designer.cs">
+      <DependentUpon>FormConfirmacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormActividad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,11 +102,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormSocio.resx">
+      <DependentUpon>FormSocio.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormActividad.resx">
       <DependentUpon>FormActividad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormComision.resx">
       <DependentUpon>FormComision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormConfirmacion.resx">
+      <DependentUpon>FormConfirmacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>

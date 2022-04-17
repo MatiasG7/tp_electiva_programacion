@@ -17,6 +17,7 @@ namespace CapaNegocio
 
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
         public List<Profesor> Profesores { get => profesores; set => profesores = value; }
+        public List<Socio> Socios { get => socios; set => socios = value; }
 
         public Club()
         {
@@ -25,15 +26,20 @@ namespace CapaNegocio
             profesores = new List<Profesor>();
         }
 
-        public void agregarSocio(Socio s)
-        {
-            socios.Add(s);
-        }
-
         // verificarActividad devuelve true en caso de que la actividad no se encuentre en el Club.
         public bool verificarActividad(Actividad newAct)
         {
             return actividades.Any(act => act.Id == newAct.Id);
+        }
+
+        public bool verificarSocio(Socio newSoc)
+        {
+            return socios.Any(s => s.Dni == newSoc.Dni);
+        }
+
+        public bool verificarProfesor(Profesor newProf)
+        {
+            return profesores.Any(act => act.Dni == newProf.Dni); ;
         }
 
         public void agregarActividad(Actividad newAct)
@@ -41,9 +47,9 @@ namespace CapaNegocio
             actividades.Add(newAct);
         }
 
-        public bool verificarProfesor(Profesor newProf)
+        public void agregarSocio(Socio newSoc)
         {
-            return profesores.Any(act => act.Dni == newProf.Dni); ;
+            socios.Add(newSoc);
         }
 
         public void agregarProfesor(Profesor newProf)
@@ -54,6 +60,11 @@ namespace CapaNegocio
         public void removerActividad(Actividad act)
         {
             actividades.Remove(act);
+        }
+
+        public void removerSocio(Socio soc)
+        {
+            socios.Remove(soc);
         }
 
         public void removerProfesor(Profesor prof)
