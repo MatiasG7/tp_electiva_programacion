@@ -36,6 +36,15 @@ namespace CapaNegocio
             this.socios = new List<Socio>();
         }
 
+        public void agregarSocio(Socio newSocio)
+        {
+            socios.Add(newSocio);
+        }
+
+        public bool verificarSocio(Socio newSocio)
+        {
+            return socios.Any(c => c.Dni == newSocio.Dni);
+        }
         public override string ToString()
         {
             return "ID-" + id + " | " + dia + " | " + horario + ":00";

@@ -39,6 +39,10 @@
             this.buttonMostrarActividad = new System.Windows.Forms.Button();
             this.listBoxAct = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.buttonMostrarSocio = new System.Windows.Forms.Button();
+            this.buttonCrearSocio = new System.Windows.Forms.Button();
+            this.buttonModifSocio = new System.Windows.Forms.Button();
+            this.buttonElimSocio = new System.Windows.Forms.Button();
             this.listBoxSocios = new System.Windows.Forms.ListBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.listBoxProf = new System.Windows.Forms.ListBox();
@@ -46,10 +50,6 @@
             this.buttonCrearProf = new System.Windows.Forms.Button();
             this.buttonModifProf = new System.Windows.Forms.Button();
             this.buttonElimProf = new System.Windows.Forms.Button();
-            this.buttonMostrarSocio = new System.Windows.Forms.Button();
-            this.buttonCrearSocio = new System.Windows.Forms.Button();
-            this.buttonModifSocio = new System.Windows.Forms.Button();
-            this.buttonElimSocio = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -94,6 +94,7 @@
             this.buttonInsSocAct.TabIndex = 3;
             this.buttonInsSocAct.Text = "Inscribir socio a actividad deportiva";
             this.buttonInsSocAct.UseVisualStyleBackColor = true;
+            this.buttonInsSocAct.Click += new System.EventHandler(this.buttonInsSocAct_Click);
             // 
             // buttonElimSocAct
             // 
@@ -103,6 +104,7 @@
             this.buttonElimSocAct.TabIndex = 4;
             this.buttonElimSocAct.Text = "Eliminar socio de una actividad deportiva";
             this.buttonElimSocAct.UseVisualStyleBackColor = true;
+            this.buttonElimSocAct.Click += new System.EventHandler(this.buttonElimSocAct_Click);
             // 
             // buttonRegPagoSoc
             // 
@@ -175,6 +177,46 @@
             this.tabPage2.Text = "Socios";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // buttonMostrarSocio
+            // 
+            this.buttonMostrarSocio.Location = new System.Drawing.Point(19, 102);
+            this.buttonMostrarSocio.Name = "buttonMostrarSocio";
+            this.buttonMostrarSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonMostrarSocio.TabIndex = 10;
+            this.buttonMostrarSocio.Text = "Mostrar";
+            this.buttonMostrarSocio.UseVisualStyleBackColor = true;
+            this.buttonMostrarSocio.Click += new System.EventHandler(this.buttonMostrarSocio_Click);
+            // 
+            // buttonCrearSocio
+            // 
+            this.buttonCrearSocio.Location = new System.Drawing.Point(19, 15);
+            this.buttonCrearSocio.Name = "buttonCrearSocio";
+            this.buttonCrearSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonCrearSocio.TabIndex = 7;
+            this.buttonCrearSocio.Text = "Crear";
+            this.buttonCrearSocio.UseVisualStyleBackColor = true;
+            this.buttonCrearSocio.Click += new System.EventHandler(this.buttonCrearSocio_Click);
+            // 
+            // buttonModifSocio
+            // 
+            this.buttonModifSocio.Location = new System.Drawing.Point(19, 44);
+            this.buttonModifSocio.Name = "buttonModifSocio";
+            this.buttonModifSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonModifSocio.TabIndex = 8;
+            this.buttonModifSocio.Text = "Modificar";
+            this.buttonModifSocio.UseVisualStyleBackColor = true;
+            this.buttonModifSocio.Click += new System.EventHandler(this.buttonModifSocio_Click);
+            // 
+            // buttonElimSocio
+            // 
+            this.buttonElimSocio.Location = new System.Drawing.Point(19, 73);
+            this.buttonElimSocio.Name = "buttonElimSocio";
+            this.buttonElimSocio.Size = new System.Drawing.Size(140, 23);
+            this.buttonElimSocio.TabIndex = 9;
+            this.buttonElimSocio.Text = "Eliminar";
+            this.buttonElimSocio.UseVisualStyleBackColor = true;
+            this.buttonElimSocio.Click += new System.EventHandler(this.buttonElimSocio_Click);
+            // 
             // listBoxSocios
             // 
             this.listBoxSocios.FormattingEnabled = true;
@@ -245,46 +287,6 @@
             this.buttonElimProf.Text = "Eliminar";
             this.buttonElimProf.UseVisualStyleBackColor = true;
             this.buttonElimProf.Click += new System.EventHandler(this.buttonElimProf_Click);
-            // 
-            // buttonMostrarSocio
-            // 
-            this.buttonMostrarSocio.Location = new System.Drawing.Point(19, 102);
-            this.buttonMostrarSocio.Name = "buttonMostrarSocio";
-            this.buttonMostrarSocio.Size = new System.Drawing.Size(140, 23);
-            this.buttonMostrarSocio.TabIndex = 10;
-            this.buttonMostrarSocio.Text = "Mostrar";
-            this.buttonMostrarSocio.UseVisualStyleBackColor = true;
-            this.buttonMostrarSocio.Click += new System.EventHandler(this.buttonMostrarSocio_Click);
-            // 
-            // buttonCrearSocio
-            // 
-            this.buttonCrearSocio.Location = new System.Drawing.Point(19, 15);
-            this.buttonCrearSocio.Name = "buttonCrearSocio";
-            this.buttonCrearSocio.Size = new System.Drawing.Size(140, 23);
-            this.buttonCrearSocio.TabIndex = 7;
-            this.buttonCrearSocio.Text = "Crear";
-            this.buttonCrearSocio.UseVisualStyleBackColor = true;
-            this.buttonCrearSocio.Click += new System.EventHandler(this.buttonCrearSocio_Click);
-            // 
-            // buttonModifSocio
-            // 
-            this.buttonModifSocio.Location = new System.Drawing.Point(19, 44);
-            this.buttonModifSocio.Name = "buttonModifSocio";
-            this.buttonModifSocio.Size = new System.Drawing.Size(140, 23);
-            this.buttonModifSocio.TabIndex = 8;
-            this.buttonModifSocio.Text = "Modificar";
-            this.buttonModifSocio.UseVisualStyleBackColor = true;
-            this.buttonModifSocio.Click += new System.EventHandler(this.buttonModifSocio_Click);
-            // 
-            // buttonElimSocio
-            // 
-            this.buttonElimSocio.Location = new System.Drawing.Point(19, 73);
-            this.buttonElimSocio.Name = "buttonElimSocio";
-            this.buttonElimSocio.Size = new System.Drawing.Size(140, 23);
-            this.buttonElimSocio.TabIndex = 9;
-            this.buttonElimSocio.Text = "Eliminar";
-            this.buttonElimSocio.UseVisualStyleBackColor = true;
-            this.buttonElimSocio.Click += new System.EventHandler(this.buttonElimSocio_Click);
             // 
             // FormPrincipal
             // 

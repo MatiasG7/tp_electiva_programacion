@@ -188,7 +188,7 @@ namespace UI
         private void buttonCrearSocio_Click(object sender, EventArgs e)
         {
             //DialogResult dialogResult = MessageBox.Show("Desea crear un tipo de Socio de Actividades ?", "Crear Socio", MessageBoxButtons.YesNoCancel);
-            
+
             FormConfirmacion fc = new FormConfirmacion("Seleccionar tipo de socio", "Elija tipo de socio a crear", "Club", "Actividad", "Cancelar");
             fc.ShowDialog();
 
@@ -200,13 +200,14 @@ namespace UI
                     //Club
                     fs = new FormSocio(fc.Option);
                     fs.prepararFormCrearClub();
-                } else
+                }
+                else
                 {
                     //Actividad
                     fs = new FormSocio(fc.Option);
                     fs.prepararFormCrearActividad();
                 }
-                
+
                 fs.ShowDialog();
 
                 Socio sa = fs.Soc;
@@ -295,6 +296,30 @@ namespace UI
                     fs.prepararFormMostrarClub();
                     fs.ShowDialog();
                 }
+
+                listBoxSocios.ClearSelected();
+            }
+        }
+
+        private void buttonInsSocAct_Click(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+            if (s == null)
+                MessageBox.Show("No hay socio seleccionado para mostrar.");
+            else
+            {
+                FormInscripcionComision fic = new FormInscripcionComision(club.Actividades, s);
+                fic.prepararInscripcionSocio();
+                fic.ShowDialog();
+
+                //if (club.Comisiones)
+
+
+
+
+                listBoxSocios.ClearSelected();
+            }
+        }
 
                 listBoxSocios.ClearSelected();
             }
