@@ -31,5 +31,10 @@ namespace CapaNegocio
         {
             this.comisiones.Remove(com);
         }
+
+        public void agregarComision(Comision com)
+        {
+            this.comisiones.Add(com);
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace UI
                 if (com.verificarSocio(soc) == false)
                 {
                     com.agregarSocio(soc);
+                    soc.agregarComision(com);
                 }
                 else
                 {
