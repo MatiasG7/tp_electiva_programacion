@@ -46,5 +46,18 @@ namespace CapaNegocio
         {
             comisiones.Remove(c);
         }
+
+        public void eliminar()
+        {
+            foreach (var c in comisiones)
+            {
+                c.removerDeProfesorYSocios();
+            }
+        }
+
+        public void limpiarComisiones()
+        {
+            this.comisiones.Clear();
+        }
     }
 }

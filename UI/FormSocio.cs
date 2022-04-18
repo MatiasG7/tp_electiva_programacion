@@ -61,11 +61,12 @@ namespace UI
             string direccion = this.textBoxSocDireccion.Text;
             DateTime fing = this.dateTimePickerSocFIng.Value;
 
-            if(option == 1)
+            if (option == 1)
             {
                 double cuotaSocial = double.Parse(this.textBoxSocCuotaSocial.Text);
                 this.soc = new SocioClub(cuotaSocial, email, direccion, fing, dni, nombre, fnac);
-            } else if(option == 2)
+            }
+            else if (option == 2)
             {
                 this.soc = new SocioActividad(email, direccion, fing, dni, nombre, fnac);
             }
@@ -75,14 +76,15 @@ namespace UI
 
         private void buttonSocModif_Click_1(object sender, EventArgs e)
         {
-            if(socAct != null)
+            if (socAct != null)
             {
                 socAct.Nombre = this.textBoxSocNombre.Text;
                 socAct.FNac = this.dateTimePickerSocFNac.Value;
                 socAct.Email = this.textBoxSocEmail.Text;
                 socAct.Direccion = this.textBoxSocDireccion.Text;
                 socAct.FIng = this.dateTimePickerSocFIng.Value;
-            } else if(socClub != null)
+            }
+            else if (socClub != null)
             {
                 socClub.Nombre = this.textBoxSocNombre.Text;
                 socClub.FNac = this.dateTimePickerSocFNac.Value;
@@ -112,9 +114,9 @@ namespace UI
             this.textBoxSocDNI.ReadOnly = false;
             this.buttonSocModif.Visible = false;
             this.buttonSocAceptar.Visible = false;
+            this.labelSocComisiones.Visible = false;
             this.listBoxSocComisiones.Visible = false;
             this.buttonSocCrear.Visible = true;
-            this.labelSocComisiones.Visible = false;
         }
 
         public void prepararFormModificar()
@@ -123,6 +125,7 @@ namespace UI
             this.buttonSocModif.Visible = true;
             this.buttonSocAceptar.Visible = false;
             this.buttonSocCrear.Visible = false;
+            this.labelSocComisiones.Visible = false;
             this.listBoxSocComisiones.Visible = false;
         }
 
@@ -134,6 +137,7 @@ namespace UI
             this.textBoxSocDireccion.ReadOnly = true;
             this.textBoxSocCuotaSocial.ReadOnly = true;
             this.buttonSocAceptar.Visible = true;
+            this.listBoxSocComisiones.Enabled = false;
             this.dateTimePickerSocFNac.Enabled = false;
             this.dateTimePickerSocFIng.Enabled = false;
             this.buttonSocCrear.Visible = false;

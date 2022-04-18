@@ -45,9 +45,25 @@ namespace CapaNegocio
         {
             return socios.Any(c => c.Dni == newSocio.Dni);
         }
+        public void eliminar()
+        {
+            this.actividad.removerComision(this);
+            this.removerDeProfesorYSocios();
+        }
+
+        public void removerDeProfesorYSocios()
+        {
+            this.profesor.removerComision(this);
+
+            foreach (var s in socios)
+            {
+                s.removerComision(this);
+            }
+        }
+
         public override string ToString()
         {
-            return "ID-" + id + " | " + dia + " | " + horario + ":00";
+            return this.actividad.Descripcion + " | " + "ID- " + id + " | " + dia + " | " + horario + ":00";
         }
     }
 }
