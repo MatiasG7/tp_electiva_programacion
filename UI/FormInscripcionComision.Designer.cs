@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.buttonInsConfirmar = new System.Windows.Forms.Button();
             this.buttonInsCancelar = new System.Windows.Forms.Button();
+            this.buttonInsComElim = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxInsSocAct
@@ -84,7 +85,7 @@
             // 
             // buttonInsConfirmar
             // 
-            this.buttonInsConfirmar.Location = new System.Drawing.Point(681, 381);
+            this.buttonInsConfirmar.Location = new System.Drawing.Point(582, 383);
             this.buttonInsConfirmar.Name = "buttonInsConfirmar";
             this.buttonInsConfirmar.Size = new System.Drawing.Size(75, 23);
             this.buttonInsConfirmar.TabIndex = 5;
@@ -94,7 +95,7 @@
             // 
             // buttonInsCancelar
             // 
-            this.buttonInsCancelar.Location = new System.Drawing.Point(600, 381);
+            this.buttonInsCancelar.Location = new System.Drawing.Point(663, 383);
             this.buttonInsCancelar.Name = "buttonInsCancelar";
             this.buttonInsCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonInsCancelar.TabIndex = 6;
@@ -102,11 +103,22 @@
             this.buttonInsCancelar.UseVisualStyleBackColor = true;
             this.buttonInsCancelar.Click += new System.EventHandler(this.buttonInsCancelar_Click);
             // 
+            // buttonInsComElim
+            // 
+            this.buttonInsComElim.Location = new System.Drawing.Point(582, 354);
+            this.buttonInsComElim.Name = "buttonInsComElim";
+            this.buttonInsComElim.Size = new System.Drawing.Size(75, 23);
+            this.buttonInsComElim.TabIndex = 7;
+            this.buttonInsComElim.Text = "Eliminar";
+            this.buttonInsComElim.UseVisualStyleBackColor = true;
+            this.buttonInsComElim.Click += new System.EventHandler(this.buttonInsComElim_Click);
+            // 
             // FormInscripcionComision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonInsComElim);
             this.Controls.Add(this.buttonInsCancelar);
             this.Controls.Add(this.buttonInsConfirmar);
             this.Controls.Add(this.label2);
@@ -130,5 +142,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button buttonInsConfirmar;
         private System.Windows.Forms.Button buttonInsCancelar;
+        private System.Windows.Forms.Button buttonInsComElim;
     }
 }

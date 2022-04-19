@@ -25,6 +25,13 @@ namespace UI
             listBoxInsSocAct.DataSource = act;
         }
 
+        public FormInscripcionComision(Socio soc)
+        {
+            InitializeComponent();
+            this.soc = soc;
+            listBoxInsSocAct.DataSource = soc.Comisiones.Select(x => x.Actividad).ToList();
+        }
+
         private void buttonInsConfirmar_Click(object sender, EventArgs e)
         {
             Comision com = (Comision)listBoxInsSocCom.SelectedItem;
@@ -58,15 +65,41 @@ namespace UI
         public void prepararInscripcionSocio()
         {
             Text = "Inscripcion a comision";
+            buttonInsComElim.Visible = false;
+            buttonInsConfirmar.Visible = true;
         }
 
         public void prepararEliminarSocio()
         {
             Text = "Eliminar socio de comision";
+            listBoxInsSocCom.Visible = false;
+            label1.Visible = false;
+            label2.Visible = false;
+            buttonInsComElim.Visible = true;
+            buttonInsConfirmar.Visible = false;
         }
 
         private void buttonInsCancelar_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void buttonInsComElim_Click(object sender, EventArgs e)
+        {
+            Actividad act = (Actividad)listBoxInsSocAct.SelectedItem;
+
+            if (act == null)
+            {
+                MessageBox.Show("No hay actividad seleccionada para eliminar.");
+            }
+            else
+            {
+                Comision comSoc = soc.Comisiones.First(c => c.Actividad == act);
+
+                comSoc.removerSocio(this.soc);
+
+                this.soc.removerComision(comSoc);
+            }
             this.Close();
         }
     }

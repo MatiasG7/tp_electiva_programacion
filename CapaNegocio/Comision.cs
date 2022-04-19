@@ -41,6 +41,11 @@ namespace CapaNegocio
             socios.Add(newSocio);
         }
 
+        public void removerSocio(Socio newSocio)
+        {
+            socios.Remove(newSocio);
+        }
+
         public bool verificarSocio(Socio newSocio)
         {
             return socios.Any(c => c.Dni == newSocio.Dni);

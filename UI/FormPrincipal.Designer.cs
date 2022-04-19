@@ -133,6 +133,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(803, 453);
             this.tabControl.TabIndex = 6;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -358,6 +359,7 @@
             this.listBoxSocios.Name = "listBoxSocios";
             this.listBoxSocios.Size = new System.Drawing.Size(235, 420);
             this.listBoxSocios.TabIndex = 6;
+            this.listBoxSocios.SelectedIndexChanged += new System.EventHandler(this.listBoxSocios_SelectedIndexChanged);
             // 
             // FormPrincipal
             // 
