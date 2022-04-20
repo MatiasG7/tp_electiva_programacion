@@ -101,6 +101,7 @@
             this.buttonInsSocAct.TabIndex = 3;
             this.buttonInsSocAct.Text = "Inscribir socio a actividad deportiva";
             this.buttonInsSocAct.UseVisualStyleBackColor = true;
+            this.buttonInsSocAct.Click += new System.EventHandler(this.buttonInsSocAct_Click);
             // 
             // buttonElimSocAct
             // 
@@ -110,6 +111,7 @@
             this.buttonElimSocAct.TabIndex = 4;
             this.buttonElimSocAct.Text = "Eliminar socio de una actividad deportiva";
             this.buttonElimSocAct.UseVisualStyleBackColor = true;
+            this.buttonElimSocAct.Click += new System.EventHandler(this.buttonElimSocAct_Click);
             // 
             // buttonRegPagoSoc
             // 
@@ -131,6 +133,7 @@
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(803, 453);
             this.tabControl.TabIndex = 6;
+            this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -356,6 +359,7 @@
             this.listBoxSocios.Name = "listBoxSocios";
             this.listBoxSocios.Size = new System.Drawing.Size(235, 420);
             this.listBoxSocios.TabIndex = 6;
+            this.listBoxSocios.SelectedIndexChanged += new System.EventHandler(this.listBoxSocios_SelectedIndexChanged);
             // 
             // FormPrincipal
             // 

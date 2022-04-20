@@ -378,6 +378,93 @@ namespace UI
                 listBoxCom.ClearSelected();
             }
         }
+
+        private void buttonInsSocAct_Click(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+            if (s == null)
+                MessageBox.Show("No hay socio seleccionado para mostrar.");
+            else
+            {
+                if (club.Comisiones.Count > 0)
+                {
+                    FormInscripcionComision fic = new FormInscripcionComision(club.Actividades, s);
+                    fic.prepararInscripcionSocio();
+                    fic.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Debe tener comisiones para inscribir un socio.");
+                }
+
+                listBoxSocios.ClearSelected();
+            }
+        }
+
+        private void buttonElimSocAct_Click(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+            if (s == null)
+                MessageBox.Show("No hay socio seleccionado para mostrar.");
+            else
+            {
+                if (club.Comisiones.Count > 0)
+                {
+                    if (s.Comisiones.Count > 0)
+                    {
+                        FormInscripcionComision fic = new FormInscripcionComision(s);
+                        fic.prepararEliminarSocio();
+                        fic.ShowDialog();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El socio no esta inscripto a ninguna actividad.");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Debe tener comisiones para eliminar un socio de una comision.");
+                }
+
+                listBoxSocios.ClearSelected();
+            }
+        }
+
+        // REVISAR, NO FUNKA DE UNA
+        private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (tabControl.SelectedIndex)
+            {
+                case 2:
+                    {
+                        if (club.Comisiones.Count < 1)
+                        {
+                            buttonInsSocAct.Enabled = false;
+                            buttonElimSocAct.Enabled = false;
+                            buttonRegPagoSoc.Enabled = false;
+                        }
+                        break;
+                    }
+            }
+        }
+
+        private void listBoxSocios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+
+            if (s != null)
+            {
+                if (s.Comisiones.Count < 1)
+                {
+                    buttonElimSocAct.Enabled = false;
+                }
+                else
+                {
+                    buttonElimSocAct.Enabled = true;
+                }
+            }
+        }
     }
 }
 

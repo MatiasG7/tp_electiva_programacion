@@ -38,6 +38,8 @@ namespace UI
             this.textBoxSocDireccion.Text = socClub.Direccion;
             this.dateTimePickerSocFIng.Value = socClub.FIng;
             this.dateTimePickerSocFNac.Value = socClub.FNac;
+            this.listBoxSocComisiones.DataSource = socClub.Comisiones;
+            this.listBoxSocComisiones.ClearSelected();
         }
 
         public FormSocio(SocioActividad socAct)
@@ -50,6 +52,8 @@ namespace UI
             this.textBoxSocDireccion.Text = socAct.Direccion;
             this.dateTimePickerSocFIng.Value = socAct.FIng;
             this.dateTimePickerSocFNac.Value = socAct.FNac;
+            this.listBoxSocComisiones.DataSource = socAct.Comisiones;
+            this.listBoxSocComisiones.ClearSelected();
         }
 
         private void buttonSocCrear_Click_1(object sender, EventArgs e)
@@ -70,7 +74,6 @@ namespace UI
             {
                 this.soc = new SocioActividad(email, direccion, fing, dni, nombre, fnac);
             }
-
             this.Close();
         }
 

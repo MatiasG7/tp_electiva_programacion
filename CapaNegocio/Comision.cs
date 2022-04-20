@@ -36,6 +36,26 @@ namespace CapaNegocio
             this.socios = new List<Socio>();
         }
 
+        public void agregarSocio(Socio newSocio)
+        {
+            socios.Add(newSocio);
+        }
+
+        public void removerSocio(Socio newSocio)
+        {
+            socios.Remove(newSocio);
+        }
+
+        public bool verificarSocio(Socio newSocio)
+        {
+            return socios.Any(c => c.Dni == newSocio.Dni);
+        }
+
+        public bool verificarCantParticipantes()
+        {
+            return socios.Count() < this.cantidadMaximaParticipantes;
+        }
+
         public void eliminar()
         {
             this.actividad.removerComision(this);
