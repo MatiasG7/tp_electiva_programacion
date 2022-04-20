@@ -13,5 +13,17 @@ namespace CapaNegocio
         {
 
         }
+
+        public override double calcularMontoAPagar()
+        {
+            double montoTotal = 0;
+
+            foreach (var com in Comisiones)
+            {
+                montoTotal += com.Actividad.Costo;
+            }
+
+            return montoTotal;
+        }
     }
 }

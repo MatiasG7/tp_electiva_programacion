@@ -36,5 +36,7 @@ namespace CapaNegocio
         {
             this.comisiones.Add(com);
         }
+
+        public abstract double calcularMontoAPagar();
     }
 }

@@ -121,6 +121,7 @@
             this.buttonRegPagoSoc.TabIndex = 5;
             this.buttonRegPagoSoc.Text = "Registrar el pago de un socio";
             this.buttonRegPagoSoc.UseVisualStyleBackColor = true;
+            this.buttonRegPagoSoc.Click += new System.EventHandler(this.buttonRegPagoSoc_Click);
             // 
             // tabControl
             // 
@@ -371,6 +372,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
+            this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);

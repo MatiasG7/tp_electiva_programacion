@@ -19,5 +19,44 @@ namespace CapaNegocio
         {
             this.cuotaSocial = cuotaSocial;
         }
+
+        public override double calcularMontoAPagar()
+        {
+            double montoTotal = this.cuotaSocial;
+
+            List<Comision> coms = this.Comisiones.OrderBy(c => c.Actividad.Costo).ToList();
+
+            if (coms.Count > 5)
+            {
+                coms = coms.GetRange(4, coms.Count());
+
+                foreach (var com in coms)
+                {
+                    montoTotal += com.Actividad.Costo * (1 - (SocioClub.PorcentajeDescuento / 100));
+                }
+            }
+
+            return montoTotal;
+        }
+
+        private static int GetMaxCantActividades()
+        {
+            return CantMaxActividades;
+        }
+
+        public static void SetMaxCantActividades(int cant)
+        {
+            CantMaxActividades = cant;
+        }
+
+        private static int GetPorcentajeDescuento()
+        {
+            return PorcentajeDescuento;
+        }
+
+        public static void SetPorcentajeDescuento(int desc)
+        {
+            PorcentajeDescuento = desc;
+        }
     }
 }

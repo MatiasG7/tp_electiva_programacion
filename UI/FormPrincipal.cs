@@ -64,6 +64,7 @@ namespace UI
                 FormActividad fa = new FormActividad(a, club.Profesores);
                 fa.prepararFormModificar();
                 fa.ShowDialog();
+                MessageBox.Show("Actividad modificada satisfactoriamente.");
                 listBoxAct.DataSource = null;
                 listBoxAct.DataSource = club.Actividades;
                 listBoxAct.ClearSelected();
@@ -83,6 +84,7 @@ namespace UI
                 {
                     a.eliminar();
                     club.removerActividad(a);
+                    MessageBox.Show("Actividad eliminada satisfactoriamente.");
                     listBoxAct.DataSource = null;
                     listBoxAct.DataSource = club.Actividades;
                     listBoxCom.DataSource = null;
@@ -155,6 +157,7 @@ namespace UI
                 FormProfesor fp = new FormProfesor(p);
                 fp.prepararFormModificar();
                 fp.ShowDialog();
+                MessageBox.Show("Profesor modificado satisfactoriamente.");
                 listBoxProf.DataSource = null;
                 listBoxProf.DataSource = club.Profesores;
                 listBoxProf.ClearSelected();
@@ -173,6 +176,7 @@ namespace UI
                 if (dialogResult == DialogResult.Yes)
                 {
                     club.removerProfesor(p);
+                    MessageBox.Show("Profesor eliminado satisfactoriamente.");
                     listBoxProf.DataSource = null;
                     listBoxProf.DataSource = club.Profesores;
                 }
@@ -197,8 +201,6 @@ namespace UI
 
         private void buttonCrearSocio_Click(object sender, EventArgs e)
         {
-            //DialogResult dialogResult = MessageBox.Show("Desea crear un tipo de Socio de Actividades ?", "Crear Socio", MessageBoxButtons.YesNoCancel);
-
             FormConfirmacion fc = new FormConfirmacion("Seleccionar tipo de socio", "Elija tipo de socio a crear", "Club", "Actividad", "Cancelar");
             fc.ShowDialog();
 
@@ -220,18 +222,18 @@ namespace UI
 
                 fs.ShowDialog();
 
-                Socio sa = fs.Soc;
-                if (sa != null)
+                Socio s = fs.Soc;
+                if (s != null)
                 {
-                    bool exists = club.verificarSocio(sa);
+                    bool exists = club.verificarSocio(s);
                     if (exists)
                     {
                         MessageBox.Show("Ya existe un socio con el DNI ingresado.");
                     }
                     else
                     {
-                        club.agregarSocio(sa);
-                        MessageBox.Show("Socio Actividad creado satisfactoriamente.");
+                        club.agregarSocio(s);
+                        MessageBox.Show("Socio creado satisfactoriamente.");
                         listBoxSocios.DataSource = null;
                         listBoxSocios.DataSource = club.Socios;
                         listBoxSocios.ClearSelected();
@@ -261,6 +263,7 @@ namespace UI
                     fs.ShowDialog();
                 }
 
+                MessageBox.Show("Socio modificado satisfactoriamente.");
                 listBoxSocios.DataSource = null;
                 listBoxSocios.DataSource = club.Socios;
                 listBoxSocios.ClearSelected();
@@ -278,6 +281,7 @@ namespace UI
                 if (dialogResult == DialogResult.Yes)
                 {
                     club.removerSocio(s);
+                    MessageBox.Show("Socio eliminado satisfactoriamente.");
                     listBoxSocios.DataSource = null;
                     listBoxSocios.DataSource = club.Socios;
                 }
@@ -338,6 +342,7 @@ namespace UI
                 FormComision fc = new FormComision(c, club.Profesores);
                 fc.prepararFormModificar();
                 fc.ShowDialog();
+                MessageBox.Show("Comisión modificada satisfactoriamente.");
                 listBoxCom.DataSource = null;
                 listBoxCom.DataSource = club.Comisiones;
                 listBoxCom.ClearSelected();
@@ -357,6 +362,7 @@ namespace UI
                 {
                     c.eliminar();
                     club.removerComision(c);
+                    MessageBox.Show("Comisión eliminada satisfactoriamente.");
                     listBoxCom.DataSource = null;
                     listBoxCom.DataSource = club.Comisiones;
                 }
@@ -452,17 +458,69 @@ namespace UI
         private void listBoxSocios_SelectedIndexChanged(object sender, EventArgs e)
         {
             Socio s = (Socio)listBoxSocios.SelectedItem;
-
             if (s != null)
             {
+                ToolTip tt = new ToolTip();
+                tt.SetToolTip(this.buttonElimSocAct, "El socio no esta inscripto en ninguna comisión.");
                 if (s.Comisiones.Count < 1)
                 {
                     buttonElimSocAct.Enabled = false;
+                    tt.Active = true;
                 }
                 else
                 {
                     buttonElimSocAct.Enabled = true;
+                    tt.Active = false;
                 }
+
+                tt.SetToolTip(this.buttonRegPagoSoc, "El pago ya esta realizado para este mes.");
+                if (club.verificarPago(s))
+                {
+                    buttonRegPagoSoc.Enabled = false;
+                    tt.Active = true;
+                }
+                else
+                {
+                    tt.Active = false;
+                }
+            }
+        }
+
+        private void FormPrincipal_Load(object sender, EventArgs e)
+        {
+            int defaultCant = 5;
+            string cant = Microsoft.VisualBasic.Interaction.InputBox("Ingrese un valor para la cantidad maxima de actividades del socio club.", "Cantidad Maxima Actividades", defaultCant.ToString());
+            if (cant.Length != 0)
+            {
+                defaultCant = int.Parse(cant);
+            }
+            SocioClub.SetMaxCantActividades(defaultCant);
+
+            int defaultDesc = 50;
+            string desc = Microsoft.VisualBasic.Interaction.InputBox("Ingrese un valor para el porcentaje de descuentos del socio club.", "Porcentaje Descuento", defaultDesc.ToString());
+            if (desc.Length != 0)
+            {
+                defaultDesc = int.Parse(desc);
+            }
+            SocioClub.SetPorcentajeDescuento(defaultDesc);
+        }
+
+        private void buttonRegPagoSoc_Click(object sender, EventArgs e)
+        {
+            Socio s = (Socio)listBoxSocios.SelectedItem;
+            if (s == null)
+                MessageBox.Show("No hay socio seleccionado para registrar un pago.");
+            else
+            {
+                double monto = s.calcularMontoAPagar();
+                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea realizar el pago correspondiente a $" + monto + " para el mes corriente ?", "Realizar Pago", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Pago p = new Pago(club.calcularIDPago(), s, monto);
+                    club.agregarPago(p);
+                }
+
+                listBoxSocios.ClearSelected();
             }
         }
     }

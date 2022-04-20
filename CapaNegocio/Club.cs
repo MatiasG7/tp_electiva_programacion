@@ -15,11 +15,13 @@ namespace CapaNegocio
         List<Socio> socios;
         List<Profesor> profesores;
         List<Comision> comisiones;
+        List<Pago> pagos;
 
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
         public List<Profesor> Profesores { get => profesores; set => profesores = value; }
         public List<Socio> Socios { get => socios; set => socios = value; }
         public List<Comision> Comisiones { get => comisiones; set => comisiones = value; }
+        public List<Pago> Pagos { get => pagos; set => pagos = value; }
 
         public Club()
         {
@@ -27,6 +29,7 @@ namespace CapaNegocio
             socios = new List<Socio>();
             profesores = new List<Profesor>();
             comisiones = new List<Comision>();
+            pagos = new List<Pago>();
         }
 
         // verificarActividad devuelve true en caso de que la actividad no se encuentre en el Club.
@@ -65,6 +68,11 @@ namespace CapaNegocio
             profesores.Add(newProf);
         }
 
+        public void agregarPago(Pago newPago)
+        {
+            this.pagos.Add(newPago);
+        }
+
         public void removerActividad(Actividad act)
         {
             foreach (var c in act.Comisiones)
@@ -91,6 +99,23 @@ namespace CapaNegocio
             comisiones.Remove(com);
         }
 
+        public int calcularIDPago()
+        {
+            int cant = pagos.Count();
+            if (cant == 0)
+            {
+                return 1;
+            }
+
+            return cant + 1;
+        }
+
+        // true = ya pagó este mes. false = todavía no pago.
+        public bool verificarPago(Socio soc)
+        {
+            return this.pagos.Any(p => p.Soc == soc && p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year);
+        }
+
         public bool guardar()
         {
             return Datos.Guardar(this);
@@ -103,5 +128,6 @@ namespace CapaNegocio
                 c = new Club();
             return c;
         }
+
     }
 }
