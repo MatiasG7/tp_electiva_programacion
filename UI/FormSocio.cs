@@ -257,9 +257,9 @@ namespace UI
         }
         private bool validDNI(string dni, out string errorMessage)
         {
-            if (dni.Length < 8)
+            if (dni.Length < 7)
             {
-                errorMessage = "El dni debe ser de 8 dígitos.";
+                errorMessage = "El dni debe ser de 7 u 8 dígitos.";
                 return false;
             }
             else if (dni.Length > 8)

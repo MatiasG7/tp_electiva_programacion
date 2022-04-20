@@ -90,6 +90,8 @@
             this.textBoxActDesc.Name = "textBoxActDesc";
             this.textBoxActDesc.Size = new System.Drawing.Size(100, 20);
             this.textBoxActDesc.TabIndex = 4;
+            this.textBoxActDesc.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxActDesc_Validating);
+            this.textBoxActDesc.Validated += new System.EventHandler(this.textBoxActDesc_Validated);
             // 
             // textBoxActCosto
             // 
@@ -97,6 +99,8 @@
             this.textBoxActCosto.Name = "textBoxActCosto";
             this.textBoxActCosto.Size = new System.Drawing.Size(100, 20);
             this.textBoxActCosto.TabIndex = 5;
+            this.textBoxActCosto.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxActCosto_Validating);
+            this.textBoxActCosto.Validated += new System.EventHandler(this.textBoxActCosto_Validated);
             // 
             // buttonActCrear
             // 

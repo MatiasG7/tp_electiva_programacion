@@ -39,7 +39,7 @@ namespace UI
 
         private void FormCrearActividad_Load(object sender, EventArgs e)
         {
-            this.ActiveControl = labelActID;
+            this.ActiveControl = textBoxActID;
         }
 
         private void buttonActCrear_Click(object sender, EventArgs e)
@@ -109,12 +109,114 @@ namespace UI
 
         private void textBoxActID_Validating(object sender, CancelEventArgs e)
         {
+            string dni = textBoxActID.Text;
 
+            string errorMsg;
+            if (!validID(dni, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxActID.Focus();
+
+                this.errorProvider.SetError(textBoxActID, errorMsg);
+            }
         }
 
         private void textBoxActID_Validated(object sender, EventArgs e)
         {
+            errorProvider.SetError(textBoxActID, String.Empty);
+        }
 
+        private bool validID(string id, out string errorMessage)
+        {
+            if (id.Length < 3)
+            {
+                errorMessage = "El ID debe tener por lo menos 3 digitos.";
+                return false;
+            }
+            else if (id.Length > 5)
+            {
+                errorMessage = "El ID debe ser de 5 dígitos máximo.";
+                return false;
+            }
+
+            // Chequeamos con una regex que es un entero.
+            if (System.Text.RegularExpressions.Regex.IsMatch(id, "^[0-9]+$"))
+            {
+                errorMessage = "";
+                return true;
+            }
+
+            errorMessage = "El ID debe estar en un formato válido.\n" + "Por ejemplo: '1234' ";
+            return false;
+        }
+
+        private void textBoxActDesc_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxActDesc, String.Empty);
+        }
+
+        private void textBoxActDesc_Validating(object sender, CancelEventArgs e)
+        {
+            string desc = textBoxActDesc.Text;
+
+            string errorMsg;
+            if (!validDescripcion(desc, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxActDesc.Focus();
+
+                this.errorProvider.SetError(textBoxActDesc, errorMsg);
+            }
+        }
+
+        private bool validDescripcion(string desc, out string errorMessage)
+        {
+            if(desc.Length < 25)
+            {
+                errorMessage = "";
+                return true;
+            }
+            
+            errorMessage = "La descripcion debe ser de 25 caracteres máximo.";
+            return false;
+        }
+
+        private void textBoxActCosto_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxActCosto, String.Empty);
+        }
+
+        private void textBoxActCosto_Validating(object sender, CancelEventArgs e)
+        {
+            string costo = textBoxActCosto.Text;
+
+            string errorMsg;
+            if (!validCosto(costo, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxActCosto.Focus();
+
+                this.errorProvider.SetError(textBoxActCosto, errorMsg);
+            }
+        }
+
+        private bool validCosto(string costo, out string errorMessage)
+        {
+            if (costo.Length > 8)
+            {
+                errorMessage = "El ID debe ser de 8 dígitos máximo.";
+                return false;
+            }
+
+            // Chequeamos con una regex que es un entero.
+            if (System.Text.RegularExpressions.Regex.IsMatch(costo, "^[0-9]+$"))
+            {
+                errorMessage = "";
+                return true;
+            }
+
+            errorMessage = "El costo debe estar en un formato válido.\n" + "Por ejemplo: '500' ";
+            return false;
         }
     }
 }
