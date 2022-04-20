@@ -50,6 +50,12 @@ namespace CapaNegocio
         {
             return socios.Any(c => c.Dni == newSocio.Dni);
         }
+
+        public bool verificarCantParticipantes()
+        {
+            return socios.Count() < this.cantidadMaximaParticipantes;
+        }
+
         public void eliminar()
         {
             this.actividad.removerComision(this);

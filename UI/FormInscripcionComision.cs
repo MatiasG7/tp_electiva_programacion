@@ -17,14 +17,17 @@ namespace UI
         Socio soc;
         List<Actividad> act;
 
+        // Para agregar
         public FormInscripcionComision(List<Actividad> act, Socio soc)
         {
             InitializeComponent();
             this.soc = soc;
             this.act = act;
-            listBoxInsSocAct.DataSource = act;
+            // Mostramos las actividades en las que el socio no esta inscripto y las que tienen comisiones creadas (pero que no superen el maximo de participantes permitidos).
+            listBoxInsSocAct.DataSource = act.Except(soc.Comisiones.Select(x => x.Actividad)).Where(a => a.Comisiones.Count != 0 && a.Comisiones.Any(c => c.verificarCantParticipantes())).ToList();
         }
 
+        // Para eliminar
         public FormInscripcionComision(Socio soc)
         {
             InitializeComponent();
@@ -41,19 +44,11 @@ namespace UI
             }
             else
             {
-                if (com.verificarSocio(soc) == false)
-                {
-                    com.agregarSocio(soc);
-                    soc.agregarComision(com);
-                }
-                else
-                {
-                    MessageBox.Show("Socio ya se encuentra inscripto a esta comision.");
-                }
+                com.agregarSocio(soc);
+                soc.agregarComision(com);
 
                 this.Close();
             }
-
         }
 
         private void listBoxInsSocAct_SelectedIndexChanged(object sender, EventArgs e)
@@ -87,7 +82,6 @@ namespace UI
         private void buttonInsComElim_Click(object sender, EventArgs e)
         {
             Actividad act = (Actividad)listBoxInsSocAct.SelectedItem;
-
             if (act == null)
             {
                 MessageBox.Show("No hay actividad seleccionada para eliminar.");
@@ -97,7 +91,6 @@ namespace UI
                 Comision comSoc = soc.Comisiones.First(c => c.Actividad == act);
 
                 comSoc.removerSocio(this.soc);
-
                 this.soc.removerComision(comSoc);
             }
             this.Close();

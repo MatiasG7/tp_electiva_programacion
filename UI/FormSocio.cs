@@ -38,6 +38,8 @@ namespace UI
             this.textBoxSocDireccion.Text = socClub.Direccion;
             this.dateTimePickerSocFIng.Value = socClub.FIng;
             this.dateTimePickerSocFNac.Value = socClub.FNac;
+            this.listBoxSocComisiones.DataSource = socClub.Comisiones;
+            this.listBoxSocComisiones.ClearSelected();
         }
 
         public FormSocio(SocioActividad socAct)
@@ -50,44 +52,29 @@ namespace UI
             this.textBoxSocDireccion.Text = socAct.Direccion;
             this.dateTimePickerSocFIng.Value = socAct.FIng;
             this.dateTimePickerSocFNac.Value = socAct.FNac;
+            this.listBoxSocComisiones.DataSource = socAct.Comisiones;
+            this.listBoxSocComisiones.ClearSelected();
         }
 
         private void buttonSocCrear_Click_1(object sender, EventArgs e)
         {
+            int dni = int.Parse(this.textBoxSocDNI.Text);
+            string nombre = this.textBoxSocNombre.Text;
+            DateTime fnac = this.dateTimePickerSocFNac.Value;
+            string email = this.textBoxSocEmail.Text;
+            string direccion = this.textBoxSocDireccion.Text;
+            DateTime fing = this.dateTimePickerSocFIng.Value;
 
-
-            if (esEmailValido(this.textBoxSocEmail.Text))
+            if (option == 1)
             {
-                if (esIntValido(this.textBoxSocDNI.Text) && this.textBoxSocDNI.Text.Count() > 6)
-                {
-                    int dni = int.Parse(this.textBoxSocDNI.Text);
-                    string nombre = this.textBoxSocNombre.Text;
-                    DateTime fnac = this.dateTimePickerSocFNac.Value;
-                    string email = this.textBoxSocEmail.Text;
-                    string direccion = this.textBoxSocDireccion.Text;
-                    DateTime fing = this.dateTimePickerSocFIng.Value;
-
-                    if (option == 1)
-                    {
-                        double cuotaSocial = double.Parse(this.textBoxSocCuotaSocial.Text);
-                        this.soc = new SocioClub(cuotaSocial, email, direccion, fing, dni, nombre, fnac);
-                    }
-                    else if (option == 2)
-                    {
-                        this.soc = new SocioActividad(email, direccion, fing, dni, nombre, fnac);
-                    }
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Por favor ingrese un DNI valido.");
-                }
-
+                double cuotaSocial = double.Parse(this.textBoxSocCuotaSocial.Text);
+                this.soc = new SocioClub(cuotaSocial, email, direccion, fing, dni, nombre, fnac);
             }
-            else
+            else if (option == 2)
             {
-                MessageBox.Show("Por favor ingrese un email valido.");
+                this.soc = new SocioActividad(email, direccion, fing, dni, nombre, fnac);
             }
+            this.Close();
         }
 
         private void buttonSocModif_Click_1(object sender, EventArgs e)
@@ -209,37 +196,6 @@ namespace UI
             this.textBoxSocCuotaSocial.Enabled = false;
             this.labelSocCuotaSocial.Visible = false;
             prepararFormMostrar();
-        }
-
-        private bool esEmailValido(string eMail)
-        {
-            bool result = false;
-
-            try
-            {
-                var eMailValidator = new System.Net.Mail.MailAddress(eMail);
-
-                result = (eMail.LastIndexOf(".") > eMail.LastIndexOf("@"));
-            }
-            catch
-            {
-                result = false;
-            };
-
-            return result;
-        }
-
-        private bool esIntValido(string a)
-        {
-            try
-            {
-                int temp = Convert.ToInt32(a);
-            }
-            catch
-            {
-                return false;
-            }
-            return true;
         }
     }
 }

@@ -105,7 +105,7 @@
             // 
             // buttonInsComElim
             // 
-            this.buttonInsComElim.Location = new System.Drawing.Point(582, 354);
+            this.buttonInsComElim.Location = new System.Drawing.Point(582, 383);
             this.buttonInsComElim.Name = "buttonInsComElim";
             this.buttonInsComElim.Size = new System.Drawing.Size(75, 23);
             this.buttonInsComElim.TabIndex = 7;
