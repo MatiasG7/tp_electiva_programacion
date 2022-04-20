@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelActID = new System.Windows.Forms.Label();
             this.labelActDescripcion = new System.Windows.Forms.Label();
             this.labelActCosto = new System.Windows.Forms.Label();
@@ -43,6 +44,8 @@
             this.maskedTextBoxActCosto = new System.Windows.Forms.MaskedTextBox();
             this.listBoxActComisiones = new System.Windows.Forms.ListBox();
             this.labelActCom = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // labelActID
@@ -78,6 +81,8 @@
             this.textBoxActID.Name = "textBoxActID";
             this.textBoxActID.Size = new System.Drawing.Size(100, 20);
             this.textBoxActID.TabIndex = 3;
+            this.textBoxActID.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxActID_Validating);
+            this.textBoxActID.Validated += new System.EventHandler(this.textBoxActID_Validated);
             // 
             // textBoxActDesc
             // 
@@ -174,6 +179,10 @@
             this.labelActCom.TabIndex = 14;
             this.labelActCom.Text = "Comisiones";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // FormActividad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,8 +204,10 @@
             this.Controls.Add(this.labelActDescripcion);
             this.Controls.Add(this.labelActID);
             this.Name = "FormActividad";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Actividad";
             this.Load += new System.EventHandler(this.FormCrearActividad_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +230,6 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBoxActCosto;
         private System.Windows.Forms.ListBox listBoxActComisiones;
         private System.Windows.Forms.Label labelActCom;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

@@ -185,6 +185,7 @@
             this.Controls.Add(this.labelProfNombre);
             this.Controls.Add(this.labelProfDNI);
             this.Name = "FormProfesor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProfesor";
             this.ResumeLayout(false);
             this.PerformLayout();

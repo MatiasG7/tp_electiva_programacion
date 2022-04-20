@@ -195,5 +195,88 @@ namespace UI
             prepararFormMostrar();
         }
 
+        private void textBoxSocEmail_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!validEmailAddress(textBoxSocEmail.Text, out errorMsg))
+            {
+                // Cancelamos el evento.
+                e.Cancel = true;
+                textBoxSocEmail.Focus();
+
+                // Seteamos el error para mostrar. 
+                this.errorProvider.SetError(textBoxSocEmail, errorMsg);
+            }
+        }
+
+        private void textBoxSocEmail_Validated(object sender, EventArgs e)
+        {
+            // Si todas las condiciones se cumplen, limpiamos el error.
+            errorProvider.SetError(textBoxSocEmail, String.Empty);
+        }
+
+        private void textBoxSocDNI_Validating(object sender, CancelEventArgs e)
+        {
+            string dni = textBoxSocDNI.Text;
+
+            string errorMsg;
+            if (!validDNI(dni, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxSocDNI.Focus();
+
+                this.errorProvider.SetError(textBoxSocDNI, errorMsg);
+            }
+        }
+
+        private void textBoxSocDNI_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxSocDNI, String.Empty);
+        }
+
+        private bool validEmailAddress(string emailAddress, out string errorMessage)
+        {
+            if (emailAddress.Length == 0)
+            {
+                errorMessage = "La dirección de email es requerida.";
+                return false;
+            }
+
+            // Chequeamos que haya una '@' y un '.' en el email.
+            if (emailAddress.IndexOf("@") > -1)
+            {
+                if (emailAddress.IndexOf(".", emailAddress.IndexOf("@")) > emailAddress.IndexOf("@"))
+                {
+                    errorMessage = "";
+                    return true;
+                }
+            }
+
+            errorMessage = "La dirección de email debe estar en un formato válido.\n" + "Por ejemplo: 'equipo@ejemplo.com' ";
+            return false;
+        }
+        private bool validDNI(string dni, out string errorMessage)
+        {
+            if (dni.Length < 8)
+            {
+                errorMessage = "El dni debe ser de 8 dígitos.";
+                return false;
+            }
+            else if (dni.Length > 8)
+            {
+                errorMessage = "El dni debe ser de 8 dígitos máximo.";
+                return false;
+            }
+
+            // Chequeamos con una regex que es un entero.
+            if (System.Text.RegularExpressions.Regex.IsMatch(dni, "^[0-9]+$"))
+            {
+                errorMessage = "";
+                return true;
+            }
+
+            errorMessage = "El dni debe estar en un formato válido.\n" + "Por ejemplo: '11222333' ";
+            return false;
+        }
     }
 }

@@ -106,5 +106,15 @@ namespace UI
             this.buttonActModif.Visible = false;
             this.listBoxActComisiones.Enabled = false;
         }
+
+        private void textBoxActID_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void textBoxActID_Validated(object sender, EventArgs e)
+        {
+
+        }
     }
 }

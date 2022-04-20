@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxSocCuotaSocial = new System.Windows.Forms.TextBox();
             this.labelSocCuotaSocial = new System.Windows.Forms.Label();
             this.buttonSocAceptar = new System.Windows.Forms.Button();
@@ -48,6 +49,8 @@
             this.labelSocFNac = new System.Windows.Forms.Label();
             this.labelSocNombre = new System.Windows.Forms.Label();
             this.labelSocDNI = new System.Windows.Forms.Label();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxSocCuotaSocial
@@ -145,6 +148,8 @@
             this.textBoxSocEmail.Name = "textBoxSocEmail";
             this.textBoxSocEmail.Size = new System.Drawing.Size(100, 20);
             this.textBoxSocEmail.TabIndex = 48;
+            this.textBoxSocEmail.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSocEmail_Validating);
+            this.textBoxSocEmail.Validated += new System.EventHandler(this.textBoxSocEmail_Validated);
             // 
             // labelSocEmail
             // 
@@ -191,6 +196,8 @@
             this.textBoxSocDNI.Name = "textBoxSocDNI";
             this.textBoxSocDNI.Size = new System.Drawing.Size(100, 20);
             this.textBoxSocDNI.TabIndex = 42;
+            this.textBoxSocDNI.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSocDNI_Validating);
+            this.textBoxSocDNI.Validated += new System.EventHandler(this.textBoxSocDNI_Validated);
             // 
             // labelSocFNac
             // 
@@ -219,6 +226,10 @@
             this.labelSocDNI.TabIndex = 39;
             this.labelSocDNI.Text = "DNI";
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // FormSocio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,7 +256,9 @@
             this.Controls.Add(this.labelSocNombre);
             this.Controls.Add(this.labelSocDNI);
             this.Name = "FormSocio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,5 +286,6 @@
         private System.Windows.Forms.Label labelSocFNac;
         private System.Windows.Forms.Label labelSocNombre;
         private System.Windows.Forms.Label labelSocDNI;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
