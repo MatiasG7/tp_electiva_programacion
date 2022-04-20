@@ -54,24 +54,40 @@ namespace UI
 
         private void buttonSocCrear_Click_1(object sender, EventArgs e)
         {
-            int dni = int.Parse(this.textBoxSocDNI.Text);
-            string nombre = this.textBoxSocNombre.Text;
-            DateTime fnac = this.dateTimePickerSocFNac.Value;
-            string email = this.textBoxSocEmail.Text;
-            string direccion = this.textBoxSocDireccion.Text;
-            DateTime fing = this.dateTimePickerSocFIng.Value;
 
-            if (option == 1)
-            {
-                double cuotaSocial = double.Parse(this.textBoxSocCuotaSocial.Text);
-                this.soc = new SocioClub(cuotaSocial, email, direccion, fing, dni, nombre, fnac);
-            }
-            else if (option == 2)
-            {
-                this.soc = new SocioActividad(email, direccion, fing, dni, nombre, fnac);
-            }
 
-            this.Close();
+            if (esEmailValido(this.textBoxSocEmail.Text))
+            {
+                if (esIntValido(this.textBoxSocDNI.Text) && this.textBoxSocDNI.Text.Count() > 6)
+                {
+                    int dni = int.Parse(this.textBoxSocDNI.Text);
+                    string nombre = this.textBoxSocNombre.Text;
+                    DateTime fnac = this.dateTimePickerSocFNac.Value;
+                    string email = this.textBoxSocEmail.Text;
+                    string direccion = this.textBoxSocDireccion.Text;
+                    DateTime fing = this.dateTimePickerSocFIng.Value;
+
+                    if (option == 1)
+                    {
+                        double cuotaSocial = double.Parse(this.textBoxSocCuotaSocial.Text);
+                        this.soc = new SocioClub(cuotaSocial, email, direccion, fing, dni, nombre, fnac);
+                    }
+                    else if (option == 2)
+                    {
+                        this.soc = new SocioActividad(email, direccion, fing, dni, nombre, fnac);
+                    }
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor ingrese un DNI valido.");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Por favor ingrese un email valido.");
+            }
         }
 
         private void buttonSocModif_Click_1(object sender, EventArgs e)
@@ -195,5 +211,35 @@ namespace UI
             prepararFormMostrar();
         }
 
+        private bool esEmailValido(string eMail)
+        {
+            bool result = false;
+
+            try
+            {
+                var eMailValidator = new System.Net.Mail.MailAddress(eMail);
+
+                result = (eMail.LastIndexOf(".") > eMail.LastIndexOf("@"));
+            }
+            catch
+            {
+                result = false;
+            };
+
+            return result;
+        }
+
+        private bool esIntValido(string a)
+        {
+            try
+            {
+                int temp = Convert.ToInt32(a);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }
