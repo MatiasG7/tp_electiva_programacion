@@ -26,13 +26,14 @@ namespace CapaNegocio
 
             List<Comision> coms = this.Comisiones.OrderBy(c => c.Actividad.Costo).ToList();
 
-            if (coms.Count > 5)
+            if (coms.Count() > GetMaxCantActividades())
             {
-                coms = coms.GetRange(4, coms.Count());
+
+                coms = coms.GetRange(GetMaxCantActividades(), coms.Count() - GetMaxCantActividades());
 
                 foreach (var com in coms)
                 {
-                    montoTotal += com.Actividad.Costo * (1 - (SocioClub.PorcentajeDescuento / 100));
+                    montoTotal += (com.Actividad.Costo * (1 - (Convert.ToDouble(SocioClub.GetPorcentajeDescuento()) / 100)));
                 }
             }
 
