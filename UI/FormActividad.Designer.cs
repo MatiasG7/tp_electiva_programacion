@@ -39,9 +39,6 @@
             this.buttonActCancelar = new System.Windows.Forms.Button();
             this.buttonActModif = new System.Windows.Forms.Button();
             this.buttonActAceptar = new System.Windows.Forms.Button();
-            this.maskedTextBoxActID = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBoxActDesc = new System.Windows.Forms.MaskedTextBox();
-            this.maskedTextBoxActCosto = new System.Windows.Forms.MaskedTextBox();
             this.listBoxActComisiones = new System.Windows.Forms.ListBox();
             this.labelActCom = new System.Windows.Forms.Label();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
@@ -142,30 +139,6 @@
             this.buttonActAceptar.UseVisualStyleBackColor = true;
             this.buttonActAceptar.Click += new System.EventHandler(this.buttonActAceptar_Click);
             // 
-            // maskedTextBoxActID
-            // 
-            this.maskedTextBoxActID.Location = new System.Drawing.Point(159, 35);
-            this.maskedTextBoxActID.Mask = "9999999999";
-            this.maskedTextBoxActID.Name = "maskedTextBoxActID";
-            this.maskedTextBoxActID.Size = new System.Drawing.Size(66, 20);
-            this.maskedTextBoxActID.TabIndex = 10;
-            // 
-            // maskedTextBoxActDesc
-            // 
-            this.maskedTextBoxActDesc.Location = new System.Drawing.Point(159, 94);
-            this.maskedTextBoxActDesc.Mask = "aaaaaaaaaaaaaaaaaaaaaaaaa";
-            this.maskedTextBoxActDesc.Name = "maskedTextBoxActDesc";
-            this.maskedTextBoxActDesc.Size = new System.Drawing.Size(157, 20);
-            this.maskedTextBoxActDesc.TabIndex = 11;
-            // 
-            // maskedTextBoxActCosto
-            // 
-            this.maskedTextBoxActCosto.Location = new System.Drawing.Point(159, 154);
-            this.maskedTextBoxActCosto.Mask = "9999999.99";
-            this.maskedTextBoxActCosto.Name = "maskedTextBoxActCosto";
-            this.maskedTextBoxActCosto.Size = new System.Drawing.Size(66, 20);
-            this.maskedTextBoxActCosto.TabIndex = 12;
-            // 
             // listBoxActComisiones
             // 
             this.listBoxActComisiones.FormattingEnabled = true;
@@ -194,9 +167,6 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.labelActCom);
             this.Controls.Add(this.listBoxActComisiones);
-            this.Controls.Add(this.maskedTextBoxActCosto);
-            this.Controls.Add(this.maskedTextBoxActDesc);
-            this.Controls.Add(this.maskedTextBoxActID);
             this.Controls.Add(this.buttonActAceptar);
             this.Controls.Add(this.buttonActModif);
             this.Controls.Add(this.buttonActCancelar);
@@ -229,9 +199,6 @@
         private System.Windows.Forms.Button buttonActCancelar;
         private System.Windows.Forms.Button buttonActModif;
         private System.Windows.Forms.Button buttonActAceptar;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxActID;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxActDesc;
-        private System.Windows.Forms.MaskedTextBox maskedTextBoxActCosto;
         private System.Windows.Forms.ListBox listBoxActComisiones;
         private System.Windows.Forms.Label labelActCom;
         private System.Windows.Forms.ErrorProvider errorProvider;

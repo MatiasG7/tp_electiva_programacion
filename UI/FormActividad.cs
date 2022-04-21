@@ -16,6 +16,7 @@ namespace UI
     {
         private Actividad act;
         private List<Profesor> profesores;
+        private bool validation;
 
         public Actividad Act { get => act; set => act = value; }
 
@@ -40,25 +41,42 @@ namespace UI
         private void FormCrearActividad_Load(object sender, EventArgs e)
         {
             this.ActiveControl = textBoxActID;
+            //buttonActModif.Enabled = false;
         }
 
         private void buttonActCrear_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(this.textBoxActID.Text);
-            string desc = this.textBoxActDesc.Text;
-            double costo = double.Parse(this.textBoxActCosto.Text);
+            if (textBoxActID.Text != "" && textBoxActDesc.Text != "" && textBoxActCosto.Text != "")
+            {
+                int id = int.Parse(this.textBoxActID.Text);
+                string desc = this.textBoxActDesc.Text;
+                double costo = double.Parse(this.textBoxActCosto.Text);
 
-            act = new Actividad(id, desc, costo);
+                act = new Actividad(id, desc, costo);
 
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Todos los campos deben ser completados.");
+            }
+
         }
 
         private void buttonActModif_Click(object sender, EventArgs e)
         {
-            act.Descripcion = this.textBoxActDesc.Text;
-            act.Costo = double.Parse(this.textBoxActCosto.Text);
+            if (textBoxActDesc.Text != "" && textBoxActCosto.Text != "")
+            {
+                act.Descripcion = this.textBoxActDesc.Text;
+                act.Costo = double.Parse(this.textBoxActCosto.Text);
 
-            this.Close();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No puede haber campos vacios.");
+            }
+
         }
 
         private void buttonActAceptar_Click(object sender, EventArgs e)
@@ -171,12 +189,12 @@ namespace UI
 
         private bool validDescripcion(string desc, out string errorMessage)
         {
-            if(desc.Length < 25)
+            if (desc.Length < 25)
             {
                 errorMessage = "";
                 return true;
             }
-            
+
             errorMessage = "La descripcion debe ser de 25 caracteres máximo.";
             return false;
         }
