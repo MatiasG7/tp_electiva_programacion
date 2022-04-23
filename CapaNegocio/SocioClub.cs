@@ -33,7 +33,7 @@ namespace CapaNegocio
 
                 foreach (var com in coms)
                 {
-                    montoTotal += (com.Actividad.Costo * (1 - (Convert.ToDouble(SocioClub.GetPorcentajeDescuento()) / 100)));
+                    montoTotal += (com.Actividad.Costo * (Convert.ToDouble(SocioClub.GetPorcentajeDescuento()) / 100));
                 }
             }
 

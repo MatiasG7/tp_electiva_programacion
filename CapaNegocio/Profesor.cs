@@ -34,5 +34,15 @@ namespace CapaNegocio
         {
             return base.ToString() + " - " + fIng.Date.ToString("dd/MM/yyyy");
         }
+
+        public void limpiarComisiones()
+        {
+            foreach (var com in this.comisiones)
+            {
+                com.eliminar();
+            }
+
+            this.comisiones.Clear();
+        }
     }
 }

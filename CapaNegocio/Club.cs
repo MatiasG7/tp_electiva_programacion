@@ -48,6 +48,11 @@ namespace CapaNegocio
             return profesores.Any(act => act.Dni == newProf.Dni); ;
         }
 
+        public bool verificarComision(Comision newCom)
+        {
+            return comisiones.Any(com => com.Id == newCom.Id);
+        }
+
         public void agregarActividad(Actividad newAct)
         {
             actividades.Add(newAct);

@@ -171,15 +171,31 @@ namespace UI
                 MessageBox.Show("No hay profesor seleccionado para eliminar.");
             else
             {
-                // Cuando se elimina el profesor se deberia borrar de las comisiones en las que estaba.
-                DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar el profesor seleccionado?", "Eliminar Profesor", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (p.Comisiones.Count() == 0)
                 {
-                    club.removerProfesor(p);
-                    MessageBox.Show("Profesor eliminado satisfactoriamente.");
-                    listBoxProf.DataSource = null;
-                    listBoxProf.DataSource = club.Profesores;
+                    DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar el profesor seleccionado?", "Eliminar Profesor", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        club.removerProfesor(p);
+                        MessageBox.Show("Profesor eliminado satisfactoriamente.");
+                        listBoxProf.DataSource = null;
+                        listBoxProf.DataSource = club.Profesores;
+                    }
                 }
+                else
+                {
+                    // Cuando se elimina el profesor se deberia borrar de las comisiones en las que estaba.
+                    DialogResult dialogResult = MessageBox.Show("Si elimina el profesor tambien estará eliminando la comision y todos sus datos ligados a ella. Esta seguro que desea eliminar el profesor seleccionado?", "Eliminar Profesor", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        p.limpiarComisiones();
+                        club.removerProfesor(p);
+                        MessageBox.Show("Profesor eliminado satisfactoriamente.");
+                        listBoxProf.DataSource = null;
+                        listBoxProf.DataSource = club.Profesores;
+                    }
+                }
+
 
                 listBoxProf.ClearSelected();
             }
@@ -324,11 +340,18 @@ namespace UI
             Comision com = fc.Com;
             if (com != null)
             {
-                club.agregarComision(com);
-                MessageBox.Show("Comisión creada satisfactoriamente.");
-                listBoxCom.DataSource = null;
-                listBoxCom.DataSource = club.Comisiones;
-                listBoxCom.ClearSelected();
+                if (club.verificarComision(com))
+                {
+                    MessageBox.Show("Ya existe una comisión en la actividad con el ID ingresado.");
+                }
+                else
+                {
+                    club.agregarComision(com);
+                    MessageBox.Show("Comisión creada satisfactoriamente.");
+                    listBoxCom.DataSource = null;
+                    listBoxCom.DataSource = club.Comisiones;
+                    listBoxCom.ClearSelected();
+                }
             }
         }
 
@@ -481,6 +504,7 @@ namespace UI
                 }
                 else
                 {
+                    buttonRegPagoSoc.Enabled = true;
                     tt.Active = false;
                 }
             }
