@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public class Actividad
     {
         private int id;
@@ -24,6 +25,39 @@ namespace CapaNegocio
             this.descripcion = descripcion;
             this.costo = costo;
             this.comisiones = new List<Comision>();
+        }
+
+        public override string ToString()
+        {
+            return "ID-" + id + " | " + descripcion + " | $" + costo;
+        }
+
+        public bool verificarComision(Comision newCom)
+        {
+            return comisiones.Any(c => c.Id == newCom.Id);
+        }
+
+        public void agregarComision(Comision newCom)
+        {
+            comisiones.Add(newCom);
+        }
+
+        public void removerComision(Comision c)
+        {
+            comisiones.Remove(c);
+        }
+
+        public void eliminar()
+        {
+            foreach (var c in comisiones)
+            {
+                c.removerDeProfesorYSocios();
+            }
+        }
+
+        public void limpiarComisiones()
+        {
+            this.comisiones.Clear();
         }
     }
 }

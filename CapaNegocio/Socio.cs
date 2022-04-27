@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public abstract class Socio : Persona
     {
         private string email;
@@ -26,6 +27,21 @@ namespace CapaNegocio
             this.comisiones = new List<Comision>();
         }
 
+        public void removerComision(Comision com)
+        {
+            this.comisiones.Remove(com);
+        }
 
+        public void agregarComision(Comision com)
+        {
+            this.comisiones.Add(com);
+        }
+
+        public abstract double calcularMontoAPagar();
+
+        public virtual bool isClub()
+        {
+            return false;
+        }
     }
 }

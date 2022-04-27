@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public class Comision
     {
         private int id;
@@ -33,6 +34,47 @@ namespace CapaNegocio
             this.profesor = profesor;
             this.cantidadMaximaParticipantes = cantidadMaximaParticipantes;
             this.socios = new List<Socio>();
+        }
+
+        public void agregarSocio(Socio newSocio)
+        {
+            socios.Add(newSocio);
+        }
+
+        public void removerSocio(Socio newSocio)
+        {
+            socios.Remove(newSocio);
+        }
+
+        public bool verificarSocio(Socio newSocio)
+        {
+            return socios.Any(c => c.Dni == newSocio.Dni);
+        }
+
+        public bool verificarCantParticipantes()
+        {
+            return socios.Count() < this.cantidadMaximaParticipantes;
+        }
+
+        public void eliminar()
+        {
+            this.actividad.removerComision(this);
+            this.removerDeProfesorYSocios();
+        }
+
+        public void removerDeProfesorYSocios()
+        {
+            this.profesor.removerComision(this);
+
+            foreach (var s in socios)
+            {
+                s.removerComision(this);
+            }
+        }
+
+        public override string ToString()
+        {
+            return this.actividad.Descripcion + " | " + "ID- " + id + " | " + dia + " | " + horario + ":00";
         }
     }
 }

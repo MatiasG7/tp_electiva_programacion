@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaNegocio
 {
+    [Serializable]
     public abstract class Persona
     {
         private int dni;
@@ -21,6 +22,11 @@ namespace CapaNegocio
             this.dni = dni;
             this.nombre = nombre;
             this.fNac = fNac;
+        }
+
+        public override string ToString()
+        {
+            return dni + " - " + nombre + " - " + fNac.Date.ToString("dd/MM/yyyy");
         }
     }
 }
