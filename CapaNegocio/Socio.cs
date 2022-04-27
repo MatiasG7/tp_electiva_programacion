@@ -38,5 +38,10 @@ namespace CapaNegocio
         }
 
         public abstract double calcularMontoAPagar();
+
+        public virtual bool isClub()
+        {
+            return false;
+        }
     }
 }

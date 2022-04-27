@@ -56,6 +56,38 @@ namespace UI
             this.listBoxSocComisiones.ClearSelected();
         }
 
+        private void checkInputs()
+        {
+            string a;
+            if (validDni(textBoxSocDNI.Text, out a) && validNombre(textBoxSocNombre.Text, out a) &&
+                validEmailAddress(textBoxSocEmail.Text, out a) && validDireccion(textBoxSocDireccion.Text, out a))
+            {
+                if (textBoxSocCuotaSocial.Visible)
+                {
+                    if (validCuotaSocial(textBoxSocCuotaSocial.Text, out a))
+                    {
+                        buttonSocCrear.Enabled = true;
+                        buttonSocModif.Enabled = true;
+                    }
+                    else
+                    {
+                        buttonSocCrear.Enabled = false;
+                        buttonSocModif.Enabled = false;
+                    }
+                }
+                else
+                {
+                    buttonSocCrear.Enabled = true;
+                    buttonSocModif.Enabled = true;
+                }
+            }
+            else
+            {
+                buttonSocCrear.Enabled = false;
+                buttonSocModif.Enabled = false;
+            }
+        }
+
         private void buttonSocCrear_Click_1(object sender, EventArgs e)
         {
             int dni = int.Parse(this.textBoxSocDNI.Text);
@@ -97,6 +129,8 @@ namespace UI
                 socClub.CuotaSocial = double.Parse(this.textBoxSocCuotaSocial.Text);
             }
 
+            this.Hide();
+            MessageBox.Show("Socio modificado satisfactoriamente.");
             this.Close();
         }
 
@@ -120,6 +154,7 @@ namespace UI
             this.labelSocComisiones.Visible = false;
             this.listBoxSocComisiones.Visible = false;
             this.buttonSocCrear.Visible = true;
+            this.buttonSocAceptar.Enabled = false;
         }
 
         public void prepararFormModificar()
@@ -130,6 +165,7 @@ namespace UI
             this.buttonSocCrear.Visible = false;
             this.labelSocComisiones.Visible = false;
             this.listBoxSocComisiones.Visible = false;
+            this.buttonSocModif.Enabled = false;
         }
 
         public void prepararFormMostrar()
@@ -223,7 +259,7 @@ namespace UI
             string dni = textBoxSocDNI.Text;
 
             string errorMsg;
-            if (!validDNI(dni, out errorMsg))
+            if (!validDni(dni, out errorMsg))
             {
                 e.Cancel = true;
                 textBoxSocDNI.Focus();
@@ -258,7 +294,8 @@ namespace UI
             errorMessage = "La dirección de email debe estar en un formato válido.\n" + "Por ejemplo: 'equipo@ejemplo.com' ";
             return false;
         }
-        private bool validDNI(string dni, out string errorMessage)
+
+        private bool validDni(string dni, out string errorMessage)
         {
             if (dni.Length < 7)
             {
@@ -280,6 +317,150 @@ namespace UI
 
             errorMessage = "El dni debe estar en un formato válido.\n" + "Por ejemplo: '11222333' ";
             return false;
+        }
+
+        private void textBoxSocNombre_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxSocNombre, String.Empty);
+        }
+
+        private void textBoxSocNombre_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!validNombre(textBoxSocNombre.Text, out errorMsg))
+            {
+                // Cancelamos el evento.
+                e.Cancel = true;
+                textBoxSocNombre.Focus();
+
+                // Seteamos el error para mostrar. 
+                this.errorProvider.SetError(textBoxSocNombre, errorMsg);
+            }
+        }
+
+        private bool validNombre(string nom, out string errorMessage)
+        {
+            if (nom.Length > 40)
+            {
+                errorMessage = "El nombre debe ser de 40 caracteres maximo.";
+                return false;
+            }
+            else if (nom.Length == 0)
+            {
+                errorMessage = "Debe ingresar un nombre.";
+                return false;
+            }
+
+            errorMessage = "";
+            return true;
+        }
+
+        private void textBoxSocDireccion_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxSocDireccion, String.Empty);
+        }
+
+        private void textBoxSocDireccion_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!validDireccion(textBoxSocDireccion.Text, out errorMsg))
+            {
+                // Cancelamos el evento.
+                e.Cancel = true;
+                textBoxSocDireccion.Focus();
+
+                // Seteamos el error para mostrar. 
+                this.errorProvider.SetError(textBoxSocDireccion, errorMsg);
+            }
+        }
+
+        private bool validDireccion(string dir, out string errorMessage)
+        {
+            if (dir.Length > 40)
+            {
+                errorMessage = "La direccion debe ser de 40 caracteres maximo.";
+                return false;
+            }
+            else if (dir.Length == 0)
+            {
+                errorMessage = "Debe ingresar una direccion.";
+                return false;
+            }
+
+            errorMessage = "";
+            return true;
+        }
+
+        private void textBoxSocCuotaSocial_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxSocCuotaSocial, String.Empty);
+        }
+
+        private void textBoxSocCuotaSocial_Validating(object sender, CancelEventArgs e)
+        {
+            string errorMsg;
+            if (!validCuotaSocial(textBoxSocCuotaSocial.Text, out errorMsg))
+            {
+                // Cancelamos el evento.
+                e.Cancel = true;
+                textBoxSocCuotaSocial.Focus();
+
+                // Seteamos el error para mostrar. 
+                this.errorProvider.SetError(textBoxSocCuotaSocial, errorMsg);
+            }
+        }
+
+        private bool validCuotaSocial(string cuo, out string errorMessage)
+        {
+            if (cuo.Length > 10)
+            {
+                errorMessage = "Alfonsin v2";
+                return false;
+            }
+            else if (cuo.Length == 0)
+            {
+                errorMessage = "Debe ingresar un monto.";
+                return false;
+            }
+
+            errorMessage = "";
+            return true;
+        }
+
+        private void textBoxSocDNI_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxSocNombre_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxSocEmail_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxSocDireccion_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxSocCuotaSocial_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+
+        }
+
+        private void listBoxSocComisiones_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string act = ((Comision)e.ListItem).Actividad.Descripcion;
+            string id = ((Comision)e.ListItem).Id.ToString();
+            string dia = ((Comision)e.ListItem).Dia;
+            string horario = ((Comision)e.ListItem).Horario.ToString();
+
+            e.Value = act + " | ID: " + id + " | Día: " + dia + " | Horario: " + horario + "hs";
         }
     }
 }

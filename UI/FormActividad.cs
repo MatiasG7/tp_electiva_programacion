@@ -44,22 +44,30 @@ namespace UI
             //buttonActModif.Enabled = false;
         }
 
-        private void buttonActCrear_Click(object sender, EventArgs e)
+        private void checkInputs()
         {
-            if (textBoxActID.Text != "" && textBoxActDesc.Text != "" && textBoxActCosto.Text != "")
+            string a;
+            if (validID(textBoxActID.Text, out a) && validCosto(textBoxActCosto.Text, out a) && validDescripcion(textBoxActDesc.Text, out a))
             {
-                int id = int.Parse(this.textBoxActID.Text);
-                string desc = this.textBoxActDesc.Text;
-                double costo = double.Parse(this.textBoxActCosto.Text);
-
-                act = new Actividad(id, desc, costo);
-
-                this.Close();
+                buttonActCrear.Enabled = true;
+                buttonActModif.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Todos los campos deben ser completados.");
+                buttonActCrear.Enabled = false;
+                buttonActModif.Enabled = false;
             }
+        }
+
+        private void buttonActCrear_Click(object sender, EventArgs e)
+        {
+
+            int id = int.Parse(this.textBoxActID.Text);
+            double costo = double.Parse(this.textBoxActCosto.Text);
+            string desc = this.textBoxActDesc.Text;
+            act = new Actividad(id, desc, costo);
+
+            this.Close();
 
         }
 
@@ -70,6 +78,8 @@ namespace UI
                 act.Descripcion = this.textBoxActDesc.Text;
                 act.Costo = double.Parse(this.textBoxActCosto.Text);
 
+                this.Hide();
+                MessageBox.Show("Actividad modificada satisfactoriamente.");
                 this.Close();
             }
             else
@@ -100,17 +110,19 @@ namespace UI
             this.labelActCom.Visible = false;
             this.listBoxActComisiones.Visible = false;
             this.buttonActCrear.Visible = true;
+            this.buttonActCrear.Enabled = false;
         }
 
         public void prepararFormModificar()
         {
             this.Text = "Modificar Actividad";
             this.textBoxActID.ReadOnly = true;
-            this.buttonActModif.Visible = true;
             this.buttonActAceptar.Visible = false;
             this.buttonActCrear.Visible = false;
             this.labelActCom.Visible = false;
             this.listBoxActComisiones.Visible = false;
+            this.buttonActModif.Visible = true;
+            this.buttonActModif.Enabled = false;
         }
 
         public void prepararFormMostrar()
@@ -151,9 +163,9 @@ namespace UI
                 errorMessage = "El ID debe tener por lo menos 3 digitos.";
                 return false;
             }
-            else if (id.Length > 5)
+            else if (id.Length > 4)
             {
-                errorMessage = "El ID debe ser de 5 dígitos máximo.";
+                errorMessage = "El ID debe ser de 4 dígitos máximo.";
                 return false;
             }
 
@@ -189,6 +201,12 @@ namespace UI
 
         private bool validDescripcion(string desc, out string errorMessage)
         {
+            if (desc.Length == 0)
+            {
+                errorMessage = "La descripcion debe ser ingresada";
+                return false;
+            }
+
             if (desc.Length < 25)
             {
                 errorMessage = "";
@@ -222,7 +240,7 @@ namespace UI
         {
             if (costo.Length > 8)
             {
-                errorMessage = "El ID debe ser de 8 dígitos máximo.";
+                errorMessage = "El costo debe ser de 8 dígitos máximo.";
                 return false;
             }
 
@@ -235,6 +253,31 @@ namespace UI
 
             errorMessage = "El costo debe estar en un formato válido.\n" + "Por ejemplo: '500' ";
             return false;
+        }
+
+        private void textBoxActID_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxActDesc_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxActCosto_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void listBoxActComisiones_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string act = ((Comision)e.ListItem).Actividad.Descripcion;
+            string id = ((Comision)e.ListItem).Id.ToString();
+            string dia = ((Comision)e.ListItem).Dia;
+            string horario = ((Comision)e.ListItem).Horario.ToString();
+
+            e.Value = act + " | ID: " + id + " | Día: " + dia + " | Horario: " + horario + "hs";
         }
     }
 }

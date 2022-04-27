@@ -22,7 +22,9 @@ namespace UI
         public FormComision(List<Actividad> actividades, List<Profesor> profesores)
         {
             InitializeComponent();
+            this.comboBoxComAct.DisplayMember = "Descripcion";
             this.comboBoxComAct.DataSource = actividades;
+            this.comboBoxComProfesores.DisplayMember = "Nombre";
             this.comboBoxComProfesores.DataSource = profesores;
         }
 
@@ -36,6 +38,23 @@ namespace UI
             this.comboBoxComProfesores.DataSource = profesores;
             this.listBoxComSocios.DataSource = com.Socios;
             this.listBoxComSocios.ClearSelected();
+        }
+
+        private void checkInputs()
+        {
+            string a;
+            if (validID(textBoxComID.Text, out a) && validMaxPar(textBoxComMaxPar.Text, out a) &&
+                comboBoxComAct.SelectedItem != null && comboBoxComDia.SelectedItem != null &&
+                comboBoxComHorario.SelectedItem != null && comboBoxComProfesores.SelectedItem != null)
+            {
+                buttonComCrear.Enabled = true;
+                buttonComModif.Enabled = true;
+            }
+            else
+            {
+                buttonComCrear.Enabled = false;
+                buttonComModif.Enabled = false;
+            }
         }
 
         private void buttonComCrear_Click(object sender, EventArgs e)
@@ -67,6 +86,8 @@ namespace UI
 
             com.Profesor.agregarComision(com);
 
+            this.Hide();
+            MessageBox.Show("Comisión modificada satisfactoriamente.");
             this.Close();
         }
 
@@ -91,6 +112,7 @@ namespace UI
             this.labelComSocios.Visible = false;
             this.listBoxComSocios.Visible = false;
             this.buttonComCrear.Visible = true;
+            this.buttonComCrear.Enabled = false;
         }
 
         public void prepararFormModificar()
@@ -98,6 +120,7 @@ namespace UI
             this.Text = "Modificar Comisión";
             this.textBoxComID.ReadOnly = true;
             this.buttonComModif.Visible = true;
+            this.buttonComModif.Enabled = false;
             this.buttonComAceptar.Visible = false;
             this.buttonComCrear.Visible = false;
             this.labelComSocios.Visible = false;
@@ -130,6 +153,126 @@ namespace UI
             this.comboBoxComDia.Enabled = false;
             this.comboBoxComHorario.Enabled = false;
             this.comboBoxComProfesores.Enabled = false;
+        }
+
+        private void textBoxComID_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxComMaxPar_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxComID_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxComID, String.Empty);
+        }
+
+        private void textBoxComID_Validating(object sender, CancelEventArgs e)
+        {
+            string id = textBoxComID.Text;
+
+            string errorMsg;
+            if (!validID(id, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxComID.Focus();
+
+                this.errorProvider.SetError(textBoxComID, errorMsg);
+            }
+        }
+
+        private bool validID(string id, out string errorMessage)
+        {
+            if (id.Length < 1)
+            {
+                errorMessage = "El ID debe tener por lo menos 2 digitos.";
+                return false;
+            }
+            else if (id.Length > 2 && !buttonComModif.Visible)
+            {
+                errorMessage = "El ID debe ser de 3 dígitos máximo.";
+                return false;
+            }
+
+            // Chequeamos con una regex que es un entero.
+            if (System.Text.RegularExpressions.Regex.IsMatch(id, "^[0-9]+$"))
+            {
+                errorMessage = "";
+                return true;
+            }
+
+            errorMessage = "El ID debe estar en un formato válido.\n" + "Por ejemplo: '1234' ";
+            return false;
+        }
+
+        private void textBoxComMaxPar_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxComMaxPar, String.Empty);
+        }
+
+        private void textBoxComMaxPar_Validating(object sender, CancelEventArgs e)
+        {
+            string par = textBoxComMaxPar.Text;
+
+            string errorMsg;
+            if (!validMaxPar(par, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxComMaxPar.Focus();
+
+                this.errorProvider.SetError(textBoxComMaxPar, errorMsg);
+            }
+        }
+
+        private bool validMaxPar(string maxPar, out string errorMessage)
+        {
+            if (maxPar.Length > 3)
+            {
+                errorMessage = "La cantidad de participantes debe ser de 3 dígitos máximo.";
+                return false;
+            }
+
+            // Chequeamos con una regex que es un entero.
+            if (System.Text.RegularExpressions.Regex.IsMatch(maxPar, "^[0-9]+$"))
+            {
+                errorMessage = "";
+                return true;
+            }
+
+            errorMessage = "La cantidad de participantes debe estar en un formato válido.\n" + "Por ejemplo: '500' ";
+            return false;
+        }
+
+        private void comboBoxComAct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void comboBoxComDia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void comboBoxComHorario_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void comboBoxComProfesores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void listBoxComSocios_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string dni = ((Socio)e.ListItem).Dni.ToString();
+            string nombre = ((Socio)e.ListItem).Nombre;
+            string fnac = ((Socio)e.ListItem).FNac.ToString("dd/MM/yyyy");
+
+            e.Value = "DNI: " + dni + " | Nombre: " + nombre + " | Fecha Nacimiento: " + fnac;
         }
     }
 }

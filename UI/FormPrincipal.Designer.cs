@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.buttonCrearActividad = new System.Windows.Forms.Button();
             this.buttonModificarActividad = new System.Windows.Forms.Button();
             this.buttonEliminarActividad = new System.Windows.Forms.Button();
@@ -56,16 +57,22 @@
             this.buttonModifSocio = new System.Windows.Forms.Button();
             this.buttonElimSocio = new System.Windows.Forms.Button();
             this.listBoxSocios = new System.Windows.Forms.ListBox();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dataGridViewPagos = new System.Windows.Forms.DataGridView();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPagos)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonCrearActividad
             // 
-            this.buttonCrearActividad.Location = new System.Drawing.Point(15, 15);
+            this.buttonCrearActividad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCrearActividad.Location = new System.Drawing.Point(31, 43);
             this.buttonCrearActividad.Name = "buttonCrearActividad";
             this.buttonCrearActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonCrearActividad.TabIndex = 0;
@@ -75,7 +82,8 @@
             // 
             // buttonModificarActividad
             // 
-            this.buttonModificarActividad.Location = new System.Drawing.Point(15, 44);
+            this.buttonModificarActividad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonModificarActividad.Location = new System.Drawing.Point(31, 72);
             this.buttonModificarActividad.Name = "buttonModificarActividad";
             this.buttonModificarActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonModificarActividad.TabIndex = 1;
@@ -85,7 +93,8 @@
             // 
             // buttonEliminarActividad
             // 
-            this.buttonEliminarActividad.Location = new System.Drawing.Point(15, 73);
+            this.buttonEliminarActividad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonEliminarActividad.Location = new System.Drawing.Point(31, 101);
             this.buttonEliminarActividad.Name = "buttonEliminarActividad";
             this.buttonEliminarActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonEliminarActividad.TabIndex = 2;
@@ -95,7 +104,8 @@
             // 
             // buttonInsSocAct
             // 
-            this.buttonInsSocAct.Location = new System.Drawing.Point(19, 231);
+            this.buttonInsSocAct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonInsSocAct.Location = new System.Drawing.Point(31, 300);
             this.buttonInsSocAct.Name = "buttonInsSocAct";
             this.buttonInsSocAct.Size = new System.Drawing.Size(248, 23);
             this.buttonInsSocAct.TabIndex = 3;
@@ -105,7 +115,8 @@
             // 
             // buttonElimSocAct
             // 
-            this.buttonElimSocAct.Location = new System.Drawing.Point(19, 274);
+            this.buttonElimSocAct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonElimSocAct.Location = new System.Drawing.Point(31, 329);
             this.buttonElimSocAct.Name = "buttonElimSocAct";
             this.buttonElimSocAct.Size = new System.Drawing.Size(248, 23);
             this.buttonElimSocAct.TabIndex = 4;
@@ -115,9 +126,10 @@
             // 
             // buttonRegPagoSoc
             // 
-            this.buttonRegPagoSoc.Location = new System.Drawing.Point(19, 317);
+            this.buttonRegPagoSoc.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonRegPagoSoc.Location = new System.Drawing.Point(31, 358);
             this.buttonRegPagoSoc.Name = "buttonRegPagoSoc";
-            this.buttonRegPagoSoc.Size = new System.Drawing.Size(189, 23);
+            this.buttonRegPagoSoc.Size = new System.Drawing.Size(248, 23);
             this.buttonRegPagoSoc.TabIndex = 5;
             this.buttonRegPagoSoc.Text = "Registrar el pago de un socio";
             this.buttonRegPagoSoc.UseVisualStyleBackColor = true;
@@ -129,6 +141,7 @@
             this.tabControl.Controls.Add(this.tabPage4);
             this.tabControl.Controls.Add(this.tabPage3);
             this.tabControl.Controls.Add(this.tabPage2);
+            this.tabControl.Controls.Add(this.tabPage5);
             this.tabControl.Location = new System.Drawing.Point(-2, -1);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
@@ -153,7 +166,8 @@
             // 
             // buttonMostrarActividad
             // 
-            this.buttonMostrarActividad.Location = new System.Drawing.Point(15, 102);
+            this.buttonMostrarActividad.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonMostrarActividad.Location = new System.Drawing.Point(31, 130);
             this.buttonMostrarActividad.Name = "buttonMostrarActividad";
             this.buttonMostrarActividad.Size = new System.Drawing.Size(140, 23);
             this.buttonMostrarActividad.TabIndex = 4;
@@ -164,10 +178,11 @@
             // listBoxAct
             // 
             this.listBoxAct.FormattingEnabled = true;
-            this.listBoxAct.Location = new System.Drawing.Point(554, 3);
+            this.listBoxAct.Location = new System.Drawing.Point(484, 3);
             this.listBoxAct.Name = "listBoxAct";
-            this.listBoxAct.Size = new System.Drawing.Size(238, 420);
+            this.listBoxAct.Size = new System.Drawing.Size(308, 420);
             this.listBoxAct.TabIndex = 3;
+            this.listBoxAct.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxAct_Format);
             // 
             // tabPage4
             // 
@@ -186,9 +201,10 @@
             // 
             // buttonMostrarComision
             // 
-            this.buttonMostrarComision.Location = new System.Drawing.Point(20, 103);
+            this.buttonMostrarComision.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonMostrarComision.Location = new System.Drawing.Point(31, 130);
             this.buttonMostrarComision.Name = "buttonMostrarComision";
-            this.buttonMostrarComision.Size = new System.Drawing.Size(120, 23);
+            this.buttonMostrarComision.Size = new System.Drawing.Size(140, 23);
             this.buttonMostrarComision.TabIndex = 24;
             this.buttonMostrarComision.Text = "Mostrar";
             this.buttonMostrarComision.UseVisualStyleBackColor = true;
@@ -196,9 +212,10 @@
             // 
             // buttonModifComision
             // 
-            this.buttonModifComision.Location = new System.Drawing.Point(20, 45);
+            this.buttonModifComision.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonModifComision.Location = new System.Drawing.Point(31, 72);
             this.buttonModifComision.Name = "buttonModifComision";
-            this.buttonModifComision.Size = new System.Drawing.Size(120, 23);
+            this.buttonModifComision.Size = new System.Drawing.Size(140, 23);
             this.buttonModifComision.TabIndex = 23;
             this.buttonModifComision.Text = "Modificar";
             this.buttonModifComision.UseVisualStyleBackColor = true;
@@ -206,9 +223,10 @@
             // 
             // buttonElimCom
             // 
-            this.buttonElimCom.Location = new System.Drawing.Point(20, 74);
+            this.buttonElimCom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonElimCom.Location = new System.Drawing.Point(31, 101);
             this.buttonElimCom.Name = "buttonElimCom";
-            this.buttonElimCom.Size = new System.Drawing.Size(120, 23);
+            this.buttonElimCom.Size = new System.Drawing.Size(140, 23);
             this.buttonElimCom.TabIndex = 22;
             this.buttonElimCom.Text = "Eliminar";
             this.buttonElimCom.UseVisualStyleBackColor = true;
@@ -216,9 +234,10 @@
             // 
             // buttonCrearComision
             // 
-            this.buttonCrearComision.Location = new System.Drawing.Point(20, 16);
+            this.buttonCrearComision.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCrearComision.Location = new System.Drawing.Point(31, 43);
             this.buttonCrearComision.Name = "buttonCrearComision";
-            this.buttonCrearComision.Size = new System.Drawing.Size(120, 23);
+            this.buttonCrearComision.Size = new System.Drawing.Size(140, 23);
             this.buttonCrearComision.TabIndex = 21;
             this.buttonCrearComision.Text = "Crear";
             this.buttonCrearComision.UseVisualStyleBackColor = true;
@@ -227,10 +246,11 @@
             // listBoxCom
             // 
             this.listBoxCom.FormattingEnabled = true;
-            this.listBoxCom.Location = new System.Drawing.Point(534, 3);
+            this.listBoxCom.Location = new System.Drawing.Point(484, 3);
             this.listBoxCom.Name = "listBoxCom";
-            this.listBoxCom.Size = new System.Drawing.Size(258, 420);
+            this.listBoxCom.Size = new System.Drawing.Size(308, 420);
             this.listBoxCom.TabIndex = 19;
+            this.listBoxCom.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxCom_Format);
             // 
             // tabPage3
             // 
@@ -250,14 +270,16 @@
             // listBoxProf
             // 
             this.listBoxProf.FormattingEnabled = true;
-            this.listBoxProf.Location = new System.Drawing.Point(531, 3);
+            this.listBoxProf.Location = new System.Drawing.Point(484, 3);
             this.listBoxProf.Name = "listBoxProf";
-            this.listBoxProf.Size = new System.Drawing.Size(261, 420);
+            this.listBoxProf.Size = new System.Drawing.Size(308, 420);
             this.listBoxProf.TabIndex = 9;
+            this.listBoxProf.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxProf_Format);
             // 
             // buttonMostrarProf
             // 
-            this.buttonMostrarProf.Location = new System.Drawing.Point(20, 103);
+            this.buttonMostrarProf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonMostrarProf.Location = new System.Drawing.Point(31, 130);
             this.buttonMostrarProf.Name = "buttonMostrarProf";
             this.buttonMostrarProf.Size = new System.Drawing.Size(140, 23);
             this.buttonMostrarProf.TabIndex = 8;
@@ -267,7 +289,8 @@
             // 
             // buttonCrearProf
             // 
-            this.buttonCrearProf.Location = new System.Drawing.Point(20, 16);
+            this.buttonCrearProf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCrearProf.Location = new System.Drawing.Point(31, 43);
             this.buttonCrearProf.Name = "buttonCrearProf";
             this.buttonCrearProf.Size = new System.Drawing.Size(140, 23);
             this.buttonCrearProf.TabIndex = 5;
@@ -277,7 +300,8 @@
             // 
             // buttonModifProf
             // 
-            this.buttonModifProf.Location = new System.Drawing.Point(20, 45);
+            this.buttonModifProf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonModifProf.Location = new System.Drawing.Point(31, 72);
             this.buttonModifProf.Name = "buttonModifProf";
             this.buttonModifProf.Size = new System.Drawing.Size(140, 23);
             this.buttonModifProf.TabIndex = 6;
@@ -287,7 +311,8 @@
             // 
             // buttonElimProf
             // 
-            this.buttonElimProf.Location = new System.Drawing.Point(20, 74);
+            this.buttonElimProf.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonElimProf.Location = new System.Drawing.Point(31, 101);
             this.buttonElimProf.Name = "buttonElimProf";
             this.buttonElimProf.Size = new System.Drawing.Size(140, 23);
             this.buttonElimProf.TabIndex = 7;
@@ -315,7 +340,8 @@
             // 
             // buttonMostrarSocio
             // 
-            this.buttonMostrarSocio.Location = new System.Drawing.Point(19, 102);
+            this.buttonMostrarSocio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonMostrarSocio.Location = new System.Drawing.Point(31, 130);
             this.buttonMostrarSocio.Name = "buttonMostrarSocio";
             this.buttonMostrarSocio.Size = new System.Drawing.Size(140, 23);
             this.buttonMostrarSocio.TabIndex = 10;
@@ -325,7 +351,8 @@
             // 
             // buttonCrearSocio
             // 
-            this.buttonCrearSocio.Location = new System.Drawing.Point(19, 15);
+            this.buttonCrearSocio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonCrearSocio.Location = new System.Drawing.Point(31, 43);
             this.buttonCrearSocio.Name = "buttonCrearSocio";
             this.buttonCrearSocio.Size = new System.Drawing.Size(140, 23);
             this.buttonCrearSocio.TabIndex = 7;
@@ -335,7 +362,8 @@
             // 
             // buttonModifSocio
             // 
-            this.buttonModifSocio.Location = new System.Drawing.Point(19, 44);
+            this.buttonModifSocio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonModifSocio.Location = new System.Drawing.Point(31, 72);
             this.buttonModifSocio.Name = "buttonModifSocio";
             this.buttonModifSocio.Size = new System.Drawing.Size(140, 23);
             this.buttonModifSocio.TabIndex = 8;
@@ -345,7 +373,8 @@
             // 
             // buttonElimSocio
             // 
-            this.buttonElimSocio.Location = new System.Drawing.Point(19, 73);
+            this.buttonElimSocio.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonElimSocio.Location = new System.Drawing.Point(31, 101);
             this.buttonElimSocio.Name = "buttonElimSocio";
             this.buttonElimSocio.Size = new System.Drawing.Size(140, 23);
             this.buttonElimSocio.TabIndex = 9;
@@ -356,11 +385,47 @@
             // listBoxSocios
             // 
             this.listBoxSocios.FormattingEnabled = true;
-            this.listBoxSocios.Location = new System.Drawing.Point(557, 3);
+            this.listBoxSocios.Location = new System.Drawing.Point(484, 3);
             this.listBoxSocios.Name = "listBoxSocios";
-            this.listBoxSocios.Size = new System.Drawing.Size(235, 420);
+            this.listBoxSocios.Size = new System.Drawing.Size(308, 420);
             this.listBoxSocios.TabIndex = 6;
             this.listBoxSocios.SelectedIndexChanged += new System.EventHandler(this.listBoxSocios_SelectedIndexChanged);
+            this.listBoxSocios.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxSocios_Format);
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.dataGridViewPagos);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(795, 427);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Pagos";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewPagos
+            // 
+            this.dataGridViewPagos.AllowUserToAddRows = false;
+            this.dataGridViewPagos.AllowUserToDeleteRows = false;
+            this.dataGridViewPagos.AllowUserToResizeColumns = false;
+            this.dataGridViewPagos.AllowUserToResizeRows = false;
+            this.dataGridViewPagos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewPagos.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewPagos.Enabled = false;
+            this.dataGridViewPagos.Location = new System.Drawing.Point(10, 13);
+            this.dataGridViewPagos.MinimumSize = new System.Drawing.Size(10, 10);
+            this.dataGridViewPagos.Name = "dataGridViewPagos";
+            this.dataGridViewPagos.ReadOnly = true;
+            this.dataGridViewPagos.RowHeadersVisible = false;
+            this.dataGridViewPagos.Size = new System.Drawing.Size(776, 394);
+            this.dataGridViewPagos.TabIndex = 2;
             // 
             // FormPrincipal
             // 
@@ -368,6 +433,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club";
@@ -378,6 +445,8 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPagos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -412,6 +481,9 @@
         private System.Windows.Forms.Button buttonElimCom;
         private System.Windows.Forms.Button buttonCrearComision;
         private System.Windows.Forms.ListBox listBoxCom;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.DataGridView dataGridViewPagos;
     }
 }
 

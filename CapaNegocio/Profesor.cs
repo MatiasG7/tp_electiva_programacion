@@ -37,7 +37,7 @@ namespace CapaNegocio
 
         public void limpiarComisiones()
         {
-            foreach (var com in this.comisiones)
+            foreach (var com in comisiones.ToArray())
             {
                 com.eliminar();
             }

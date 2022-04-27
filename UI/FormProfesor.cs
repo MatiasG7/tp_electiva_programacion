@@ -34,6 +34,21 @@ namespace UI
             this.listBoxProfCom.ClearSelected();
         }
 
+        private void checkInputs()
+        {
+            string a;
+            if (validDni(textBoxProfDNI.Text, out a) && validNombre(textBoxProfNombre.Text, out a))
+            {
+                buttonProfCrear.Enabled = true;
+                buttonProfModif.Enabled = true;
+            }
+            else
+            {
+                buttonProfCrear.Enabled = false;
+                buttonProfModif.Enabled = false;
+            }
+        }
+
         private void buttonProfCrear_Click(object sender, EventArgs e)
         {
             int dni = int.Parse(this.textBoxProfDNI.Text);
@@ -52,6 +67,8 @@ namespace UI
             prof.FNac = this.dateTimePickerProfFNac.Value;
             prof.FIng = this.dateTimePickerProfFIng.Value;
 
+            this.Hide();
+            MessageBox.Show("Profesor modificado satisfactoriamente.");
             this.Close();
         }
 
@@ -76,6 +93,7 @@ namespace UI
             this.labelProfCom.Visible = false;
             this.listBoxProfCom.Visible = false;
             this.buttonProfCrear.Visible = true;
+            this.buttonProfCrear.Enabled = false;
         }
 
         public void prepararFormModificar()
@@ -87,6 +105,7 @@ namespace UI
             this.buttonProfCrear.Visible = false;
             this.labelProfCom.Visible = false;
             this.listBoxProfCom.Visible = false;
+            this.buttonProfModif.Enabled = false;
         }
 
         public void prepararFormMostrar()
@@ -101,6 +120,105 @@ namespace UI
             this.dateTimePickerProfFIng.Enabled = false;
             this.buttonProfCrear.Visible = false;
             this.buttonProfModif.Visible = false;
+        }
+
+        private void textBoxProfDNI_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxProfDNI, String.Empty);
+        }
+
+        private void textBoxProfDNI_Validating(object sender, CancelEventArgs e)
+        {
+            string dni = textBoxProfDNI.Text;
+
+            string errorMsg;
+            if (!validDni(dni, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxProfDNI.Focus();
+
+                this.errorProvider.SetError(textBoxProfDNI, errorMsg);
+            }
+        }
+
+        private bool validDni(string dni, out string errorMessage)
+        {
+            if (dni.Length < 7)
+            {
+                errorMessage = "El dni debe ser de 7 u 8 dígitos.";
+                return false;
+            }
+            else if (dni.Length > 8)
+            {
+                errorMessage = "El dni debe ser de 8 dígitos máximo.";
+                return false;
+            }
+
+            // Chequeamos con una regex que es un entero.
+            if (System.Text.RegularExpressions.Regex.IsMatch(dni, "^[0-9]+$"))
+            {
+                errorMessage = "";
+                return true;
+            }
+
+            errorMessage = "El dni debe estar en un formato válido.\n" + "Por ejemplo: '11222333' ";
+            return false;
+        }
+
+        private void textBoxProfNombre_Validated(object sender, EventArgs e)
+        {
+            errorProvider.SetError(textBoxProfNombre, String.Empty);
+        }
+
+        private void textBoxProfNombre_Validating(object sender, CancelEventArgs e)
+        {
+            string nom = textBoxProfNombre.Text;
+
+            string errorMsg;
+            if (!validNombre(nom, out errorMsg))
+            {
+                e.Cancel = true;
+                textBoxProfNombre.Focus();
+
+                this.errorProvider.SetError(textBoxProfNombre, errorMsg);
+            }
+        }
+
+        private bool validNombre(string nom, out string errorMessage)
+        {
+            if (nom.Length > 40)
+            {
+                errorMessage = "El nombre debe ser de 40 caracteres maximo.";
+                return false;
+            }
+            else if (nom.Length == 0)
+            {
+                errorMessage = "Debe ingresar un nombre.";
+                return false;
+            }
+
+            errorMessage = "";
+            return true;
+        }
+
+        private void textBoxProfDNI_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void textBoxProfNombre_TextChanged(object sender, EventArgs e)
+        {
+            checkInputs();
+        }
+
+        private void listBoxProfCom_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string act = ((Comision)e.ListItem).Actividad.Descripcion;
+            string id = ((Comision)e.ListItem).Id.ToString();
+            string dia = ((Comision)e.ListItem).Dia;
+            string horario = ((Comision)e.ListItem).Horario.ToString();
+
+            e.Value = act + " | ID: " + id + " | Día: " + dia + " | Horario: " + horario + "hs";
         }
     }
 }

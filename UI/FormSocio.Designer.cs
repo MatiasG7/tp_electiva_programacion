@@ -55,15 +55,18 @@
             // 
             // textBoxSocCuotaSocial
             // 
-            this.textBoxSocCuotaSocial.Location = new System.Drawing.Point(279, 303);
+            this.textBoxSocCuotaSocial.Location = new System.Drawing.Point(21, 353);
             this.textBoxSocCuotaSocial.Name = "textBoxSocCuotaSocial";
             this.textBoxSocCuotaSocial.Size = new System.Drawing.Size(100, 20);
             this.textBoxSocCuotaSocial.TabIndex = 58;
+            this.textBoxSocCuotaSocial.TextChanged += new System.EventHandler(this.textBoxSocCuotaSocial_TextChanged);
+            this.textBoxSocCuotaSocial.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSocCuotaSocial_Validating);
+            this.textBoxSocCuotaSocial.Validated += new System.EventHandler(this.textBoxSocCuotaSocial_Validated);
             // 
             // labelSocCuotaSocial
             // 
             this.labelSocCuotaSocial.AutoSize = true;
-            this.labelSocCuotaSocial.Location = new System.Drawing.Point(276, 287);
+            this.labelSocCuotaSocial.Location = new System.Drawing.Point(18, 337);
             this.labelSocCuotaSocial.Name = "labelSocCuotaSocial";
             this.labelSocCuotaSocial.Size = new System.Drawing.Size(67, 13);
             this.labelSocCuotaSocial.TabIndex = 57;
@@ -71,7 +74,8 @@
             // 
             // buttonSocAceptar
             // 
-            this.buttonSocAceptar.Location = new System.Drawing.Point(279, 396);
+            this.buttonSocAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSocAceptar.Location = new System.Drawing.Point(315, 400);
             this.buttonSocAceptar.Name = "buttonSocAceptar";
             this.buttonSocAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonSocAceptar.TabIndex = 56;
@@ -81,7 +85,8 @@
             // 
             // buttonSocModif
             // 
-            this.buttonSocModif.Location = new System.Drawing.Point(279, 396);
+            this.buttonSocModif.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSocModif.Location = new System.Drawing.Point(315, 400);
             this.buttonSocModif.Name = "buttonSocModif";
             this.buttonSocModif.Size = new System.Drawing.Size(75, 23);
             this.buttonSocModif.TabIndex = 55;
@@ -91,7 +96,8 @@
             // 
             // buttonSocCancelar
             // 
-            this.buttonSocCancelar.Location = new System.Drawing.Point(391, 396);
+            this.buttonSocCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSocCancelar.Location = new System.Drawing.Point(422, 400);
             this.buttonSocCancelar.Name = "buttonSocCancelar";
             this.buttonSocCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonSocCancelar.TabIndex = 54;
@@ -101,7 +107,8 @@
             // 
             // buttonSocCrear
             // 
-            this.buttonSocCrear.Location = new System.Drawing.Point(279, 396);
+            this.buttonSocCrear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonSocCrear.Location = new System.Drawing.Point(315, 400);
             this.buttonSocCrear.Name = "buttonSocCrear";
             this.buttonSocCrear.Size = new System.Drawing.Size(75, 23);
             this.buttonSocCrear.TabIndex = 53;
@@ -112,7 +119,7 @@
             // labelSocComisiones
             // 
             this.labelSocComisiones.AutoSize = true;
-            this.labelSocComisiones.Location = new System.Drawing.Point(561, 32);
+            this.labelSocComisiones.Location = new System.Drawing.Point(492, 19);
             this.labelSocComisiones.Name = "labelSocComisiones";
             this.labelSocComisiones.Size = new System.Drawing.Size(60, 13);
             this.labelSocComisiones.TabIndex = 52;
@@ -121,22 +128,26 @@
             // listBoxSocComisiones
             // 
             this.listBoxSocComisiones.FormattingEnabled = true;
-            this.listBoxSocComisiones.Location = new System.Drawing.Point(561, 49);
+            this.listBoxSocComisiones.Location = new System.Drawing.Point(495, 35);
             this.listBoxSocComisiones.Name = "listBoxSocComisiones";
-            this.listBoxSocComisiones.Size = new System.Drawing.Size(226, 290);
+            this.listBoxSocComisiones.Size = new System.Drawing.Size(300, 290);
             this.listBoxSocComisiones.TabIndex = 51;
+            this.listBoxSocComisiones.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxSocComisiones_Format);
             // 
             // textBoxSocDireccion
             // 
-            this.textBoxSocDireccion.Location = new System.Drawing.Point(16, 249);
+            this.textBoxSocDireccion.Location = new System.Drawing.Point(21, 247);
             this.textBoxSocDireccion.Name = "textBoxSocDireccion";
-            this.textBoxSocDireccion.Size = new System.Drawing.Size(100, 20);
+            this.textBoxSocDireccion.Size = new System.Drawing.Size(210, 20);
             this.textBoxSocDireccion.TabIndex = 50;
+            this.textBoxSocDireccion.TextChanged += new System.EventHandler(this.textBoxSocDireccion_TextChanged);
+            this.textBoxSocDireccion.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSocDireccion_Validating);
+            this.textBoxSocDireccion.Validated += new System.EventHandler(this.textBoxSocDireccion_Validated);
             // 
             // labelSocDireccion
             // 
             this.labelSocDireccion.AutoSize = true;
-            this.labelSocDireccion.Location = new System.Drawing.Point(13, 233);
+            this.labelSocDireccion.Location = new System.Drawing.Point(18, 231);
             this.labelSocDireccion.Name = "labelSocDireccion";
             this.labelSocDireccion.Size = new System.Drawing.Size(52, 13);
             this.labelSocDireccion.TabIndex = 49;
@@ -144,17 +155,18 @@
             // 
             // textBoxSocEmail
             // 
-            this.textBoxSocEmail.Location = new System.Drawing.Point(16, 199);
+            this.textBoxSocEmail.Location = new System.Drawing.Point(21, 194);
             this.textBoxSocEmail.Name = "textBoxSocEmail";
-            this.textBoxSocEmail.Size = new System.Drawing.Size(100, 20);
+            this.textBoxSocEmail.Size = new System.Drawing.Size(210, 20);
             this.textBoxSocEmail.TabIndex = 48;
+            this.textBoxSocEmail.TextChanged += new System.EventHandler(this.textBoxSocEmail_TextChanged);
             this.textBoxSocEmail.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSocEmail_Validating);
             this.textBoxSocEmail.Validated += new System.EventHandler(this.textBoxSocEmail_Validated);
             // 
             // labelSocEmail
             // 
             this.labelSocEmail.AutoSize = true;
-            this.labelSocEmail.Location = new System.Drawing.Point(13, 183);
+            this.labelSocEmail.Location = new System.Drawing.Point(18, 178);
             this.labelSocEmail.Name = "labelSocEmail";
             this.labelSocEmail.Size = new System.Drawing.Size(32, 13);
             this.labelSocEmail.TabIndex = 47;
@@ -162,7 +174,7 @@
             // 
             // dateTimePickerSocFIng
             // 
-            this.dateTimePickerSocFIng.Location = new System.Drawing.Point(16, 303);
+            this.dateTimePickerSocFIng.Location = new System.Drawing.Point(21, 300);
             this.dateTimePickerSocFIng.Name = "dateTimePickerSocFIng";
             this.dateTimePickerSocFIng.Size = new System.Drawing.Size(210, 20);
             this.dateTimePickerSocFIng.TabIndex = 46;
@@ -170,7 +182,7 @@
             // labelSocFIng
             // 
             this.labelSocFIng.AutoSize = true;
-            this.labelSocFIng.Location = new System.Drawing.Point(13, 287);
+            this.labelSocFIng.Location = new System.Drawing.Point(18, 284);
             this.labelSocFIng.Name = "labelSocFIng";
             this.labelSocFIng.Size = new System.Drawing.Size(75, 13);
             this.labelSocFIng.TabIndex = 45;
@@ -178,31 +190,35 @@
             // 
             // dateTimePickerSocFNac
             // 
-            this.dateTimePickerSocFNac.Location = new System.Drawing.Point(16, 147);
+            this.dateTimePickerSocFNac.Location = new System.Drawing.Point(21, 141);
             this.dateTimePickerSocFNac.Name = "dateTimePickerSocFNac";
             this.dateTimePickerSocFNac.Size = new System.Drawing.Size(210, 20);
             this.dateTimePickerSocFNac.TabIndex = 44;
             // 
             // textBoxSocNombre
             // 
-            this.textBoxSocNombre.Location = new System.Drawing.Point(16, 98);
+            this.textBoxSocNombre.Location = new System.Drawing.Point(21, 88);
             this.textBoxSocNombre.Name = "textBoxSocNombre";
-            this.textBoxSocNombre.Size = new System.Drawing.Size(100, 20);
+            this.textBoxSocNombre.Size = new System.Drawing.Size(210, 20);
             this.textBoxSocNombre.TabIndex = 43;
+            this.textBoxSocNombre.TextChanged += new System.EventHandler(this.textBoxSocNombre_TextChanged);
+            this.textBoxSocNombre.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSocNombre_Validating);
+            this.textBoxSocNombre.Validated += new System.EventHandler(this.textBoxSocNombre_Validated);
             // 
             // textBoxSocDNI
             // 
-            this.textBoxSocDNI.Location = new System.Drawing.Point(16, 49);
+            this.textBoxSocDNI.Location = new System.Drawing.Point(21, 35);
             this.textBoxSocDNI.Name = "textBoxSocDNI";
             this.textBoxSocDNI.Size = new System.Drawing.Size(100, 20);
             this.textBoxSocDNI.TabIndex = 42;
+            this.textBoxSocDNI.TextChanged += new System.EventHandler(this.textBoxSocDNI_TextChanged);
             this.textBoxSocDNI.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxSocDNI_Validating);
             this.textBoxSocDNI.Validated += new System.EventHandler(this.textBoxSocDNI_Validated);
             // 
             // labelSocFNac
             // 
             this.labelSocFNac.AutoSize = true;
-            this.labelSocFNac.Location = new System.Drawing.Point(13, 131);
+            this.labelSocFNac.Location = new System.Drawing.Point(18, 125);
             this.labelSocFNac.Name = "labelSocFNac";
             this.labelSocFNac.Size = new System.Drawing.Size(93, 13);
             this.labelSocFNac.TabIndex = 41;
@@ -211,7 +227,7 @@
             // labelSocNombre
             // 
             this.labelSocNombre.AutoSize = true;
-            this.labelSocNombre.Location = new System.Drawing.Point(13, 82);
+            this.labelSocNombre.Location = new System.Drawing.Point(18, 72);
             this.labelSocNombre.Name = "labelSocNombre";
             this.labelSocNombre.Size = new System.Drawing.Size(44, 13);
             this.labelSocNombre.TabIndex = 40;
@@ -220,7 +236,7 @@
             // labelSocDNI
             // 
             this.labelSocDNI.AutoSize = true;
-            this.labelSocDNI.Location = new System.Drawing.Point(13, 33);
+            this.labelSocDNI.Location = new System.Drawing.Point(18, 19);
             this.labelSocDNI.Name = "labelSocDNI";
             this.labelSocDNI.Size = new System.Drawing.Size(26, 13);
             this.labelSocDNI.TabIndex = 39;
@@ -255,6 +271,8 @@
             this.Controls.Add(this.labelSocFNac);
             this.Controls.Add(this.labelSocNombre);
             this.Controls.Add(this.labelSocDNI);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormSocio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

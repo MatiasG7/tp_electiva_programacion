@@ -59,5 +59,15 @@ namespace CapaNegocio
         {
             PorcentajeDescuento = desc;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " - Club";
+        }
+
+        public override bool isClub()
+        {
+            return true;
+        }
     }
 }

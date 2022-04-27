@@ -46,6 +46,7 @@
             this.listBoxInsSocAct.Size = new System.Drawing.Size(304, 277);
             this.listBoxInsSocAct.TabIndex = 0;
             this.listBoxInsSocAct.SelectedIndexChanged += new System.EventHandler(this.listBoxInsSocAct_SelectedIndexChanged);
+            this.listBoxInsSocAct.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxInsSocAct_Format);
             // 
             // listBoxInsSocCom
             // 
@@ -54,6 +55,7 @@
             this.listBoxInsSocCom.Name = "listBoxInsSocCom";
             this.listBoxInsSocCom.Size = new System.Drawing.Size(304, 277);
             this.listBoxInsSocCom.TabIndex = 1;
+            this.listBoxInsSocCom.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxInsSocCom_Format);
             // 
             // labelActividades
             // 
@@ -85,7 +87,8 @@
             // 
             // buttonInsConfirmar
             // 
-            this.buttonInsConfirmar.Location = new System.Drawing.Point(582, 383);
+            this.buttonInsConfirmar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonInsConfirmar.Location = new System.Drawing.Point(315, 400);
             this.buttonInsConfirmar.Name = "buttonInsConfirmar";
             this.buttonInsConfirmar.Size = new System.Drawing.Size(75, 23);
             this.buttonInsConfirmar.TabIndex = 5;
@@ -95,7 +98,8 @@
             // 
             // buttonInsCancelar
             // 
-            this.buttonInsCancelar.Location = new System.Drawing.Point(663, 383);
+            this.buttonInsCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonInsCancelar.Location = new System.Drawing.Point(422, 400);
             this.buttonInsCancelar.Name = "buttonInsCancelar";
             this.buttonInsCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonInsCancelar.TabIndex = 6;
@@ -105,7 +109,8 @@
             // 
             // buttonInsComElim
             // 
-            this.buttonInsComElim.Location = new System.Drawing.Point(582, 383);
+            this.buttonInsComElim.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonInsComElim.Location = new System.Drawing.Point(315, 400);
             this.buttonInsComElim.Name = "buttonInsComElim";
             this.buttonInsComElim.Size = new System.Drawing.Size(75, 23);
             this.buttonInsComElim.TabIndex = 7;
@@ -126,7 +131,10 @@
             this.Controls.Add(this.labelActividades);
             this.Controls.Add(this.listBoxInsSocCom);
             this.Controls.Add(this.listBoxInsSocAct);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormInscripcionComision";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inscripcion a comision";
             this.ResumeLayout(false);
             this.PerformLayout();

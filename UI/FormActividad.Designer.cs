@@ -48,7 +48,7 @@
             // labelActID
             // 
             this.labelActID.AutoSize = true;
-            this.labelActID.Location = new System.Drawing.Point(23, 20);
+            this.labelActID.Location = new System.Drawing.Point(18, 19);
             this.labelActID.Name = "labelActID";
             this.labelActID.Size = new System.Drawing.Size(18, 13);
             this.labelActID.TabIndex = 0;
@@ -57,7 +57,7 @@
             // labelActDescripcion
             // 
             this.labelActDescripcion.AutoSize = true;
-            this.labelActDescripcion.Location = new System.Drawing.Point(23, 79);
+            this.labelActDescripcion.Location = new System.Drawing.Point(18, 72);
             this.labelActDescripcion.Name = "labelActDescripcion";
             this.labelActDescripcion.Size = new System.Drawing.Size(63, 13);
             this.labelActDescripcion.TabIndex = 1;
@@ -66,7 +66,7 @@
             // labelActCosto
             // 
             this.labelActCosto.AutoSize = true;
-            this.labelActCosto.Location = new System.Drawing.Point(23, 139);
+            this.labelActCosto.Location = new System.Drawing.Point(18, 125);
             this.labelActCosto.Name = "labelActCosto";
             this.labelActCosto.Size = new System.Drawing.Size(34, 13);
             this.labelActCosto.TabIndex = 2;
@@ -74,34 +74,38 @@
             // 
             // textBoxActID
             // 
-            this.textBoxActID.Location = new System.Drawing.Point(26, 36);
+            this.textBoxActID.Location = new System.Drawing.Point(21, 35);
             this.textBoxActID.Name = "textBoxActID";
             this.textBoxActID.Size = new System.Drawing.Size(100, 20);
             this.textBoxActID.TabIndex = 3;
+            this.textBoxActID.TextChanged += new System.EventHandler(this.textBoxActID_TextChanged);
             this.textBoxActID.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxActID_Validating);
             this.textBoxActID.Validated += new System.EventHandler(this.textBoxActID_Validated);
             // 
             // textBoxActDesc
             // 
-            this.textBoxActDesc.Location = new System.Drawing.Point(26, 95);
+            this.textBoxActDesc.Location = new System.Drawing.Point(21, 88);
             this.textBoxActDesc.Name = "textBoxActDesc";
-            this.textBoxActDesc.Size = new System.Drawing.Size(100, 20);
+            this.textBoxActDesc.Size = new System.Drawing.Size(210, 20);
             this.textBoxActDesc.TabIndex = 4;
+            this.textBoxActDesc.TextChanged += new System.EventHandler(this.textBoxActDesc_TextChanged);
             this.textBoxActDesc.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxActDesc_Validating);
             this.textBoxActDesc.Validated += new System.EventHandler(this.textBoxActDesc_Validated);
             // 
             // textBoxActCosto
             // 
-            this.textBoxActCosto.Location = new System.Drawing.Point(26, 155);
+            this.textBoxActCosto.Location = new System.Drawing.Point(21, 141);
             this.textBoxActCosto.Name = "textBoxActCosto";
             this.textBoxActCosto.Size = new System.Drawing.Size(100, 20);
             this.textBoxActCosto.TabIndex = 5;
+            this.textBoxActCosto.TextChanged += new System.EventHandler(this.textBoxActCosto_TextChanged);
             this.textBoxActCosto.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxActCosto_Validating);
             this.textBoxActCosto.Validated += new System.EventHandler(this.textBoxActCosto_Validated);
             // 
             // buttonActCrear
             // 
-            this.buttonActCrear.Location = new System.Drawing.Point(304, 353);
+            this.buttonActCrear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonActCrear.Location = new System.Drawing.Point(315, 401);
             this.buttonActCrear.Name = "buttonActCrear";
             this.buttonActCrear.Size = new System.Drawing.Size(75, 23);
             this.buttonActCrear.TabIndex = 6;
@@ -111,7 +115,8 @@
             // 
             // buttonActCancelar
             // 
-            this.buttonActCancelar.Location = new System.Drawing.Point(416, 353);
+            this.buttonActCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonActCancelar.Location = new System.Drawing.Point(422, 400);
             this.buttonActCancelar.Name = "buttonActCancelar";
             this.buttonActCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonActCancelar.TabIndex = 7;
@@ -121,7 +126,8 @@
             // 
             // buttonActModif
             // 
-            this.buttonActModif.Location = new System.Drawing.Point(304, 353);
+            this.buttonActModif.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonActModif.Location = new System.Drawing.Point(315, 400);
             this.buttonActModif.Name = "buttonActModif";
             this.buttonActModif.Size = new System.Drawing.Size(75, 23);
             this.buttonActModif.TabIndex = 8;
@@ -131,7 +137,8 @@
             // 
             // buttonActAceptar
             // 
-            this.buttonActAceptar.Location = new System.Drawing.Point(304, 353);
+            this.buttonActAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonActAceptar.Location = new System.Drawing.Point(315, 400);
             this.buttonActAceptar.Name = "buttonActAceptar";
             this.buttonActAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonActAceptar.TabIndex = 9;
@@ -142,15 +149,16 @@
             // listBoxActComisiones
             // 
             this.listBoxActComisiones.FormattingEnabled = true;
-            this.listBoxActComisiones.Location = new System.Drawing.Point(557, 36);
+            this.listBoxActComisiones.Location = new System.Drawing.Point(495, 35);
             this.listBoxActComisiones.Name = "listBoxActComisiones";
-            this.listBoxActComisiones.Size = new System.Drawing.Size(237, 160);
+            this.listBoxActComisiones.Size = new System.Drawing.Size(300, 290);
             this.listBoxActComisiones.TabIndex = 13;
+            this.listBoxActComisiones.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxActComisiones_Format);
             // 
             // labelActCom
             // 
             this.labelActCom.AutoSize = true;
-            this.labelActCom.Location = new System.Drawing.Point(557, 19);
+            this.labelActCom.Location = new System.Drawing.Point(495, 19);
             this.labelActCom.Name = "labelActCom";
             this.labelActCom.Size = new System.Drawing.Size(60, 13);
             this.labelActCom.TabIndex = 14;

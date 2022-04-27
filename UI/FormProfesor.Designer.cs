@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.textBoxProfNombre = new System.Windows.Forms.TextBox();
             this.textBoxProfDNI = new System.Windows.Forms.TextBox();
             this.labelProfFNac = new System.Windows.Forms.Label();
@@ -42,26 +43,34 @@
             this.labelProfFIng = new System.Windows.Forms.Label();
             this.labelProfCom = new System.Windows.Forms.Label();
             this.listBoxProfCom = new System.Windows.Forms.ListBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // textBoxProfNombre
             // 
-            this.textBoxProfNombre.Location = new System.Drawing.Point(24, 84);
+            this.textBoxProfNombre.Location = new System.Drawing.Point(21, 88);
             this.textBoxProfNombre.Name = "textBoxProfNombre";
-            this.textBoxProfNombre.Size = new System.Drawing.Size(100, 20);
+            this.textBoxProfNombre.Size = new System.Drawing.Size(210, 20);
             this.textBoxProfNombre.TabIndex = 10;
+            this.textBoxProfNombre.TextChanged += new System.EventHandler(this.textBoxProfNombre_TextChanged);
+            this.textBoxProfNombre.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxProfNombre_Validating);
+            this.textBoxProfNombre.Validated += new System.EventHandler(this.textBoxProfNombre_Validated);
             // 
             // textBoxProfDNI
             // 
-            this.textBoxProfDNI.Location = new System.Drawing.Point(24, 35);
+            this.textBoxProfDNI.Location = new System.Drawing.Point(21, 35);
             this.textBoxProfDNI.Name = "textBoxProfDNI";
             this.textBoxProfDNI.Size = new System.Drawing.Size(100, 20);
             this.textBoxProfDNI.TabIndex = 9;
+            this.textBoxProfDNI.TextChanged += new System.EventHandler(this.textBoxProfDNI_TextChanged);
+            this.textBoxProfDNI.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxProfDNI_Validating);
+            this.textBoxProfDNI.Validated += new System.EventHandler(this.textBoxProfDNI_Validated);
             // 
             // labelProfFNac
             // 
             this.labelProfFNac.AutoSize = true;
-            this.labelProfFNac.Location = new System.Drawing.Point(21, 117);
+            this.labelProfFNac.Location = new System.Drawing.Point(18, 125);
             this.labelProfFNac.Name = "labelProfFNac";
             this.labelProfFNac.Size = new System.Drawing.Size(93, 13);
             this.labelProfFNac.TabIndex = 8;
@@ -70,7 +79,7 @@
             // labelProfNombre
             // 
             this.labelProfNombre.AutoSize = true;
-            this.labelProfNombre.Location = new System.Drawing.Point(21, 68);
+            this.labelProfNombre.Location = new System.Drawing.Point(18, 72);
             this.labelProfNombre.Name = "labelProfNombre";
             this.labelProfNombre.Size = new System.Drawing.Size(44, 13);
             this.labelProfNombre.TabIndex = 7;
@@ -79,7 +88,7 @@
             // labelProfDNI
             // 
             this.labelProfDNI.AutoSize = true;
-            this.labelProfDNI.Location = new System.Drawing.Point(21, 19);
+            this.labelProfDNI.Location = new System.Drawing.Point(18, 19);
             this.labelProfDNI.Name = "labelProfDNI";
             this.labelProfDNI.Size = new System.Drawing.Size(26, 13);
             this.labelProfDNI.TabIndex = 6;
@@ -87,7 +96,8 @@
             // 
             // buttonProfAceptar
             // 
-            this.buttonProfAceptar.Location = new System.Drawing.Point(292, 355);
+            this.buttonProfAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonProfAceptar.Location = new System.Drawing.Point(315, 400);
             this.buttonProfAceptar.Name = "buttonProfAceptar";
             this.buttonProfAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonProfAceptar.TabIndex = 15;
@@ -97,7 +107,8 @@
             // 
             // buttonProfModif
             // 
-            this.buttonProfModif.Location = new System.Drawing.Point(292, 355);
+            this.buttonProfModif.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonProfModif.Location = new System.Drawing.Point(315, 400);
             this.buttonProfModif.Name = "buttonProfModif";
             this.buttonProfModif.Size = new System.Drawing.Size(75, 23);
             this.buttonProfModif.TabIndex = 14;
@@ -107,7 +118,8 @@
             // 
             // buttonProfCancelar
             // 
-            this.buttonProfCancelar.Location = new System.Drawing.Point(404, 355);
+            this.buttonProfCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonProfCancelar.Location = new System.Drawing.Point(422, 400);
             this.buttonProfCancelar.Name = "buttonProfCancelar";
             this.buttonProfCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonProfCancelar.TabIndex = 13;
@@ -117,7 +129,8 @@
             // 
             // buttonProfCrear
             // 
-            this.buttonProfCrear.Location = new System.Drawing.Point(292, 355);
+            this.buttonProfCrear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonProfCrear.Location = new System.Drawing.Point(315, 400);
             this.buttonProfCrear.Name = "buttonProfCrear";
             this.buttonProfCrear.Size = new System.Drawing.Size(75, 23);
             this.buttonProfCrear.TabIndex = 12;
@@ -127,14 +140,14 @@
             // 
             // dateTimePickerProfFNac
             // 
-            this.dateTimePickerProfFNac.Location = new System.Drawing.Point(24, 133);
+            this.dateTimePickerProfFNac.Location = new System.Drawing.Point(21, 141);
             this.dateTimePickerProfFNac.Name = "dateTimePickerProfFNac";
             this.dateTimePickerProfFNac.Size = new System.Drawing.Size(210, 20);
             this.dateTimePickerProfFNac.TabIndex = 16;
             // 
             // dateTimePickerProfFIng
             // 
-            this.dateTimePickerProfFIng.Location = new System.Drawing.Point(24, 182);
+            this.dateTimePickerProfFIng.Location = new System.Drawing.Point(21, 194);
             this.dateTimePickerProfFIng.Name = "dateTimePickerProfFIng";
             this.dateTimePickerProfFIng.Size = new System.Drawing.Size(210, 20);
             this.dateTimePickerProfFIng.TabIndex = 18;
@@ -142,7 +155,7 @@
             // labelProfFIng
             // 
             this.labelProfFIng.AutoSize = true;
-            this.labelProfFIng.Location = new System.Drawing.Point(21, 166);
+            this.labelProfFIng.Location = new System.Drawing.Point(18, 178);
             this.labelProfFIng.Name = "labelProfFIng";
             this.labelProfFIng.Size = new System.Drawing.Size(75, 13);
             this.labelProfFIng.TabIndex = 17;
@@ -151,7 +164,7 @@
             // labelProfCom
             // 
             this.labelProfCom.AutoSize = true;
-            this.labelProfCom.Location = new System.Drawing.Point(594, 19);
+            this.labelProfCom.Location = new System.Drawing.Point(492, 19);
             this.labelProfCom.Name = "labelProfCom";
             this.labelProfCom.Size = new System.Drawing.Size(60, 13);
             this.labelProfCom.TabIndex = 19;
@@ -160,10 +173,15 @@
             // listBoxProfCom
             // 
             this.listBoxProfCom.FormattingEnabled = true;
-            this.listBoxProfCom.Location = new System.Drawing.Point(597, 35);
+            this.listBoxProfCom.Location = new System.Drawing.Point(495, 35);
             this.listBoxProfCom.Name = "listBoxProfCom";
-            this.listBoxProfCom.Size = new System.Drawing.Size(199, 251);
+            this.listBoxProfCom.Size = new System.Drawing.Size(300, 290);
             this.listBoxProfCom.TabIndex = 20;
+            this.listBoxProfCom.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxProfCom_Format);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // FormProfesor
             // 
@@ -184,9 +202,12 @@
             this.Controls.Add(this.labelProfFNac);
             this.Controls.Add(this.labelProfNombre);
             this.Controls.Add(this.labelProfDNI);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "FormProfesor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormProfesor";
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,5 +228,6 @@
         private System.Windows.Forms.Label labelProfFIng;
         private System.Windows.Forms.Label labelProfCom;
         private System.Windows.Forms.ListBox listBoxProfCom;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

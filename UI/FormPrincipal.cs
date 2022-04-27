@@ -21,12 +21,13 @@ namespace UI
             club = Club.Recuperar();
             listBoxAct.DataSource = club.Actividades;
             listBoxAct.ClearSelected();
+            listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
+            listBoxCom.ClearSelected();
             listBoxProf.DataSource = club.Profesores;
             listBoxProf.ClearSelected();
             listBoxSocios.DataSource = club.Socios;
             listBoxSocios.ClearSelected();
-            listBoxCom.DataSource = club.Comisiones;
-            listBoxCom.ClearSelected();
+            dataGridViewPagos.DataSource = club.Pagos.Select(p => new { ID = p.Id, Fecha = p.Fecha.ToShortDateString(), Socio = p.Soc.Nombre, Monto = "$" + p.Monto }).ToList();
         }
 
         private void buttonCrearActividad_Click(object sender, EventArgs e)
@@ -64,7 +65,7 @@ namespace UI
                 FormActividad fa = new FormActividad(a, club.Profesores);
                 fa.prepararFormModificar();
                 fa.ShowDialog();
-                MessageBox.Show("Actividad modificada satisfactoriamente.");
+
                 listBoxAct.DataSource = null;
                 listBoxAct.DataSource = club.Actividades;
                 listBoxAct.ClearSelected();
@@ -84,11 +85,12 @@ namespace UI
                 {
                     a.eliminar();
                     club.removerActividad(a);
-                    MessageBox.Show("Actividad eliminada satisfactoriamente.");
+
                     listBoxAct.DataSource = null;
                     listBoxAct.DataSource = club.Actividades;
                     listBoxCom.DataSource = null;
-                    listBoxCom.DataSource = club.Comisiones;
+                    listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
+                    MessageBox.Show("Actividad eliminada satisfactoriamente.");
                 }
 
                 listBoxAct.ClearSelected();
@@ -157,7 +159,7 @@ namespace UI
                 FormProfesor fp = new FormProfesor(p);
                 fp.prepararFormModificar();
                 fp.ShowDialog();
-                MessageBox.Show("Profesor modificado satisfactoriamente.");
+
                 listBoxProf.DataSource = null;
                 listBoxProf.DataSource = club.Profesores;
                 listBoxProf.ClearSelected();
@@ -177,9 +179,10 @@ namespace UI
                     if (dialogResult == DialogResult.Yes)
                     {
                         club.removerProfesor(p);
-                        MessageBox.Show("Profesor eliminado satisfactoriamente.");
+
                         listBoxProf.DataSource = null;
                         listBoxProf.DataSource = club.Profesores;
+                        MessageBox.Show("Profesor eliminado satisfactoriamente.");
                     }
                 }
                 else
@@ -188,11 +191,21 @@ namespace UI
                     DialogResult dialogResult = MessageBox.Show("Si elimina el profesor tambien estará eliminando la comision y todos sus datos ligados a ella. Esta seguro que desea eliminar el profesor seleccionado?", "Eliminar Profesor", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        foreach (var a in club.Comisiones.ToArray())
+                        {
+                            if (a.Profesor == p)
+                            {
+                                club.removerComision(a);
+                            }
+                        }
                         p.limpiarComisiones();
                         club.removerProfesor(p);
-                        MessageBox.Show("Profesor eliminado satisfactoriamente.");
+
                         listBoxProf.DataSource = null;
                         listBoxProf.DataSource = club.Profesores;
+                        listBoxCom.DataSource = null;
+                        listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
+                        MessageBox.Show("Profesor eliminado satisfactoriamente.");
                     }
                 }
 
@@ -279,10 +292,11 @@ namespace UI
                     fs.ShowDialog();
                 }
 
-                MessageBox.Show("Socio modificado satisfactoriamente.");
                 listBoxSocios.DataSource = null;
                 listBoxSocios.DataSource = club.Socios;
                 listBoxSocios.ClearSelected();
+                dataGridViewPagos.DataSource = null;
+                dataGridViewPagos.DataSource = club.Pagos.Select(o => new { ID = o.Id, Monto = "$" + o.Monto, Socio = o.Soc.Nombre, Fecha = o.Fecha.ToShortDateString() }).ToList();
             }
         }
 
@@ -349,7 +363,7 @@ namespace UI
                     club.agregarComision(com);
                     MessageBox.Show("Comisión creada satisfactoriamente.");
                     listBoxCom.DataSource = null;
-                    listBoxCom.DataSource = club.Comisiones;
+                    listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
                     listBoxCom.ClearSelected();
                 }
             }
@@ -365,9 +379,9 @@ namespace UI
                 FormComision fc = new FormComision(c, club.Profesores);
                 fc.prepararFormModificar();
                 fc.ShowDialog();
-                MessageBox.Show("Comisión modificada satisfactoriamente.");
+
                 listBoxCom.DataSource = null;
-                listBoxCom.DataSource = club.Comisiones;
+                listBoxCom.DataSource = club.Comisiones.OrderBy(com => com.Actividad.Descripcion).ToList();
                 listBoxCom.ClearSelected();
             }
         }
@@ -387,7 +401,7 @@ namespace UI
                     club.removerComision(c);
                     MessageBox.Show("Comisión eliminada satisfactoriamente.");
                     listBoxCom.DataSource = null;
-                    listBoxCom.DataSource = club.Comisiones;
+                    listBoxCom.DataSource = club.Comisiones.OrderBy(com => com.Actividad.Descripcion).ToList();
                 }
 
                 listBoxCom.ClearSelected();
@@ -460,14 +474,13 @@ namespace UI
             }
         }
 
-        // REVISAR, NO FUNKA DE UNA
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             switch (tabControl.SelectedIndex)
             {
-                case 2:
+                case 3:
                     {
-                        if (club.Comisiones.Count < 1)
+                        if (listBoxSocios.SelectedItem == null)
                         {
                             buttonInsSocAct.Enabled = false;
                             buttonElimSocAct.Enabled = false;
@@ -507,6 +520,15 @@ namespace UI
                     buttonRegPagoSoc.Enabled = true;
                     tt.Active = false;
                 }
+
+                if (s.Comisiones.Count() != club.Actividades.Where(a => a.Comisiones.Count() != 0).Count())
+                {
+                    buttonInsSocAct.Enabled = true;
+                }
+                else
+                {
+                    buttonInsSocAct.Enabled = false;
+                }
             }
         }
 
@@ -545,7 +567,51 @@ namespace UI
                 }
 
                 listBoxSocios.ClearSelected();
+                dataGridViewPagos.DataSource = null;
+                dataGridViewPagos.DataSource = club.Pagos.Select(o => new { ID = o.Id, Monto = "$" + o.Monto, Socio = o.Soc.Nombre, Fecha = o.Fecha.ToShortDateString() }).ToList();
             }
+        }
+
+        private void listBoxAct_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string id = ((Actividad)e.ListItem).Id.ToString();
+            string desc = ((Actividad)e.ListItem).Descripcion;
+            string costo = ((Actividad)e.ListItem).Costo.ToString();
+
+            e.Value = "ID: " + id + " | Descripción: " + desc + " | Costo: $" + costo;
+        }
+
+        private void listBoxCom_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string act = ((Comision)e.ListItem).Actividad.Descripcion;
+            string id = ((Comision)e.ListItem).Id.ToString();
+            string dia = ((Comision)e.ListItem).Dia;
+            string horario = ((Comision)e.ListItem).Horario.ToString();
+
+            e.Value = act + " | ID: " + id + " | Día: " + dia + " | Horario: " + horario + "hs";
+        }
+
+        private void listBoxProf_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string dni = ((Profesor)e.ListItem).Dni.ToString();
+            string nombre = ((Profesor)e.ListItem).Nombre;
+
+            e.Value = "DNI: " + dni + " | Nombre: " + nombre;
+        }
+
+        private void listBoxSocios_Format(object sender, ListControlConvertEventArgs e)
+        {
+            Socio s = (Socio)e.ListItem;
+            string tipo = "Actividad";
+            string dni = s.Dni.ToString();
+            string nombre = s.Nombre;
+
+            if (s.isClub())
+            {
+                tipo = "Club";
+            }
+
+            e.Value = "DNI: " + dni + " | Nombre: " + nombre + " | Socio " + tipo;
         }
     }
 }

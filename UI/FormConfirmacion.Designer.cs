@@ -36,6 +36,7 @@
             // 
             // buttonConfirmacion1
             // 
+            this.buttonConfirmacion1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonConfirmacion1.Location = new System.Drawing.Point(20, 73);
             this.buttonConfirmacion1.Name = "buttonConfirmacion1";
             this.buttonConfirmacion1.Size = new System.Drawing.Size(84, 25);
@@ -46,6 +47,7 @@
             // 
             // buttonConfirmacion2
             // 
+            this.buttonConfirmacion2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonConfirmacion2.Location = new System.Drawing.Point(110, 73);
             this.buttonConfirmacion2.Name = "buttonConfirmacion2";
             this.buttonConfirmacion2.Size = new System.Drawing.Size(84, 25);
@@ -56,6 +58,7 @@
             // 
             // buttonConfirmacion3
             // 
+            this.buttonConfirmacion3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttonConfirmacion3.Location = new System.Drawing.Point(200, 73);
             this.buttonConfirmacion3.Name = "buttonConfirmacion3";
             this.buttonConfirmacion3.Size = new System.Drawing.Size(84, 25);
@@ -83,7 +86,7 @@
             this.Controls.Add(this.buttonConfirmacion3);
             this.Controls.Add(this.buttonConfirmacion2);
             this.Controls.Add(this.buttonConfirmacion1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormConfirmacion";

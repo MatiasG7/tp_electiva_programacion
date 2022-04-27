@@ -47,6 +47,8 @@ namespace UI
                 com.agregarSocio(soc);
                 soc.agregarComision(com);
 
+                this.Hide();
+                MessageBox.Show("Socio inscripto correctamente.");
                 this.Close();
             }
         }
@@ -54,7 +56,7 @@ namespace UI
         private void listBoxInsSocAct_SelectedIndexChanged(object sender, EventArgs e)
         {
             Actividad act = (Actividad)listBoxInsSocAct.SelectedItem;
-            listBoxInsSocCom.DataSource = act.Comisiones;
+            listBoxInsSocCom.DataSource = act.Comisiones.Except(soc.Comisiones.Select(x => x)).Where(a => a.verificarCantParticipantes()).ToList();
         }
 
         public void prepararInscripcionSocio()
@@ -92,8 +94,30 @@ namespace UI
 
                 comSoc.removerSocio(this.soc);
                 this.soc.removerComision(comSoc);
+
+                this.Hide();
+                MessageBox.Show("Socio eliminado de actividad correctamente.");
+                this.Close();
             }
-            this.Close();
+        }
+
+        private void listBoxInsSocAct_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string id = ((Actividad)e.ListItem).Id.ToString();
+            string desc = ((Actividad)e.ListItem).Descripcion;
+            string costo = ((Actividad)e.ListItem).Costo.ToString();
+
+            e.Value = "ID: " + id + " | Descripción: " + desc + " | Costo: $" + costo;
+        }
+
+        private void listBoxInsSocCom_Format(object sender, ListControlConvertEventArgs e)
+        {
+            string act = ((Comision)e.ListItem).Actividad.Descripcion;
+            string id = ((Comision)e.ListItem).Id.ToString();
+            string dia = ((Comision)e.ListItem).Dia;
+            string horario = ((Comision)e.ListItem).Horario.ToString();
+
+            e.Value = act + " | ID: " + id + " | Día: " + dia + " | Horario: " + horario + "hs";
         }
     }
 }

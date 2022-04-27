@@ -26,5 +26,10 @@ namespace CapaNegocio
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public Socio Soc { get => soc; set => soc = value; }
         public double Monto { get => monto; set => monto = value; }
+
+        public override string ToString()
+        {
+            return fecha + " - $" + monto + " - " + soc.Nombre;
+        }
     }
 }

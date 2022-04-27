@@ -25,5 +25,10 @@ namespace CapaNegocio
 
             return montoTotal;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " - Actividad";
+        }
     }
 }
