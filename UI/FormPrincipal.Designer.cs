@@ -182,6 +182,7 @@
             this.listBoxAct.Name = "listBoxAct";
             this.listBoxAct.Size = new System.Drawing.Size(308, 420);
             this.listBoxAct.TabIndex = 3;
+            this.listBoxAct.SelectedIndexChanged += new System.EventHandler(this.listBoxAct_SelectedIndexChanged);
             this.listBoxAct.Format += new System.Windows.Forms.ListControlConvertEventHandler(this.listBoxAct_Format);
             // 
             // tabPage4
@@ -438,7 +439,6 @@
             this.Name = "FormPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Club";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.FormPrincipal_Load);
             this.tabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

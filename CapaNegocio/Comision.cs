@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CapaDatos;
+
 namespace CapaNegocio
 {
     [Serializable]
@@ -17,6 +19,9 @@ namespace CapaNegocio
         private Profesor profesor;
         private int cantidadMaximaParticipantes;
 
+        ComisionDatos comDb;
+        ProfesorComisionDatos profComDb;
+
         public int Id { get => id; set => id = value; }
         public Actividad Actividad { get => actividad; set => actividad = value; }
         public string Dia { get => dia; set => dia = value; }
@@ -27,6 +32,8 @@ namespace CapaNegocio
 
         public Comision(int id, Actividad actividad, string dia, int horario, Profesor profesor, int cantidadMaximaParticipantes)
         {
+            comDb = new ComisionDatos();
+            profComDb = new ProfesorComisionDatos();
             this.id = id;
             this.actividad = actividad;
             this.dia = dia;
@@ -60,6 +67,12 @@ namespace CapaNegocio
         {
             this.actividad.removerComision(this);
             this.removerDeProfesorYSocios();
+            // Remover la relacion entre comision y socio. 
+        }
+
+        public void removerComisionesConDniProfesor()
+        {
+            comDb.eliminarPorDniProfesor(this.profesor.Dni); // Remueve todos las comisiones que contengan el dni de este profesor
         }
 
         public void removerDeProfesorYSocios()
@@ -75,6 +88,11 @@ namespace CapaNegocio
         public override string ToString()
         {
             return this.actividad.Descripcion + " | " + "ID- " + id + " | " + dia + " | " + horario + ":00";
+        }
+
+        public void modificarCom(Comision com)
+        {
+            comDb.modificar(com.Id, com.Actividad.Id, com.Dia, com.Horario, com.Profesor.Dni, com.CantidadMaximaParticipantes);
         }
     }
 }

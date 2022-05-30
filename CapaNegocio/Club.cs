@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 using CapaDatos;
 
@@ -17,6 +18,10 @@ namespace CapaNegocio
         List<Comision> comisiones;
         List<Pago> pagos;
 
+        ActividadDatos actDb;
+        ComisionDatos comDb;
+        ProfesorDatos profDb;
+
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
         public List<Profesor> Profesores { get => profesores; set => profesores = value; }
         public List<Socio> Socios { get => socios; set => socios = value; }
@@ -25,11 +30,57 @@ namespace CapaNegocio
 
         public Club()
         {
-            actividades = new List<Actividad>();
+            actDb = new ActividadDatos();
+            comDb = new ComisionDatos();
+            profDb = new ProfesorDatos();
+
+            // Agrego los objectos de la base de datos a las lists de club
+            actividades = new List<Actividad>(
+                    (from dRow in actDb.mostrarActividades().Tables[0].AsEnumerable()
+                     select (getActividadData(dRow)))
+                );
+            profesores = new List<Profesor>(
+                    (from dRow in profDb.mostrarProfesores().Tables[0].AsEnumerable()
+                     select (getProfesorData(dRow)))
+                );
+
+            comisiones = new List<Comision>(
+                    (from dRow in comDb.mostrarComsiones().Tables[0].AsEnumerable()
+                     select (getComisionData(dRow)))
+                );
+
+            vincularComisionesProfesor();
+
             socios = new List<Socio>();
-            profesores = new List<Profesor>();
-            comisiones = new List<Comision>();
             pagos = new List<Pago>();
+
+        }
+
+        private Actividad getActividadData(DataRow dr) // Obtiene de la table los datos y crea un objecto
+        {
+            Actividad oAct = new Actividad((int)dr["ID"], (string)dr["Descripcion"], (double)dr["Costo"]);
+            return oAct;
+        }
+
+        private Comision getComisionData(DataRow dr)
+        {
+            Comision oCom = new Comision((int)dr["ID"], actividades.Find(x => x.Id == ((int)dr["idActividad"])), (string)dr["Dia"], (int)dr["Horario"],
+                                            profesores.Find(x => x.Dni == ((int)dr["dniProfesor"])), (int)dr["CantMaxParticipantes"]);
+            return oCom;
+        }
+
+        private Profesor getProfesorData(DataRow dr)
+        {
+            Profesor oProf = new Profesor((DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
+            return oProf;
+        }
+
+        private void vincularComisionesProfesor()
+        {
+            foreach (var c in this.comisiones)
+            {
+                c.Profesor.agregarComision(c);
+            }
         }
 
         // verificarActividad devuelve true en caso de que la actividad no se encuentre en el Club.
@@ -55,6 +106,8 @@ namespace CapaNegocio
 
         public void agregarActividad(Actividad newAct)
         {
+            int idReturned = actDb.agregar(newAct.Descripcion, newAct.Costo);
+            newAct.Id = idReturned;
             actividades.Add(newAct);
         }
 
@@ -65,11 +118,16 @@ namespace CapaNegocio
 
         public void agregarComision(Comision newCom)
         {
+            int idReturned = comDb.agregar(newCom.Actividad.Id, newCom.Dia, newCom.Horario, newCom.Profesor.Dni, newCom.CantidadMaximaParticipantes);
+            newCom.Id = idReturned;
+
+
             comisiones.Add(newCom);
         }
 
         public void agregarProfesor(Profesor newProf)
         {
+            profDb.agregar(newProf.Dni, newProf.Nombre, newProf.FNac, newProf.FIng);
             profesores.Add(newProf);
         }
 
@@ -82,11 +140,16 @@ namespace CapaNegocio
         {
             foreach (var c in act.Comisiones)
             {
+                // Eliminar comisiones de base de datos con este ID
+                comDb.eliminar(c.Id);
                 comisiones.Remove(c);
             }
 
             act.limpiarComisiones();
             actividades.Remove(act);
+
+            // Borrar en base de datos
+            actDb.eliminar(act.Id);
         }
 
         public void removerSocio(Socio soc)
@@ -96,11 +159,14 @@ namespace CapaNegocio
 
         public void removerProfesor(Profesor prof)
         {
+            prof.removerTodoDb();
+
             profesores.Remove(prof);
         }
 
         public void removerComision(Comision com)
         {
+            comDb.eliminar(com.Id);
             comisiones.Remove(com);
         }
 

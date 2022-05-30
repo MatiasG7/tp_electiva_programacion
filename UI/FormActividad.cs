@@ -78,6 +78,8 @@ namespace UI
                 act.Descripcion = this.textBoxActDesc.Text;
                 act.Costo = double.Parse(this.textBoxActCosto.Text);
 
+                act.modificarAct(act);//Modificar en DB
+
                 this.Hide();
                 MessageBox.Show("Actividad modificada satisfactoriamente.");
                 this.Close();
@@ -158,9 +160,9 @@ namespace UI
 
         private bool validID(string id, out string errorMessage)
         {
-            if (id.Length < 3)
+            if (id.Length < 1)
             {
-                errorMessage = "El ID debe tener por lo menos 3 digitos.";
+                errorMessage = "El ID debe tener por lo menos 1 digitos.";
                 return false;
             }
             else if (id.Length > 4)

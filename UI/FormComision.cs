@@ -70,6 +70,7 @@ namespace UI
             com = new Comision(idCom, act, dia, horario, prof, maxPar);
 
             act.agregarComision(com);
+
             prof.agregarComision(com);
 
             this.Close();
@@ -85,6 +86,7 @@ namespace UI
             com.CantidadMaximaParticipantes = int.Parse(this.textBoxComMaxPar.Text);
 
             com.Profesor.agregarComision(com);
+            com.modificarCom(com);
 
             this.Hide();
             MessageBox.Show("Comisión modificada satisfactoriamente.");

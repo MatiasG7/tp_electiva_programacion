@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using System.Windows.Forms;
 
 using CapaNegocio;
@@ -111,18 +112,17 @@ namespace UI
             }
         }
 
-        private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Desea realizar un guardado ?", "Guardar", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (club.guardar())
-                    MessageBox.Show("GUARDADO OK");
-                else
-                    MessageBox.Show("ERROR AL GUARDAR");
-            }
-
-        }
+        //private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    DialogResult dialogResult = MessageBox.Show("Desea realizar un guardado ?", "Guardar", MessageBoxButtons.YesNo);
+        //    if (dialogResult == DialogResult.Yes)
+        //    {
+        //        if (club.guardar())
+        //            MessageBox.Show("GUARDADO OK");
+        //        else
+        //            MessageBox.Show("ERROR AL GUARDAR");
+        //    }
+        //}
 
         private void buttonCrearProf_Click(object sender, EventArgs e)
         {
@@ -191,15 +191,17 @@ namespace UI
                     DialogResult dialogResult = MessageBox.Show("Si elimina el profesor tambien estará eliminando la comision y todos sus datos ligados a ella. Esta seguro que desea eliminar el profesor seleccionado?", "Eliminar Profesor", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        foreach (var a in club.Comisiones.ToArray())
+
+                        foreach (var c in club.Comisiones.ToArray())
                         {
-                            if (a.Profesor == p)
+                            if (c.Profesor == p)
                             {
-                                club.removerComision(a);
+                                club.removerComision(c);
                             }
                         }
-                        p.limpiarComisiones();
+
                         club.removerProfesor(p);
+                        p.limpiarComisiones();
 
                         listBoxProf.DataSource = null;
                         listBoxProf.DataSource = club.Profesores;
@@ -361,6 +363,10 @@ namespace UI
                 else
                 {
                     club.agregarComision(com);
+                    com.Actividad.agregarComisionDb(com); // Revisar esto, hay que arreglarlo dentro de actividad para que se ejecute al agregar la comision.
+                    // No lo pude hacer por que hay que eliminar el acceso de ID por parte del usuario que ahora lo maneja la base de datos
+                    // POR HACER
+                    com.Profesor.agregarComisionDb(com); // Creacion de la relacion entre comision y profesor
                     MessageBox.Show("Comisión creada satisfactoriamente.");
                     listBoxCom.DataSource = null;
                     listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
@@ -612,6 +618,11 @@ namespace UI
             }
 
             e.Value = "DNI: " + dni + " | Nombre: " + nombre + " | Socio " + tipo;
+        }
+
+        private void listBoxAct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
