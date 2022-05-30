@@ -97,7 +97,7 @@
             // buttonProfAceptar
             // 
             this.buttonProfAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonProfAceptar.Location = new System.Drawing.Point(315, 371);
+            this.buttonProfAceptar.Location = new System.Drawing.Point(315, 400);
             this.buttonProfAceptar.Name = "buttonProfAceptar";
             this.buttonProfAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonProfAceptar.TabIndex = 15;

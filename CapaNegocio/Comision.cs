@@ -28,7 +28,7 @@ namespace CapaNegocio
         public int Horario { get => horario; set => horario = value; }
         public Profesor Profesor { get => profesor; set => profesor = value; }
         public int CantidadMaximaParticipantes { get => cantidadMaximaParticipantes; set => cantidadMaximaParticipantes = value; }
-        public List<Socio> Socios { get => socios; }
+        public List<Socio> Socios { get => socios; set => socios = value; }
 
         public Comision(int id, Actividad actividad, string dia, int horario, Profesor profesor, int cantidadMaximaParticipantes)
         {

@@ -18,8 +18,10 @@ namespace UI
         private Socio soc;
         private SocioActividad socAct;
         private SocioClub socClub;
+        private double? cuotaSocial = null;
 
         public Socio Soc { get => soc; set => soc = value; }
+        public double CuotaSocial { get => cuotaSocial.Value; set => cuotaSocial = value; }
 
         public FormSocio(int i)
         {
@@ -101,6 +103,7 @@ namespace UI
             {
                 double cuotaSocial = double.Parse(this.textBoxSocCuotaSocial.Text);
                 this.soc = new SocioClub(cuotaSocial, email, direccion, fing, dni, nombre, fnac);
+                this.cuotaSocial = cuotaSocial;
             }
             else if (option == 2)
             {

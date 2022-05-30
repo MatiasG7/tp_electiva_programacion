@@ -75,7 +75,7 @@
             // buttonSocAceptar
             // 
             this.buttonSocAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSocAceptar.Location = new System.Drawing.Point(315, 400);
+            this.buttonSocAceptar.Location = new System.Drawing.Point(315, 371);
             this.buttonSocAceptar.Name = "buttonSocAceptar";
             this.buttonSocAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonSocAceptar.TabIndex = 56;
@@ -86,7 +86,7 @@
             // buttonSocModif
             // 
             this.buttonSocModif.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonSocModif.Location = new System.Drawing.Point(315, 400);
+            this.buttonSocModif.Location = new System.Drawing.Point(315, 337);
             this.buttonSocModif.Name = "buttonSocModif";
             this.buttonSocModif.Size = new System.Drawing.Size(75, 23);
             this.buttonSocModif.TabIndex = 55;

@@ -21,6 +21,8 @@ namespace CapaNegocio
         ActividadDatos actDb;
         ComisionDatos comDb;
         ProfesorDatos profDb;
+        SocioDatos socioDb;
+        PagoDatos pagoDb;
 
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
         public List<Profesor> Profesores { get => profesores; set => profesores = value; }
@@ -33,8 +35,16 @@ namespace CapaNegocio
             actDb = new ActividadDatos();
             comDb = new ComisionDatos();
             profDb = new ProfesorDatos();
+            socioDb = new SocioDatos();
+            pagoDb = new PagoDatos();
 
-            // Agrego los objectos de la base de datos a las lists de club
+            setListsData();
+            vincularComisiones();
+        }
+
+        private void setListsData()
+        {
+            // Agrego los objetos de la base de datos a las lists del club.
             actividades = new List<Actividad>(
                     (from dRow in actDb.mostrarActividades().Tables[0].AsEnumerable()
                      select (getActividadData(dRow)))
@@ -43,44 +53,77 @@ namespace CapaNegocio
                     (from dRow in profDb.mostrarProfesores().Tables[0].AsEnumerable()
                      select (getProfesorData(dRow)))
                 );
-
+            socios = new List<Socio>(
+                    (from dRow in socioDb.get().Tables[0].AsEnumerable()
+                     select (getSocioData(dRow)))
+                );
             comisiones = new List<Comision>(
                     (from dRow in comDb.mostrarComsiones().Tables[0].AsEnumerable()
                      select (getComisionData(dRow)))
                 );
+            pagos = new List<Pago>(
+                    (from dRow in pagoDb.get().Tables[0].AsEnumerable()
+                     select (getPagoData(dRow)))
+                );
+        }
 
-            vincularComisionesProfesor();
+        private void vincularComisiones()
+        {
+            foreach (var c in this.comisiones)
+            {
+                c.Profesor.agregarComision(c);      // Vinculamos la comision al profesor.
+                c.Actividad.agregarComision(c);     // Vinculamos la comision a la actividad.
 
-            socios = new List<Socio>();
-            pagos = new List<Pago>();
-
+                //foreach (var s in c.Socios)
+                //{
+                //    s.agregarComision(c);
+                //}
+            }
         }
 
         private Actividad getActividadData(DataRow dr) // Obtiene de la table los datos y crea un objecto
         {
-            Actividad oAct = new Actividad((int)dr["ID"], (string)dr["Descripcion"], (double)dr["Costo"]);
-            return oAct;
-        }
-
-        private Comision getComisionData(DataRow dr)
-        {
-            Comision oCom = new Comision((int)dr["ID"], actividades.Find(x => x.Id == ((int)dr["idActividad"])), (string)dr["Dia"], (int)dr["Horario"],
-                                            profesores.Find(x => x.Dni == ((int)dr["dniProfesor"])), (int)dr["CantMaxParticipantes"]);
-            return oCom;
+            Actividad act = new Actividad((int)dr["ID"], (string)dr["Descripcion"], (double)dr["Costo"]);
+            return act;
         }
 
         private Profesor getProfesorData(DataRow dr)
         {
-            Profesor oProf = new Profesor((DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
-            return oProf;
+            Profesor prof = new Profesor((DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
+            return prof;
         }
 
-        private void vincularComisionesProfesor()
+        private Socio getSocioData(DataRow dr)
         {
-            foreach (var c in this.comisiones)
+            Socio soc;
+            double? cuotaSocial = (double)dr["CuotaSocial"];
+
+            if (cuotaSocial == null)
             {
-                c.Profesor.agregarComision(c);
+                soc = new SocioActividad((string)dr["Email"], (string)dr["Direccion"], (DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
             }
+            else
+            {
+                soc = new SocioClub(cuotaSocial.Value, (string)dr["Email"], (string)dr["Direccion"], (DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
+            }
+
+            return soc;
+        }
+
+        private Comision getComisionData(DataRow dr)
+        {
+            Comision com = new Comision((int)dr["ID"], actividades.Find(a => a.Id == ((int)dr["idActividad"])), (string)dr["Dia"], (int)dr["Horario"],
+                                            profesores.Find(p => p.Dni == ((int)dr["dniProfesor"])), (int)dr["CantMaxParticipantes"]);
+            //com.Socios = socios.Where(s => s.Comisiones.Any(c => c.Id == com.Id)).ToList();
+
+            return com;
+        }
+
+        private Pago getPagoData(DataRow dr)
+        {
+            Pago pago = new Pago((int)dr["ID"], (DateTime)dr["Fecha"], socios.Find(s => s.Dni == ((int)dr["dniSocio"])), (double)dr["Monto"]);
+
+            return pago;
         }
 
         // verificarActividad devuelve true en caso de que la actividad no se encuentre en el Club.
@@ -111,8 +154,10 @@ namespace CapaNegocio
             actividades.Add(newAct);
         }
 
-        public void agregarSocio(Socio newSoc)
+        public void agregarSocio(Socio newSoc, double? cuotaSocial)
         {
+            socioDb.agregar(newSoc.Dni, newSoc.Nombre, newSoc.FNac, newSoc.Email, newSoc.Direccion, newSoc.FIng, cuotaSocial.Value);
+
             socios.Add(newSoc);
         }
 
@@ -120,7 +165,6 @@ namespace CapaNegocio
         {
             int idReturned = comDb.agregar(newCom.Actividad.Id, newCom.Dia, newCom.Horario, newCom.Profesor.Dni, newCom.CantidadMaximaParticipantes);
             newCom.Id = idReturned;
-
 
             comisiones.Add(newCom);
         }

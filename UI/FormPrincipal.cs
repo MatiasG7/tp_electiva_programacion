@@ -263,7 +263,7 @@ namespace UI
                     }
                     else
                     {
-                        club.agregarSocio(s);
+                        club.agregarSocio(s, fs.CuotaSocial);
                         MessageBox.Show("Socio creado satisfactoriamente.");
                         listBoxSocios.DataSource = null;
                         listBoxSocios.DataSource = club.Socios;
