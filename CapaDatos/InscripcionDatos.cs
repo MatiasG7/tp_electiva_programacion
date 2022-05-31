@@ -32,6 +32,16 @@ namespace CapaDatos
         }
 
         // REMOVER con unicamente Dni
+        public int removerRelacionPorDni(int dni)
+        {
+            SqlCommand SqlComando = new SqlCommand("DELETE FROM [dbo].[Inscripcion] WHERE dniSocio=(@dniSocio)");
+
+            SqlComando.Parameters.Add("@dniSocio", SqlDbType.Int).Value = dni;
+
+            conexion.ejectutarComando(SqlComando);
+
+            return 1;
+        }
 
         // REMOVER con unicamente idCom
         public int removerRelacionPorIdCom(int idCom)
@@ -43,6 +53,25 @@ namespace CapaDatos
             conexion.ejectutarComando(SqlComando);
 
             return 1;
+        }
+
+        public int removerRelacionPorComYDni(int dni, int idCom)
+        {
+            SqlCommand SqlComando = new SqlCommand("DELETE FROM [dbo].[Inscripcion] WHERE idComision=(@IdCom) AND dniSocio=(@dniSocio)");
+
+            SqlComando.Parameters.Add("@IdCom", SqlDbType.Int).Value = idCom;
+            SqlComando.Parameters.Add("@dniSocio", SqlDbType.Int).Value = dni;
+
+            conexion.ejectutarComando(SqlComando);
+
+            return 1;
+        }
+
+        public DataSet get()
+        {
+            SqlCommand sentencia = new SqlCommand("SELECT * FROM [dbo].[Inscripcion]");
+
+            return conexion.ejecutarSentencia(sentencia);
         }
     }
 }

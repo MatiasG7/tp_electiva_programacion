@@ -17,7 +17,7 @@ namespace CapaDatos
             conexion = new Conexion();
         }
 
-        public int agregar(int dni, string nombre, DateTime fNac, string email, string direccion, DateTime fIng, double? cuotaSocial = null)
+        public int agregarClub(int dni, string nombre, DateTime fNac, string email, string direccion, DateTime fIng, double cuotaSocial)
         {
             SqlCommand SqlComando = new SqlCommand("INSERT INTO [dbo].[Socio]([DNI],[Nombre],[FechaNacimiento],[Email],[Direccion],[FechaIngreso],[CuotaSocial]) " +
                                                     "VALUES(@Dni,@Nombre,@FechaDeNacimiento,@Email,@Direccion,@FechaDeIngreso,@CuotaSocial); SELECT SCOPE_IDENTITY()");
@@ -35,6 +35,23 @@ namespace CapaDatos
             return modified;
         }
 
+        public int agregarActividad(int dni, string nombre, DateTime fNac, string email, string direccion, DateTime fIng)
+        {
+            SqlCommand SqlComando = new SqlCommand("INSERT INTO [dbo].[Socio]([DNI],[Nombre],[FechaNacimiento],[Email],[Direccion],[FechaIngreso]) " +
+                                                    "VALUES(@Dni,@Nombre,@FechaDeNacimiento,@Email,@Direccion,@FechaDeIngreso); SELECT SCOPE_IDENTITY()");
+
+            SqlComando.Parameters.Add("@Dni", SqlDbType.Int).Value = dni;
+            SqlComando.Parameters.Add("@Nombre", SqlDbType.NVarChar).Value = nombre;
+            SqlComando.Parameters.Add("@FechaDeNacimiento", SqlDbType.DateTime).Value = fNac;
+            SqlComando.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
+            SqlComando.Parameters.Add("@Direccion", SqlDbType.NVarChar).Value = direccion;
+            SqlComando.Parameters.Add("@FechaDeIngreso", SqlDbType.DateTime).Value = fIng;
+
+            int modified = conexion.ejectutarComando(SqlComando);
+
+            return modified;
+        }
+
         public int eliminar(int dni)
         {
             SqlCommand SqlComando = new SqlCommand("DELETE FROM [dbo].[Socio] WHERE DNI=(@Dni)");
@@ -46,7 +63,7 @@ namespace CapaDatos
             return 1;
         }
 
-        public int modificar(int dni, string nombre, DateTime fechaDeNacimiento, string email, string direccion, DateTime fechaDeIngreso, double? cuotaSocial = null)
+        public int modificarClub(int dni, string nombre, DateTime fechaDeNacimiento, string email, string direccion, DateTime fechaDeIngreso, double cuotaSocial)
         {
             SqlCommand SqlComando = new SqlCommand("UPDATE [dbo].[Socio]" +
                 "                                   SET Nombre = (@Nombre), FechaNacimiento = (@FechaDeNacimiento), Email = (@Email), Direccion = (@Direccion), FechaIngreso = (@FechaDeIngreso), CuotaSocial = (@CuotaSocial) " +
@@ -59,6 +76,24 @@ namespace CapaDatos
             SqlComando.Parameters.Add("@Direccion", SqlDbType.NVarChar).Value = direccion;
             SqlComando.Parameters.Add("@FechaDeIngreso", SqlDbType.DateTime).Value = fechaDeIngreso;
             SqlComando.Parameters.Add("@CuotaSocial", SqlDbType.Float).Value = cuotaSocial;
+
+            conexion.ejectutarComando(SqlComando);
+
+            return 1;
+        }
+
+        public int modificarActividad(int dni, string nombre, DateTime fechaDeNacimiento, string email, string direccion, DateTime fechaDeIngreso)
+        {
+            SqlCommand SqlComando = new SqlCommand("UPDATE [dbo].[Socio]" +
+                "                                   SET Nombre = (@Nombre), FechaNacimiento = (@FechaDeNacimiento), Email = (@Email), Direccion = (@Direccion), FechaIngreso = (@FechaDeIngreso) " +
+                "                                   WHERE DNI=(@Dni)");
+
+            SqlComando.Parameters.Add("@Dni", SqlDbType.Int).Value = dni;
+            SqlComando.Parameters.Add("@Nombre", SqlDbType.VarChar).Value = nombre;
+            SqlComando.Parameters.Add("@FechaDeNacimiento", SqlDbType.DateTime).Value = fechaDeNacimiento;
+            SqlComando.Parameters.Add("@Email", SqlDbType.NVarChar).Value = email;
+            SqlComando.Parameters.Add("@Direccion", SqlDbType.NVarChar).Value = direccion;
+            SqlComando.Parameters.Add("@FechaDeIngreso", SqlDbType.DateTime).Value = fechaDeIngreso;
 
             conexion.ejectutarComando(SqlComando);
 

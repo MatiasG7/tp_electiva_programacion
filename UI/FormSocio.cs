@@ -18,10 +18,10 @@ namespace UI
         private Socio soc;
         private SocioActividad socAct;
         private SocioClub socClub;
-        private double? cuotaSocial = null;
+        private double cuotaSocial = 0;
 
         public Socio Soc { get => soc; set => soc = value; }
-        public double CuotaSocial { get => cuotaSocial.Value; set => cuotaSocial = value; }
+        public double CuotaSocial { get => cuotaSocial; set => cuotaSocial = value; }
 
         public FormSocio(int i)
         {

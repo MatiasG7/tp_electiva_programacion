@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaDatos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,13 @@ namespace CapaNegocio
         private static int CantMaxActividades;
         private static int PorcentajeDescuento;
         private double cuotaSocial;
+        private SocioDatos socDb;
 
         public double CuotaSocial { get => cuotaSocial; set => cuotaSocial = value; }
 
         public SocioClub(double cuotaSocial, string email, string direccion, DateTime fIng, int dni, string nombre, DateTime fNac) : base(email, direccion, fIng, dni, nombre, fNac)
         {
+            socDb = new SocioDatos();
             this.cuotaSocial = cuotaSocial;
         }
 
@@ -68,6 +71,11 @@ namespace CapaNegocio
         public override bool isClub()
         {
             return true;
+        }
+
+        public override void modificarSocio()
+        {
+            socDb.modificarClub(this.Dni, this.Nombre, this.FNac, this.Email, this.Direccion, this.FIng, this.cuotaSocial);
         }
     }
 }

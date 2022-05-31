@@ -294,6 +294,8 @@ namespace UI
                     fs.ShowDialog();
                 }
 
+                s.modificarSocio();
+
                 listBoxSocios.DataSource = null;
                 listBoxSocios.DataSource = club.Socios;
                 listBoxSocios.ClearSelected();

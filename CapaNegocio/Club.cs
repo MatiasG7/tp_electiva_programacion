@@ -23,6 +23,7 @@ namespace CapaNegocio
         ProfesorDatos profDb;
         SocioDatos socioDb;
         PagoDatos pagoDb;
+        InscripcionDatos insDb;
 
         public List<Actividad> Actividades { get => actividades; set => actividades = value; }
         public List<Profesor> Profesores { get => profesores; set => profesores = value; }
@@ -37,6 +38,7 @@ namespace CapaNegocio
             profDb = new ProfesorDatos();
             socioDb = new SocioDatos();
             pagoDb = new PagoDatos();
+            insDb = new InscripcionDatos();
 
             setListsData();
             vincularComisiones();
@@ -69,15 +71,29 @@ namespace CapaNegocio
 
         private void vincularComisiones()
         {
+            List<Tuple<int, int>> inscripciones = new List<Tuple<int, int>>(
+                    (from dRow in insDb.get().Tables[0].AsEnumerable()
+                     select (getInscripcionData(dRow)))
+                );
+
+            // Vinculamos las inscripciones de los socios, tanto en la comision como en el socio.
+            foreach (var ins in inscripciones.GroupBy(i => i.Item2))
+            {
+                Comision com = this.comisiones.Find(c => c.Id == ins.Key);
+
+                foreach (var t in ins.ToList())
+                {
+                    Socio soc = this.socios.Find(s => s.Dni == t.Item1);
+                    com.agregarSocio(soc);
+                    soc.agregarComision(com);
+                }
+            }
+
+            // Vinculamos comisiones con profesor y actividad.
             foreach (var c in this.comisiones)
             {
                 c.Profesor.agregarComision(c);      // Vinculamos la comision al profesor.
                 c.Actividad.agregarComision(c);     // Vinculamos la comision a la actividad.
-
-                //foreach (var s in c.Socios)
-                //{
-                //    s.agregarComision(c);
-                //}
             }
         }
 
@@ -93,18 +109,24 @@ namespace CapaNegocio
             return prof;
         }
 
+        private Tuple<int, int> getInscripcionData(DataRow dr)
+        {
+            return Tuple.Create((int)dr["dniSocio"], (int)dr["idComision"]);
+        }
+
         private Socio getSocioData(DataRow dr)
         {
             Socio soc;
-            double? cuotaSocial = (double)dr["CuotaSocial"];
+            var cuotaSocial = dr["CuotaSocial"].ToString();
 
-            if (cuotaSocial == null)
+            if (string.IsNullOrEmpty(cuotaSocial))
             {
                 soc = new SocioActividad((string)dr["Email"], (string)dr["Direccion"], (DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
             }
             else
             {
-                soc = new SocioClub(cuotaSocial.Value, (string)dr["Email"], (string)dr["Direccion"], (DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
+                double cs = Convert.ToDouble(cuotaSocial);
+                soc = new SocioClub(cs, (string)dr["Email"], (string)dr["Direccion"], (DateTime)dr["FechaIngreso"], (int)dr["DNI"], (string)dr["Nombre"], (DateTime)dr["FechaNacimiento"]);
             }
 
             return soc;
@@ -154,9 +176,16 @@ namespace CapaNegocio
             actividades.Add(newAct);
         }
 
-        public void agregarSocio(Socio newSoc, double? cuotaSocial)
+        public void agregarSocio(Socio newSoc, double cuotaSocial)
         {
-            socioDb.agregar(newSoc.Dni, newSoc.Nombre, newSoc.FNac, newSoc.Email, newSoc.Direccion, newSoc.FIng, cuotaSocial.Value);
+            if (cuotaSocial == 0)
+            {
+                socioDb.agregarActividad(newSoc.Dni, newSoc.Nombre, newSoc.FNac, newSoc.Email, newSoc.Direccion, newSoc.FIng);
+            }
+            else
+            {
+                socioDb.agregarClub(newSoc.Dni, newSoc.Nombre, newSoc.FNac, newSoc.Email, newSoc.Direccion, newSoc.FIng, cuotaSocial);
+            }
 
             socios.Add(newSoc);
         }
@@ -177,6 +206,7 @@ namespace CapaNegocio
 
         public void agregarPago(Pago newPago)
         {
+            this.pagoDb.agregar(newPago.Fecha, newPago.Soc.Dni, newPago.Monto);
             this.pagos.Add(newPago);
         }
 
@@ -198,6 +228,8 @@ namespace CapaNegocio
 
         public void removerSocio(Socio soc)
         {
+            soc.removerTodoDb();
+
             socios.Remove(soc);
         }
 
