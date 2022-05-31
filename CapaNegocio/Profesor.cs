@@ -74,6 +74,11 @@ namespace CapaNegocio
             profComDb.removerRelacionDni(dni);
         }
 
+        public void removerDb()
+        {
+            profDb.eliminar(Dni);
+        }
+
         public void removerTodoDb()
         {
             removerRelacionComisionDb(Dni); // Elimino todas las relaciones en la Tabla ProfesorComision con el dni de este profesor
@@ -85,7 +90,7 @@ namespace CapaNegocio
             }
             comDb.eliminarPorDniProfesor(Dni); // Elimino todas las comisiones que tienen el dni de este profesor
 
-            profDb.eliminar(Dni); // Elimina profesor de la base de datos Tabla Profesor
+            this.removerDb(); // Elimina profesor de la base de datos Tabla Profesor
         }
     }
 }

@@ -235,6 +235,13 @@ namespace CapaNegocio
 
         public void removerProfesor(Profesor prof)
         {
+            prof.removerDb();
+
+            profesores.Remove(prof);
+        }
+
+        public void removerProfesorCompleto(Profesor prof)
+        {
             prof.removerTodoDb();
 
             profesores.Remove(prof);
