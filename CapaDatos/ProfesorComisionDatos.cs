@@ -67,5 +67,17 @@ namespace CapaDatos
 
             return 1;
         }
+
+        public int modificarProfesor(int idComision, int dniProfesor)
+        {
+            SqlCommand SqlComando = new SqlCommand("UPDATE [dbo].[ProfesorComision] SET dniProfesor = (@dniProfesor) WHERE idComision=(@idComision)");
+
+            SqlComando.Parameters.Add("@dniProfesor", SqlDbType.Int).Value = dniProfesor;
+            SqlComando.Parameters.Add("@idComision", SqlDbType.Int).Value = idComision;
+
+            conexion.ejectutarComando(SqlComando);
+
+            return 1;
+        }
     }
 }

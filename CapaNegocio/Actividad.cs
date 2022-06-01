@@ -66,6 +66,7 @@ namespace CapaNegocio
             {
                 c.removerDeProfesorYSocios();
             }
+
             actComDb.removerRelacionIdAct(id); // Remover de la base de datos TODAS las relaciones que contengan el ID de esta actividad
         }
 

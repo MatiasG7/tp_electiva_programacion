@@ -41,8 +41,12 @@ namespace CapaNegocio
 
         public void agregarComision(Comision com)
         {
-            this.insDatos.agregarRelacion(this.Dni, com.Id);
             this.comisiones.Add(com);
+        }
+
+        public void agregarInscripcionDb(Comision com)
+        {
+            this.insDatos.agregarRelacion(this.Dni, com.Id);
         }
 
         public abstract double calcularMontoAPagar();
@@ -60,6 +64,11 @@ namespace CapaNegocio
         public void removerRelacionComisionDb(int dni)
         {
             insDatos.removerRelacionPorDni(dni);
+        }
+
+        public void removerInscripcionPorComYDni(int id)
+        {
+            this.insDatos.removerRelacionPorComYDni(this.Dni, id);
         }
 
         public void removerTodoDb()

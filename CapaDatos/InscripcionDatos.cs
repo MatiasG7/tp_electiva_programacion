@@ -20,8 +20,7 @@ namespace CapaDatos
 
         public int agregarRelacion(int Dni, int idComision)
         {
-            SqlCommand SqlComando = new SqlCommand("INSERT INTO [dbo].[Inscripcion]([idComision],[dniSocio]) " +
-                                                    "VALUES(@IdComision,@Dni)");
+            SqlCommand SqlComando = new SqlCommand("INSERT INTO [dbo].[Inscripcion]([idComision],[dniSocio]) VALUES (@IdComision,@Dni)");
 
             SqlComando.Parameters.Add("@Dni", SqlDbType.Int).Value = Dni;
             SqlComando.Parameters.Add("@IdComision", SqlDbType.Int).Value = idComision;

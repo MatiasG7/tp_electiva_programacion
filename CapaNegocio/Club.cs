@@ -215,7 +215,10 @@ namespace CapaNegocio
             foreach (var c in act.Comisiones)
             {
                 // Eliminar comisiones de base de datos con este ID
+                c.removerRelacionProfesorDb();
+                c.removerRelacionSocioDb();
                 comDb.eliminar(c.Id);
+
                 comisiones.Remove(c);
             }
 
@@ -249,6 +252,7 @@ namespace CapaNegocio
 
         public void removerComision(Comision com)
         {
+            com.removerRelacionProfesorDb();
             comDb.eliminar(com.Id);
             comisiones.Remove(com);
         }

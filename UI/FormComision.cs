@@ -78,6 +78,7 @@ namespace UI
 
         private void buttonComModif_Click(object sender, EventArgs e)
         {
+            int dniProfesorViejo = com.Profesor.Dni;
             com.Profesor.removerComision(com);
 
             com.Dia = this.comboBoxComDia.SelectedItem.ToString();
@@ -86,7 +87,13 @@ namespace UI
             com.CantidadMaximaParticipantes = int.Parse(this.textBoxComMaxPar.Text);
 
             com.Profesor.agregarComision(com);
-            com.modificarCom(com);
+
+            com.modificarComDb(com);
+
+            if (dniProfesorViejo != com.Profesor.Dni)
+            {
+                com.modificarProfesorDb(com);
+            }
 
             this.Hide();
             MessageBox.Show("Comisión modificada satisfactoriamente.");

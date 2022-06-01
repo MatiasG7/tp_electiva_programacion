@@ -21,6 +21,7 @@ namespace CapaNegocio
 
         ComisionDatos comDb;
         ProfesorComisionDatos profComDb;
+        InscripcionDatos insDatos;
 
         public int Id { get => id; set => id = value; }
         public Actividad Actividad { get => actividad; set => actividad = value; }
@@ -34,6 +35,8 @@ namespace CapaNegocio
         {
             comDb = new ComisionDatos();
             profComDb = new ProfesorComisionDatos();
+            insDatos = new InscripcionDatos();
+
             this.id = id;
             this.actividad = actividad;
             this.dia = dia;
@@ -85,14 +88,29 @@ namespace CapaNegocio
             }
         }
 
+        public void removerRelacionProfesorDb()
+        {
+            profComDb.removerRelacionIdCom(this.Id);
+        }
+
+        public void removerRelacionSocioDb()
+        {
+            insDatos.removerRelacionPorIdCom(this.Id);
+        }
+
         public override string ToString()
         {
             return this.actividad.Descripcion + " | " + "ID- " + id + " | " + dia + " | " + horario + ":00";
         }
 
-        public void modificarCom(Comision com)
+        public void modificarComDb(Comision com)
         {
             comDb.modificar(com.Id, com.Actividad.Id, com.Dia, com.Horario, com.Profesor.Dni, com.CantidadMaximaParticipantes);
+        }
+
+        public void modificarProfesorDb(Comision com)
+        {
+            profComDb.modificarProfesor(com.Id, com.Profesor.Dni);
         }
     }
 }

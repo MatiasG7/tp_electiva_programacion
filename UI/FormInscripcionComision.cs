@@ -46,6 +46,7 @@ namespace UI
             {
                 com.agregarSocio(soc);
                 soc.agregarComision(com);
+                soc.agregarInscripcionDb(com);
 
                 this.Hide();
                 MessageBox.Show("Socio inscripto correctamente.");
@@ -94,6 +95,7 @@ namespace UI
 
                 comSoc.removerSocio(this.soc);
                 this.soc.removerComision(comSoc);
+                //this.soc.removerInscripcionPorComYDni(comSoc.Id);
 
                 this.Hide();
                 MessageBox.Show("Socio eliminado de actividad correctamente.");
