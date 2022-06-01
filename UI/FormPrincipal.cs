@@ -40,19 +40,12 @@ namespace UI
             Actividad act = fa.Act;
             if (act != null)
             {
-                bool exists = club.verificarActividad(act);
-                if (exists)
-                {
-                    MessageBox.Show("Ya existe una actividad con el ID ingresado.");
-                }
-                else
-                {
-                    club.agregarActividad(act);
-                    MessageBox.Show("Actividad creada satisfactoriamente.");
-                    listBoxAct.DataSource = null;
-                    listBoxAct.DataSource = club.Actividades;
-                    listBoxAct.ClearSelected();
-                }
+                club.agregarActividad(act);
+                MessageBox.Show("Actividad creada satisfactoriamente.");
+                listBoxAct.DataSource = null;
+                listBoxAct.DataSource = club.Actividades;
+                listBoxAct.ClearSelected();
+
             }
         }
 
@@ -358,22 +351,15 @@ namespace UI
             Comision com = fc.Com;
             if (com != null)
             {
-                if (club.verificarComision(com))
-                {
-                    MessageBox.Show("Ya existe una comisión en la actividad con el ID ingresado.");
-                }
-                else
-                {
-                    club.agregarComision(com);
-                    com.Actividad.agregarComisionDb(com); // Revisar esto, hay que arreglarlo dentro de actividad para que se ejecute al agregar la comision.
-                    // No lo pude hacer por que hay que eliminar el acceso de ID por parte del usuario que ahora lo maneja la base de datos
-                    // POR HACER
-                    com.Profesor.agregarComisionDb(com); // Creacion de la relacion entre comision y profesor
-                    MessageBox.Show("Comisión creada satisfactoriamente.");
-                    listBoxCom.DataSource = null;
-                    listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
-                    listBoxCom.ClearSelected();
-                }
+                club.agregarComision(com);
+                com.Actividad.agregarComisionDb(com); // Revisar esto, hay que arreglarlo dentro de actividad para que se ejecute al agregar la comision.
+                                                      // No lo pude hacer por que hay que eliminar el acceso de ID por parte del usuario que ahora lo maneja la base de datos
+                                                      // POR HACER
+                com.Profesor.agregarComisionDb(com); // Creacion de la relacion entre comision y profesor
+                MessageBox.Show("Comisión creada satisfactoriamente.");
+                listBoxCom.DataSource = null;
+                listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
+                listBoxCom.ClearSelected();
             }
         }
 

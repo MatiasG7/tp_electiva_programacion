@@ -38,16 +38,10 @@ namespace UI
             this.listBoxActComisiones.ClearSelected();
         }
 
-        private void FormCrearActividad_Load(object sender, EventArgs e)
-        {
-            this.ActiveControl = textBoxActID;
-            //buttonActModif.Enabled = false;
-        }
-
         private void checkInputs()
         {
             string a;
-            if (validID(textBoxActID.Text, out a) && validCosto(textBoxActCosto.Text, out a) && validDescripcion(textBoxActDesc.Text, out a))
+            if (validCosto(textBoxActCosto.Text, out a) && validDescripcion(textBoxActDesc.Text, out a))
             {
                 buttonActCrear.Enabled = true;
                 buttonActModif.Enabled = true;
@@ -61,11 +55,9 @@ namespace UI
 
         private void buttonActCrear_Click(object sender, EventArgs e)
         {
-
-            int id = int.Parse(this.textBoxActID.Text);
             double costo = double.Parse(this.textBoxActCosto.Text);
             string desc = this.textBoxActDesc.Text;
-            act = new Actividad(id, desc, costo);
+            act = new Actividad(0, desc, costo);
 
             this.Close();
 
@@ -106,7 +98,8 @@ namespace UI
         public void prepararFormCrear()
         {
             this.Text = "Crear Actividad";
-            this.textBoxActID.ReadOnly = false;
+            this.labelActID.Visible = false;
+            this.textBoxActID.Visible = false;
             this.buttonActModif.Visible = false;
             this.buttonActAceptar.Visible = false;
             this.labelActCom.Visible = false;
@@ -118,6 +111,7 @@ namespace UI
         public void prepararFormModificar()
         {
             this.Text = "Modificar Actividad";
+            this.textBoxActID.Enabled = false;
             this.textBoxActID.ReadOnly = true;
             this.buttonActAceptar.Visible = false;
             this.buttonActCrear.Visible = false;
@@ -130,6 +124,7 @@ namespace UI
         public void prepararFormMostrar()
         {
             this.Text = "Actividad";
+            this.textBoxActID.Enabled = false;
             this.textBoxActID.ReadOnly = true;
             this.textBoxActDesc.ReadOnly = true;
             this.textBoxActCosto.ReadOnly = true;

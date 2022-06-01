@@ -43,7 +43,7 @@ namespace UI
         private void checkInputs()
         {
             string a;
-            if (validID(textBoxComID.Text, out a) && validMaxPar(textBoxComMaxPar.Text, out a) &&
+            if (validMaxPar(textBoxComMaxPar.Text, out a) &&
                 comboBoxComAct.SelectedItem != null && comboBoxComDia.SelectedItem != null &&
                 comboBoxComHorario.SelectedItem != null && comboBoxComProfesores.SelectedItem != null)
             {
@@ -59,15 +59,13 @@ namespace UI
 
         private void buttonComCrear_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(this.textBoxComID.Text);
             Actividad act = (Actividad)this.comboBoxComAct.SelectedItem;
             string dia = this.comboBoxComDia.SelectedItem.ToString();
             int horario = int.Parse(this.comboBoxComHorario.SelectedItem.ToString());
             Profesor prof = (Profesor)this.comboBoxComProfesores.SelectedItem;
             int maxPar = int.Parse(this.textBoxComMaxPar.Text);
 
-            int idCom = int.Parse(act.Id.ToString() + id.ToString());
-            com = new Comision(idCom, act, dia, horario, prof, maxPar);
+            com = new Comision(0, act, dia, horario, prof, maxPar);
 
             act.agregarComision(com);
 
@@ -115,7 +113,8 @@ namespace UI
         public void prepararFormCrear()
         {
             this.Text = "Crear Comisión";
-            this.textBoxComID.ReadOnly = false;
+            this.labelComID.Visible = false;
+            this.textBoxComID.Visible = false;
             this.buttonComModif.Visible = false;
             this.buttonComAceptar.Visible = false;
             this.labelComSocios.Visible = false;
@@ -127,6 +126,7 @@ namespace UI
         public void prepararFormModificar()
         {
             this.Text = "Modificar Comisión";
+            this.textBoxComID.Enabled = false;
             this.textBoxComID.ReadOnly = true;
             this.buttonComModif.Visible = true;
             this.buttonComModif.Enabled = false;
@@ -145,6 +145,7 @@ namespace UI
         public void prepararFormMostrar()
         {
             this.Text = "Comisión";
+            this.textBoxComID.Enabled = false;
             this.textBoxComID.ReadOnly = true;
             this.comboBoxComDia.Enabled = false;
             this.textBoxComMaxPar.ReadOnly = true;
