@@ -62,6 +62,8 @@ namespace UI
 
                 listBoxAct.DataSource = null;
                 listBoxAct.DataSource = club.Actividades;
+                listBoxCom.DataSource = null;
+                listBoxCom.DataSource = club.Comisiones;
                 listBoxAct.ClearSelected();
             }
         }
