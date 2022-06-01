@@ -193,7 +193,7 @@ namespace UI
                             }
                         }
 
-                        club.removerProfesor(p);
+                        club.removerProfesorCompleto(p);
                         p.limpiarComisiones();
 
                         listBoxProf.DataSource = null;
