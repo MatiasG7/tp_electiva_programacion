@@ -57,6 +57,7 @@ namespace UI
         {
             double costo = double.Parse(this.textBoxActCosto.Text);
             string desc = this.textBoxActDesc.Text;
+            // La actividad es creada con id 0 por que el id es asignado por la base de datos (autoincremental)
             act = new Actividad(0, desc, costo);
 
             this.Close();
@@ -69,8 +70,7 @@ namespace UI
             {
                 act.Descripcion = this.textBoxActDesc.Text;
                 act.Costo = double.Parse(this.textBoxActCosto.Text);
-
-                act.modificarAct(act);//Modificar en DB
+                act.modificarAct(act); // Modificamos la actividad en la base de datos
 
                 this.Hide();
                 MessageBox.Show("Actividad modificada satisfactoriamente.");

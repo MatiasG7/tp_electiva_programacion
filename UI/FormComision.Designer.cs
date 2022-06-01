@@ -149,7 +149,7 @@
             // buttonComAceptar
             // 
             this.buttonComAceptar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonComAceptar.Location = new System.Drawing.Point(315, 400);
+            this.buttonComAceptar.Location = new System.Drawing.Point(315, 371);
             this.buttonComAceptar.Name = "buttonComAceptar";
             this.buttonComAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonComAceptar.TabIndex = 32;

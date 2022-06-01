@@ -35,6 +35,7 @@ namespace CapaNegocio
 
         public void removerComision(Comision com)
         {
+            // DB: Removemos la relacion entre Socio y Comision especificamente de este socio y esta comision.
             this.insDatos.removerRelacionPorComYDni(this.Dni, com.Id);
             this.comisiones.Remove(com);
         }
@@ -73,8 +74,10 @@ namespace CapaNegocio
 
         public void removerTodoDb()
         {
-            removerRelacionComisionDb(Dni); // Elimino todas las relaciones en la Tabla Inscripcion con el dni de este socio.
+            // DB: Elimino todas las relaciones en la Tabla Inscripcion con el dni de este socio.
+            removerRelacionComisionDb(Dni);
 
+            // DB: Elimino el socio de la DB
             socDb.eliminar(Dni);
 
             foreach (var com in this.comisiones)

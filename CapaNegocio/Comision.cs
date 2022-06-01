@@ -68,6 +68,7 @@ namespace CapaNegocio
 
         public void eliminar()
         {
+            // DB: Remueve la relacion entre comision y actividad
             this.actividad.removerComision(this);
             this.removerDeProfesorYSocios();
         }
@@ -83,6 +84,7 @@ namespace CapaNegocio
 
             foreach (var s in socios)
             {
+                // DB: Removemos por cada socio la relacion con la Comision.
                 s.removerComision(this);
             }
         }
@@ -104,6 +106,7 @@ namespace CapaNegocio
 
         public void modificarComDb(Comision com)
         {
+            // Enviamos los datos necesarios
             comDb.modificar(com.Id, com.Actividad.Id, com.Dia, com.Horario, com.Profesor.Dni, com.CantidadMaximaParticipantes);
         }
 

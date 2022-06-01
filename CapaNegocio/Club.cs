@@ -171,6 +171,7 @@ namespace CapaNegocio
 
         public void agregarActividad(Actividad newAct)
         {
+            // El int idReturned es el id asignado por la base de datos al crear la actividad.
             int idReturned = actDb.agregar(newAct.Descripcion, newAct.Costo);
             newAct.Id = idReturned;
             actividades.Add(newAct);
@@ -178,6 +179,8 @@ namespace CapaNegocio
 
         public void agregarSocio(Socio newSoc, double cuotaSocial)
         {
+            // DB: Si la cuota es 0, agregamos el socio en la DB con cuotaSocial NULL
+            //     Si la cuota social tiene un valor, la enviamos a la DB.
             if (cuotaSocial == 0)
             {
                 socioDb.agregarActividad(newSoc.Dni, newSoc.Nombre, newSoc.FNac, newSoc.Email, newSoc.Direccion, newSoc.FIng);
@@ -192,6 +195,7 @@ namespace CapaNegocio
 
         public void agregarComision(Comision newCom)
         {
+            // El int idReturned es el id asignado por la base de datos al crear la comision.
             int idReturned = comDb.agregar(newCom.Actividad.Id, newCom.Dia, newCom.Horario, newCom.Profesor.Dni, newCom.CantidadMaximaParticipantes);
             newCom.Id = idReturned;
 
@@ -214,18 +218,26 @@ namespace CapaNegocio
         {
             foreach (var c in act.Comisiones)
             {
-                // Eliminar comisiones de base de datos con este ID
+                c.removerDeProfesorYSocios();
+
+                // Eliminar relacion del profesor con cada comision de esta actividad
                 c.removerRelacionProfesorDb();
+
+                // Eliminar relaciones de los socios de cada comision en esta actividad
                 c.removerRelacionSocioDb();
+
+                // Eliminar comision de la base de datos
                 comDb.eliminar(c.Id);
 
                 comisiones.Remove(c);
             }
 
+            // En actividad hacemos un comisiones.clear()
             act.limpiarComisiones();
+
             actividades.Remove(act);
 
-            // Borrar en base de datos
+            // Eliminar actividad de la base de datos
             actDb.eliminar(act.Id);
         }
 
@@ -252,7 +264,9 @@ namespace CapaNegocio
 
         public void removerComision(Comision com)
         {
+            // DB: Elimina la relacion que contenga el ID de esta comision.
             com.removerRelacionProfesorDb();
+            // DB: Elimina la comision de la base de datos.
             comDb.eliminar(com.Id);
             comisiones.Remove(com);
         }

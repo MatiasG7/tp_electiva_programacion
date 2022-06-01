@@ -46,6 +46,8 @@ namespace UI
             {
                 com.agregarSocio(soc);
                 soc.agregarComision(com);
+
+                //DB: Agrego la relacion entre Socio y Comision, INSCRIPCION
                 soc.agregarInscripcionDb(com);
 
                 this.Hide();
@@ -94,8 +96,10 @@ namespace UI
                 Comision comSoc = soc.Comisiones.First(c => c.Actividad == act);
 
                 comSoc.removerSocio(this.soc);
+
+                // Removemos la comision del socio.
+                // DB: Removemos la relacion entre Socio y Comision especificamente de este socio y esta comision.
                 this.soc.removerComision(comSoc);
-                //this.soc.removerInscripcionPorComYDni(comSoc.Id);
 
                 this.Hide();
                 MessageBox.Show("Socio eliminado de actividad correctamente.");

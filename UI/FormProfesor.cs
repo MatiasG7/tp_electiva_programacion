@@ -68,6 +68,7 @@ namespace UI
             prof.FNac = this.dateTimePickerProfFNac.Value;
             prof.FIng = this.dateTimePickerProfFIng.Value;
 
+            // DB: Modifica al profesor en la base de datos
             prof.modificarProfesor(prof);
 
             this.Hide();

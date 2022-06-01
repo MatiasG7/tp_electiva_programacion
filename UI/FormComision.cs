@@ -86,10 +86,12 @@ namespace UI
 
             com.Profesor.agregarComision(com);
 
+            // DB: Modificamos la comision en la base de datos
             com.modificarComDb(com);
 
             if (dniProfesorViejo != com.Profesor.Dni)
             {
+                // DB: Si el profesor en la comision cambio, cambiamos en la base de datos en la tabla ComisionProfesor a el nuevo dni
                 com.modificarProfesorDb(com);
             }
 

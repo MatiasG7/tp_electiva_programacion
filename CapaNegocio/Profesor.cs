@@ -53,14 +53,17 @@ namespace CapaNegocio
         {
             foreach (var com in comisiones.ToArray())
             {
+                // 
                 com.eliminar();
             }
 
+            // Limpia las comisiones del profesor
             this.comisiones.Clear();
         }
 
         public void modificarProfesor(Profesor prof)
         {
+            // DB: Modifica al profesor en la base de datos
             profDb.modificar(base.Dni, base.Nombre, base.FNac, fIng);
         }
 

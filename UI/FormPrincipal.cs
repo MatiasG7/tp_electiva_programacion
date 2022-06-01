@@ -40,6 +40,7 @@ namespace UI
             Actividad act = fa.Act;
             if (act != null)
             {
+                // Llamamos el crear actividad el cual agrega la actividad a la base de datos
                 club.agregarActividad(act);
                 MessageBox.Show("Actividad creada satisfactoriamente.");
                 listBoxAct.DataSource = null;
@@ -75,11 +76,15 @@ namespace UI
                 MessageBox.Show("No hay actividad seleccionada para eliminar.");
             else
             {
-                // Cuando se elimina la actividad se debería borrar las comisiones de ellas en las que esten socios inscriptos. Y profesores.
                 DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la actividad seleccionada?", "Eliminar Actividad", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    a.eliminar();
+                    // DB: Eliminamos de la tabla ActividadComision todas las relaciones de esta actividad.
+                    a.eliminarRelacionComision();
+
+                    // PROGRAMA: Eliminamos todas las referencias de las comisiones y de actividad de los socios, profesores y club
+                    // DB: Eliminamos de cada comision la relacion del profesor, las relaciones de los socios y la comision en si de la base de datos.
+                    //     Eliminamos la actividad de la base de datos.
                     club.removerActividad(a);
 
                     listBoxAct.DataSource = null;
@@ -107,18 +112,6 @@ namespace UI
             }
         }
 
-        //private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    DialogResult dialogResult = MessageBox.Show("Desea realizar un guardado ?", "Guardar", MessageBoxButtons.YesNo);
-        //    if (dialogResult == DialogResult.Yes)
-        //    {
-        //        if (club.guardar())
-        //            MessageBox.Show("GUARDADO OK");
-        //        else
-        //            MessageBox.Show("ERROR AL GUARDAR");
-        //    }
-        //}
-
         private void buttonCrearProf_Click(object sender, EventArgs e)
         {
             FormProfesor fp = new FormProfesor();
@@ -135,6 +128,8 @@ namespace UI
                 }
                 else
                 {
+                    // Agrega al profesor en el club
+                    // DB: Agrega a la base de datos el profesor
                     club.agregarProfesor(prof);
                     MessageBox.Show("Profesor creado satisfactoriamente.");
                     listBoxProf.DataSource = null;
@@ -173,6 +168,8 @@ namespace UI
                     DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar el profesor seleccionado?", "Eliminar Profesor", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
+                        // Elimina el profesor del club.
+                        // DB: Elimina el profesor de la base de datos.
                         club.removerProfesor(p);
 
                         listBoxProf.DataSource = null;
@@ -191,11 +188,18 @@ namespace UI
                         {
                             if (c.Profesor == p)
                             {
+                                // DB: Elimina la relacion ProfesorComision y elimina la comision de la base de datos.
                                 club.removerComision(c);
                             }
                         }
 
+                        // Elimina del club al profesor.
+                        // DB: Elimino de la tabla ProfesorComision todas las relaciones con ese Profesor.Dni
+                        //     Por cada comision en este profesor, elimino las relaciones ActividadComision y elimino las relacion Inscripcion.
+                        //     Elimino todas las comisiones que tengan DNI = Profesor.Dni
+                        //     Elimino el profesor de la base de datos.
                         club.removerProfesorCompleto(p);
+
                         p.limpiarComisiones();
 
                         listBoxProf.DataSource = null;
@@ -258,6 +262,7 @@ namespace UI
                     }
                     else
                     {
+                        // Luego de llenar el formulario se devuelve la cuota social. Si es club sera igual a 0, sino sera el valor ingresado por el usuario.
                         club.agregarSocio(s, fs.CuotaSocial);
                         MessageBox.Show("Socio creado satisfactoriamente.");
                         listBoxSocios.DataSource = null;
@@ -289,6 +294,7 @@ namespace UI
                     fs.ShowDialog();
                 }
 
+                // DB: Modificamos el socio en la base de datos
                 s.modificarSocio();
 
                 listBoxSocios.DataSource = null;
@@ -309,6 +315,9 @@ namespace UI
                 DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar el socio seleccionado?", "Eliminar Socio", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    // Elimino al socio de cada comision
+                    // DB: Elimino las relaciones del socio en la tabla Inscripcion
+                    //     Elimino al socio en si.
                     club.removerSocio(s);
                     MessageBox.Show("Socio eliminado satisfactoriamente.");
                     listBoxSocios.DataSource = null;
@@ -353,9 +362,14 @@ namespace UI
             Comision com = fc.Com;
             if (com != null)
             {
+                // DB: Creamos la comsision en la base de datos
                 club.agregarComision(com);
+
+                // DB: Creamos la relacion entre Actividad y Comision
                 com.Actividad.agregarComisionDb(com);
-                com.Profesor.agregarComisionDb(com); // Creacion de la relacion entre comision y profesor
+
+                // DB: Creamos la relacion entre Profesor y Comision
+                com.Profesor.agregarComisionDb(com);
 
                 MessageBox.Show("Comisión creada satisfactoriamente.");
                 listBoxCom.DataSource = null;
@@ -391,7 +405,12 @@ namespace UI
                 DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la comisión seleccionada?", "Eliminar Comisión", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    // Eliminamos de la actividad la comision y todas las referencias en el profesor y los socios.
+                    // DB: Eliminamos la relacion entre comision y actividad, y entre comision y socio.
                     c.eliminar();
+
+                    // Eliminamos la comision del club.
+                    // DB: Eliminamos la relacion ProfesorComision y eliminamos la comision.
                     club.removerComision(c);
                     MessageBox.Show("Comisión eliminada satisfactoriamente.");
                     listBoxCom.DataSource = null;

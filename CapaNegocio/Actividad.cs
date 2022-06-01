@@ -57,16 +57,12 @@ namespace CapaNegocio
         public void removerComision(Comision c)
         {
             comisiones.Remove(c);
-            actComDb.removerRelacionIdCom(c.Id); // Remueve todas las relaciones en la base de datos que contengan este Id Comision
+            // DB: Remueve todas las relaciones en la base de datos que contengan este Id Comision
+            actComDb.removerRelacionIdCom(c.Id);
         }
 
-        public void eliminar()
+        public void eliminarRelacionComision()
         {
-            foreach (var c in comisiones)
-            {
-                c.removerDeProfesorYSocios();
-            }
-
             actComDb.removerRelacionIdAct(id); // Remover de la base de datos TODAS las relaciones que contengan el ID de esta actividad
         }
 
@@ -77,7 +73,7 @@ namespace CapaNegocio
 
         public void modificarAct(Actividad act)
         {
-            actDb.modificar(act.Id, act.Descripcion, act.Costo);
+            actDb.modificar(act.Id, act.Descripcion, act.Costo); // Enviamos a actDb.modificar los datos a modificar
         }
     }
 }
