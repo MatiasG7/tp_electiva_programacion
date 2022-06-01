@@ -70,7 +70,6 @@ namespace CapaNegocio
         {
             this.actividad.removerComision(this);
             this.removerDeProfesorYSocios();
-            // Remover la relacion entre comision y socio. 
         }
 
         public void removerComisionesConDniProfesor()

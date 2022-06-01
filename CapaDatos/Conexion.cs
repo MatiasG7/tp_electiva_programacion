@@ -5,41 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace CapaDatos
 {
     internal class Conexion
     {
-        private string cadenaDeConexion = "Data Source=localhost\\SQLEXPRESS; Initial Catalog=Club; Integrated Security=True";
         SqlConnection conexionSql;
+
+        public static string GetConnectionString(string connectionName = "localhost")
+        {
+            return ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+        }
 
         public SqlConnection establecerConexion()
         {
-            conexionSql = new SqlConnection(cadenaDeConexion);
+            conexionSql = new SqlConnection(GetConnectionString());
             return conexionSql;
         }
 
-        public int ejectutarComando(string strComando)
-        {
-            try
-            {
-                SqlCommand comando = new SqlCommand();
-
-                comando.CommandText = strComando;
-                comando.Connection = establecerConexion();
-                conexionSql.Open();
-                comando.ExecuteNonQuery();
-                int a = Convert.ToInt32(comando.ExecuteScalar());
-                conexionSql.Close();
-
-                return a;
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-        // Sobrecarga INSERT, DELETE, UPDATE
+        // INSERT, DELETE, UPDATE
         public int ejectutarComando(SqlCommand SqlComando)
         {
             try
@@ -52,15 +37,13 @@ namespace CapaDatos
 
                 return a;
             }
-            catch (Exception ex)
+            catch
             {
                 return 0;
             }
         }
 
-
-
-        // SELECT Retorno de datos
+        // SELECT
         public DataSet ejecutarSentencia(SqlCommand sqlComando)
         {
             DataSet DS = new DataSet();

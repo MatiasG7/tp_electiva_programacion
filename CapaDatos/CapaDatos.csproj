@@ -170,7 +170,6 @@
     <Compile Include="ProfesorComisionDatos.cs" />
     <Compile Include="ComisionDatos.cs" />
     <Compile Include="Conexion.cs" />
-    <Compile Include="Datos.cs" />
     <Compile Include="PagoDatos.cs" />
     <Compile Include="ProfesorDatos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

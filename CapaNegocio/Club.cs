@@ -273,19 +273,5 @@ namespace CapaNegocio
         {
             return this.pagos.Any(p => p.Soc == soc && p.Fecha.Month == DateTime.Now.Month && p.Fecha.Year == DateTime.Now.Year);
         }
-
-        public bool guardar()
-        {
-            return Datos.Guardar(this);
-        }
-
-        public static Club Recuperar()
-        {
-            Club c = (Club)Datos.Recuperar();
-            if (c == null)
-                c = new Club();
-            return c;
-        }
-
     }
 }

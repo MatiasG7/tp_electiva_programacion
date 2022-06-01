@@ -19,7 +19,7 @@ namespace UI
         public FormPrincipal()
         {
             InitializeComponent();
-            club = Club.Recuperar();
+            club = new Club();
             listBoxAct.DataSource = club.Actividades;
             listBoxAct.ClearSelected();
             listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
@@ -352,10 +352,9 @@ namespace UI
             if (com != null)
             {
                 club.agregarComision(com);
-                com.Actividad.agregarComisionDb(com); // Revisar esto, hay que arreglarlo dentro de actividad para que se ejecute al agregar la comision.
-                                                      // No lo pude hacer por que hay que eliminar el acceso de ID por parte del usuario que ahora lo maneja la base de datos
-                                                      // POR HACER
+                com.Actividad.agregarComisionDb(com);
                 com.Profesor.agregarComisionDb(com); // Creacion de la relacion entre comision y profesor
+
                 MessageBox.Show("Comisión creada satisfactoriamente.");
                 listBoxCom.DataSource = null;
                 listBoxCom.DataSource = club.Comisiones.OrderBy(c => c.Actividad.Descripcion).ToList();
@@ -387,7 +386,6 @@ namespace UI
                 MessageBox.Show("No hay comisión seleccionada para eliminar.");
             else
             {
-                // Cuando se borra una comision se deberia borrar las inscripciones de socios a ellas?
                 DialogResult dialogResult = MessageBox.Show("Esta seguro que desea eliminar la comisión seleccionada?", "Eliminar Comisión", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
