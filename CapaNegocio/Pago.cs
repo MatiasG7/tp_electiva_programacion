@@ -22,6 +22,14 @@ namespace CapaNegocio
             this.monto = monto;
         }
 
+        public Pago(int id, DateTime fecha, Socio soc, double monto)
+        {
+            this.id = id;
+            this.fecha = fecha;
+            this.soc = soc;
+            this.monto = monto;
+        }
+
         public int Id { get => id; set => id = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public Socio Soc { get => soc; set => soc = value; }

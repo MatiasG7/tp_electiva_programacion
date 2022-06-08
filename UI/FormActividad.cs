@@ -38,16 +38,10 @@ namespace UI
             this.listBoxActComisiones.ClearSelected();
         }
 
-        private void FormCrearActividad_Load(object sender, EventArgs e)
-        {
-            this.ActiveControl = textBoxActID;
-            //buttonActModif.Enabled = false;
-        }
-
         private void checkInputs()
         {
             string a;
-            if (validID(textBoxActID.Text, out a) && validCosto(textBoxActCosto.Text, out a) && validDescripcion(textBoxActDesc.Text, out a))
+            if (validCosto(textBoxActCosto.Text, out a) && validDescripcion(textBoxActDesc.Text, out a))
             {
                 buttonActCrear.Enabled = true;
                 buttonActModif.Enabled = true;
@@ -61,11 +55,10 @@ namespace UI
 
         private void buttonActCrear_Click(object sender, EventArgs e)
         {
-
-            int id = int.Parse(this.textBoxActID.Text);
             double costo = double.Parse(this.textBoxActCosto.Text);
             string desc = this.textBoxActDesc.Text;
-            act = new Actividad(id, desc, costo);
+            // La actividad es creada con id 0 por que el id es asignado por la base de datos (autoincremental)
+            act = new Actividad(0, desc, costo);
 
             this.Close();
 
@@ -77,6 +70,7 @@ namespace UI
             {
                 act.Descripcion = this.textBoxActDesc.Text;
                 act.Costo = double.Parse(this.textBoxActCosto.Text);
+                act.modificarAct(act); // Modificamos la actividad en la base de datos
 
                 this.Hide();
                 MessageBox.Show("Actividad modificada satisfactoriamente.");
@@ -104,7 +98,8 @@ namespace UI
         public void prepararFormCrear()
         {
             this.Text = "Crear Actividad";
-            this.textBoxActID.ReadOnly = false;
+            this.labelActID.Visible = false;
+            this.textBoxActID.Visible = false;
             this.buttonActModif.Visible = false;
             this.buttonActAceptar.Visible = false;
             this.labelActCom.Visible = false;
@@ -116,6 +111,7 @@ namespace UI
         public void prepararFormModificar()
         {
             this.Text = "Modificar Actividad";
+            this.textBoxActID.Enabled = false;
             this.textBoxActID.ReadOnly = true;
             this.buttonActAceptar.Visible = false;
             this.buttonActCrear.Visible = false;
@@ -128,6 +124,7 @@ namespace UI
         public void prepararFormMostrar()
         {
             this.Text = "Actividad";
+            this.textBoxActID.Enabled = false;
             this.textBoxActID.ReadOnly = true;
             this.textBoxActDesc.ReadOnly = true;
             this.textBoxActCosto.ReadOnly = true;
@@ -158,9 +155,9 @@ namespace UI
 
         private bool validID(string id, out string errorMessage)
         {
-            if (id.Length < 3)
+            if (id.Length < 1)
             {
-                errorMessage = "El ID debe tener por lo menos 3 digitos.";
+                errorMessage = "El ID debe tener por lo menos 1 digitos.";
                 return false;
             }
             else if (id.Length > 4)

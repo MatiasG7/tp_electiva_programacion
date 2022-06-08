@@ -188,7 +188,6 @@
             this.Name = "FormActividad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Actividad";
-            this.Load += new System.EventHandler(this.FormCrearActividad_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

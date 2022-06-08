@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CapaDatos;
+
 namespace CapaNegocio
 {
     [Serializable]
@@ -14,6 +16,9 @@ namespace CapaNegocio
         private double costo;
         private List<Comision> comisiones;
 
+        ActividadDatos actDb;
+        ActividadComisionDatos actComDb;
+
         public int Id { get => id; set => id = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
         public double Costo { get => costo; set => costo = value; }
@@ -21,6 +26,8 @@ namespace CapaNegocio
 
         public Actividad(int id, string descripcion, double costo)
         {
+            actDb = new ActividadDatos();
+            actComDb = new ActividadComisionDatos();
             this.id = id;
             this.descripcion = descripcion;
             this.costo = costo;
@@ -42,22 +49,31 @@ namespace CapaNegocio
             comisiones.Add(newCom);
         }
 
+        public void agregarComisionDb(Comision newCom)
+        {
+            actComDb.agregarRelacion(this.id, newCom.Id);
+        }
+
         public void removerComision(Comision c)
         {
             comisiones.Remove(c);
+            // DB: Remueve todas las relaciones en la base de datos que contengan este Id Comision
+            actComDb.removerRelacionIdCom(c.Id);
         }
 
-        public void eliminar()
+        public void eliminarRelacionComision()
         {
-            foreach (var c in comisiones)
-            {
-                c.removerDeProfesorYSocios();
-            }
+            actComDb.removerRelacionIdAct(id); // Remover de la base de datos TODAS las relaciones que contengan el ID de esta actividad
         }
 
         public void limpiarComisiones()
         {
             this.comisiones.Clear();
+        }
+
+        public void modificarAct(Actividad act)
+        {
+            actDb.modificar(act.Id, act.Descripcion, act.Costo); // Enviamos a actDb.modificar los datos a modificar
         }
     }
 }

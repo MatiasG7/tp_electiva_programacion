@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using CapaNegocio;
+
 namespace UI
 {
     public partial class FormProfesor : Form
@@ -66,6 +67,9 @@ namespace UI
             prof.Nombre = this.textBoxProfNombre.Text;
             prof.FNac = this.dateTimePickerProfFNac.Value;
             prof.FIng = this.dateTimePickerProfFIng.Value;
+
+            // DB: Modifica al profesor en la base de datos
+            prof.modificarProfesor(prof);
 
             this.Hide();
             MessageBox.Show("Profesor modificado satisfactoriamente.");
