@@ -62,7 +62,7 @@
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Nuestra aplicación ASP.NET (Universidad de Moron)</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Matias Garcia, Sebastian Martinez - Universidad de Morón</p>
             </footer>
         </div>
 

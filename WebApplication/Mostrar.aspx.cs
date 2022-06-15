@@ -44,7 +44,7 @@ namespace WebApplication
             Actividad act = ((Actividad)Session["Actividad"]);
             LabelDescripcion.Text = act.Descripcion;
             LabelID.Text = "Actividad ID: " + act.Id.ToString();
-            Label1.Visible = false;
+            Label1.Text = "Costo: " + act.Costo.ToString();
             Label2.Visible = false;
             Label3.Visible = false;
             Label4.Visible = false;
