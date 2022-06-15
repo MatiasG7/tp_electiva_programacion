@@ -28,8 +28,6 @@ namespace WebApplication
                 ListBoxProfesores.DataBind();
                 ListBoxSocios.DataSource = club.Socios;
                 ListBoxSocios.DataBind();
-                ListBoxPagos.DataSource = club.Pagos;
-                ListBoxPagos.DataBind();
             }
         }
 
@@ -39,7 +37,6 @@ namespace WebApplication
             ListBoxComisiones.ClearSelection();
             ListBoxProfesores.ClearSelection();
             ListBoxSocios.ClearSelection();
-            ListBoxPagos.ClearSelection();
         }
 
         //Comisiones
@@ -48,7 +45,6 @@ namespace WebApplication
             ListBoxActividades.ClearSelection();
             ListBoxProfesores.ClearSelection();
             ListBoxSocios.ClearSelection();
-            ListBoxPagos.ClearSelection();
         }
 
         //Profesores
@@ -57,7 +53,6 @@ namespace WebApplication
             ListBoxActividades.ClearSelection();
             ListBoxComisiones.ClearSelection();
             ListBoxSocios.ClearSelection();
-            ListBoxPagos.ClearSelection();
         }
 
         //Socios
