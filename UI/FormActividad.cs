@@ -276,5 +276,6 @@ namespace UI
 
             e.Value = act + " | ID: " + id + " | Día: " + dia + " | Horario: " + horario + "hs";
         }
+
     }
 }
