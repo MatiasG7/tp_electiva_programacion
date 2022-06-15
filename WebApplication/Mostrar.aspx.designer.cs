@@ -11,7 +11,7 @@ namespace WebApplication
 {
 
 
-    public partial class WebForm2
+    public partial class Mostrar
     {
 
         /// <summary>

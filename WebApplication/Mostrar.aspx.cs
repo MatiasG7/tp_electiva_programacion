@@ -8,7 +8,7 @@ using CapaNegocio;
 
 namespace WebApplication
 {
-    public partial class WebForm2 : System.Web.UI.Page
+    public partial class Mostrar : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -99,6 +99,7 @@ namespace WebApplication
             Label3.Visible = false;
             Label4.Visible = false;
             Label5.Visible = false;
+            Label6.Visible = false;
             ListBox1.Visible = false;
         }
 
